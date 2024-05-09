@@ -1,3 +1,3 @@
-var posts=["2024/05/05/同款博客搭建教程/","2024/05/05/OCS网课助手实现网课自动刷课/"];function toRandomPost(){
+var posts=["2024/05/05/OCS网课助手实现网课自动刷课/","2024/05/05/同款博客搭建教程/"];function toRandomPost(){
     pjax.loadUrl('/'+posts[Math.floor(Math.random() * posts.length)]);
   };
