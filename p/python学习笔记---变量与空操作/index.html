@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="{% note info simple %}在Python中，变量的类型是动态的，这意味着你不需要在声明变量时指定类型，Python会根据变量的值自动确定其类型。{% endnote %}\n数据类型 整数（int）：表示整数值，例如 1, 2, -5 等。 浮点数（float）：表示带有小数点的数值，例如 0.23, -4.56 等。 字符串（str）：表示文本数据，用单引号或双引号括起来，例如 &lsquo;hello&rsquo;, &ldquo;world&rdquo; 等。 布尔值（bool）：表示真或假，只有两个值：True 和 False。 列表（list）：表示有序的集合，可以包含不同类型的元素，用方括号括起来，例如 [1, 2, &rsquo;three&rsquo;, 4.0] 。 元组（tuple）：类似于列表，但是元素不能修改，用圆括号括起来，例如 (1, 2, &rsquo;three&rsquo;, 4.0) 。 字典（dict）：表示键值对的集合，用花括号括起来，例如 {&rsquo;name&rsquo;: &lsquo;Alice&rsquo;, &lsquo;age&rsquo;: 30} 。 集合（set）：表示无序不重复元素的集合，用花括号括起来，例如 {1, 2, 3} 。 变量的定义 定义变量时，你只需要给变量赋一个值，Python会自动确定其类型： 1# 定义整数变量 2x = 10 3 4# 定义浮点数变量 5y = 3.14 6 7# 定义字符串变量 8name = &#39;John&#39; 9 10# 定义布尔变量 11is_true = True 12 13# 定义列表变量 14numbers = [1, 2, 3, 4, 5] 15 16# 定义元组变量 17point = (10, 20) 18 19# 定义字典变量 20person = {&#39;name&#39;: &#39;Alice&#39;, &#39;age&#39;: 25} 21 22# 定义集合变量 23unique_numbers = {1, 2, 3, 2, 1} 在Python中，你可以使用内置函数来强制转换变量的类型：\n">
+<title>python学习笔记---变量与空操作</title>
+
+<link rel='canonical' href='https://LuoC33.github.io/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/'>
+
+<link rel="stylesheet" href="/scss/style.min.b7b872f5831c398c0682e3cec3b83476d11496f480369c66880ce7103490c350.css"><meta property='og:title' content="python学习笔记---变量与空操作">
+<meta property='og:description' content="{% note info simple %}在Python中，变量的类型是动态的，这意味着你不需要在声明变量时指定类型，Python会根据变量的值自动确定其类型。{% endnote %}\n数据类型 整数（int）：表示整数值，例如 1, 2, -5 等。 浮点数（float）：表示带有小数点的数值，例如 0.23, -4.56 等。 字符串（str）：表示文本数据，用单引号或双引号括起来，例如 &lsquo;hello&rsquo;, &ldquo;world&rdquo; 等。 布尔值（bool）：表示真或假，只有两个值：True 和 False。 列表（list）：表示有序的集合，可以包含不同类型的元素，用方括号括起来，例如 [1, 2, &rsquo;three&rsquo;, 4.0] 。 元组（tuple）：类似于列表，但是元素不能修改，用圆括号括起来，例如 (1, 2, &rsquo;three&rsquo;, 4.0) 。 字典（dict）：表示键值对的集合，用花括号括起来，例如 {&rsquo;name&rsquo;: &lsquo;Alice&rsquo;, &lsquo;age&rsquo;: 30} 。 集合（set）：表示无序不重复元素的集合，用花括号括起来，例如 {1, 2, 3} 。 变量的定义 定义变量时，你只需要给变量赋一个值，Python会自动确定其类型： 1# 定义整数变量 2x = 10 3 4# 定义浮点数变量 5y = 3.14 6 7# 定义字符串变量 8name = &#39;John&#39; 9 10# 定义布尔变量 11is_true = True 12 13# 定义列表变量 14numbers = [1, 2, 3, 4, 5] 15 16# 定义元组变量 17point = (10, 20) 18 19# 定义字典变量 20person = {&#39;name&#39;: &#39;Alice&#39;, &#39;age&#39;: 25} 21 22# 定义集合变量 23unique_numbers = {1, 2, 3, 2, 1} 在Python中，你可以使用内置函数来强制转换变量的类型：\n">
+<meta property='og:url' content='https://LuoC33.github.io/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/'>
+<meta property='og:site_name' content='流水鱼&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2024-05-10T23:50:02&#43;00:00'/><meta property='article:modified_time' content='2024-05-10T23:50:02&#43;00:00'/><meta property='og:image' content='https://tu1.lsyblog.live/img/py1.jpg' />
+<meta name="twitter:title" content="python学习笔记---变量与空操作">
+<meta name="twitter:description" content="{% note info simple %}在Python中，变量的类型是动态的，这意味着你不需要在声明变量时指定类型，Python会根据变量的值自动确定其类型。{% endnote %}\n数据类型 整数（int）：表示整数值，例如 1, 2, -5 等。 浮点数（float）：表示带有小数点的数值，例如 0.23, -4.56 等。 字符串（str）：表示文本数据，用单引号或双引号括起来，例如 &lsquo;hello&rsquo;, &ldquo;world&rdquo; 等。 布尔值（bool）：表示真或假，只有两个值：True 和 False。 列表（list）：表示有序的集合，可以包含不同类型的元素，用方括号括起来，例如 [1, 2, &rsquo;three&rsquo;, 4.0] 。 元组（tuple）：类似于列表，但是元素不能修改，用圆括号括起来，例如 (1, 2, &rsquo;three&rsquo;, 4.0) 。 字典（dict）：表示键值对的集合，用花括号括起来，例如 {&rsquo;name&rsquo;: &lsquo;Alice&rsquo;, &lsquo;age&rsquo;: 30} 。 集合（set）：表示无序不重复元素的集合，用花括号括起来，例如 {1, 2, 3} 。 变量的定义 定义变量时，你只需要给变量赋一个值，Python会自动确定其类型： 1# 定义整数变量 2x = 10 3 4# 定义浮点数变量 5y = 3.14 6 7# 定义字符串变量 8name = &#39;John&#39; 9 10# 定义布尔变量 11is_true = True 12 13# 定义列表变量 14numbers = [1, 2, 3, 4, 5] 15 16# 定义元组变量 17point = (10, 20) 18 19# 定义字典变量 20person = {&#39;name&#39;: &#39;Alice&#39;, &#39;age&#39;: 25} 21 22# 定义集合变量 23unique_numbers = {1, 2, 3, 2, 1} 在Python中，你可以使用内置函数来强制转换变量的类型：\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://tu1.lsyblog.live/img/py1.jpg' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended">
+    
+        <div id="article-toolbar" style="position: sticky;top: 5px;z-index: 1000;">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>返回</span>
+            </a>
+        </div>
+    
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#数据类型">数据类型</a></li>
+        <li><a href="#变量的定义">变量的定义</a></li>
+        <li><a href="#区别总结">区别总结</a></li>
+        <li><a href="#空操作的意义">空操作的意义：</a></li>
+        <li><a href="#空操作的运用">空操作的运用：</a></li>
+        <li><a href="#空操作的进阶运用">空操作的进阶运用：</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/">
+                
+                    <img src="https://tu1.lsyblog.live/img/py1.jpg" loading="lazy" alt="Featured image of post python学习笔记---变量与空操作" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/" >
+                代码编程
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/">python学习笔记---变量与空操作</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 10, 101050</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 4 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>{% note info simple %}在Python中，变量的类型是动态的，这意味着你不需要在声明变量时指定类型，Python会根据变量的值自动确定其类型。{% endnote %}</p>
+<h3 id="数据类型">数据类型
+</h3><ol>
+<li><code>整数（int）</code>：表示整数值，例如 <em><strong>1</strong></em>, <em><strong>2</strong></em>, <em><strong>-5</strong></em> 等。</li>
+<li><code>浮点数（float）</code>：表示带有小数点的数值，例如 <em><strong>0.23</strong></em>, <em><strong>-4.56</strong></em> 等。</li>
+<li><code>字符串（str）</code>：表示文本数据，用单引号或双引号括起来，例如 <em><strong>&lsquo;hello&rsquo;</strong></em>, <em><strong>&ldquo;world&rdquo;</strong></em> 等。</li>
+<li><code>布尔值（bool）</code>：表示真或假，只有两个值：<em><strong>True</strong></em> 和 <em><strong>False</strong></em>。</li>
+<li><code>列表（list）</code>：表示有序的集合，可以包含不同类型的元素，用方括号括起来，例如 <em><strong>[1, 2, &rsquo;three&rsquo;, 4.0]</strong></em> 。</li>
+<li><code>元组（tuple）</code>：类似于列表，但是元素不能修改，用圆括号括起来，例如 <em><strong>(1, 2, &rsquo;three&rsquo;, 4.0)</strong></em> 。</li>
+<li><code>字典（dict）</code>：表示键值对的集合，用花括号括起来，例如 <em><strong>{&rsquo;name&rsquo;: &lsquo;Alice&rsquo;, &lsquo;age&rsquo;: 30}</strong></em> 。</li>
+<li><code>集合（set）</code>：表示无序不重复元素的集合，用花括号括起来，例如 <em><strong>{1, 2, 3}</strong></em> 。</li>
+</ol>
+<h3 id="变量的定义">变量的定义
+</h3><ul>
+<li>定义变量时，你只需要给变量赋一个值，Python会自动确定其类型：
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 定义整数变量</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"># 定义浮点数变量</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="mf">3.14</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"># 定义字符串变量</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;John&#39;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"># 定义布尔变量</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="n">is_true</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1"># 定义列表变量</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1"># 定义元组变量</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="n">point</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="c1"># 定义字典变量</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="c1"># 定义集合变量</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="n">unique_numbers</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<p>在Python中，你可以使用内置函数来强制转换变量的类型：</p>
+<ul>
+<li><code>int(x)</code>：将 <em><strong>x</strong></em> 转换为整数。</li>
+<li><code>float(x)</code>：将 <em><strong>x</strong></em> 转换为浮点数。</li>
+<li><code>str(x)</code>：将 <em><strong>x</strong></em> 转换为字符串。</li>
+<li><code>list(x)</code>：将 <em><strong>x</strong></em> 转换为列表（如果 <em><strong>x</strong></em> 是可迭代的）。</li>
+<li><code>tuple(x)</code>：将 <em><strong>x</strong></em> 转换为元组（如果 <em><strong>x</strong></em> 是可迭代的）。</li>
+<li><code>dict(x)</code>：将 <em><strong>x</strong></em> 转换为字典（如果 <em><strong>x</strong></em> 是键值对的迭代）。</li>
+<li><code>set(x)</code>：将 <em><strong>x</strong></em> 转换为集合（如果 <em><strong>x</strong></em> 是可迭代的）。</li>
+</ul>
+<p>例如：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 将浮点数转换为整数</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="mf">3.99</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="n">x_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># x_int 的值为 3</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># 将整数转换为浮点数</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="n">y_float</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># y_float 的值为 5.0</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># 将整数转换为字符串</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="n">z</span> <span class="o">=</span> <span class="mi">7</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="n">z_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>  <span class="c1"># z_str 的值为 &#39;7&#39;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1"># 将字符串转换为整数</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;123&#39;</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="n">s_int</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="c1"># s_int 的值为 123</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1"># 将列表转换为元组</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="n">lst</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="n">lst_tuple</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>  <span class="c1"># lst_tuple 的值为 (1, 2, 3)</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">
+</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1"># 将元组转换为列表</span>
+</span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="n">tpl</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="n">tpl_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tpl</span><span class="p">)</span>  <span class="c1"># tpl_list 的值为 [4, 5, 6]</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="c1"># 将字典的键转换为集合</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="n">dct</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Bob&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="n">dct_keys_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">dct</span><span class="p">)</span>  <span class="c1"># dct_keys_set 的值为 {&#39;name&#39;, &#39;age&#39;}</span>
+</span></span></code></pre></div><h3 id="区别总结">区别总结
+</h3><ul>
+<li><code>可变性</code> ：元组是不可变的，列表和集合是可变的。</li>
+<li><code>有序性</code> ：列表和元组是有序的，集合是无序的。</li>
+<li><code>重复性</code> ：列表和元组可以包含重复元素，集合不允许重复元素。</li>
+<li><code>操作</code> ：列表和集合支持添加、删除和修改元素的操作，元组不支持这些操作。</li>
+<li><code>用途</code> ：元组常用于表示不可变的数据集合，列表用于存储有序的数据集合，集合用于存储无序且不重复的数据集合。</li>
+</ul>
+<p>注意，类型转换可能会导致数据丢失或不准确，例如将浮点数转换为整数时会丢失小数部分，将字符串转换为整数时如果字符串不是有效的整数表示则会引发错误。</p>
+<p>{% note info simple %}在Python中，空操作（<em><strong>pass</strong></em>）是一个占位符，它不执行任何操作。<em><strong>pass</strong></em> 语句在语法上是一个完整的语句，但在功能上是一个空操作。它的主要用途是在你需要一个语句的地方提供一个占位符，但暂时不实现任何功能。{% endnote %}</p>
+<h3 id="空操作的意义">空操作的意义：
+</h3><p><code>占位符</code>：当你在编写代码时，可能需要先定义一个结构（如函数、类、循环、条件语句等），但还没有决定或实现具体的逻辑。使用 <em><strong>pass</strong></em> 可以避免语法错误，因为Python要求在这些结构中必须有语句。</p>
+<p><code>保持代码结构</code>：在重构代码或设计API时，你可能需要先保持代码的结构完整，以便后续填充内容。</p>
+<p><code>避免编译错误</code>：在某些情况下，如果你不提供一个语句，Python解释器会报错。<em><strong>pass</strong></em> 可以用来避免这种错误。</p>
+<h3 id="空操作的运用">空操作的运用：
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 在函数中使用 pass</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="k">def</span> <span class="nf">my_function</span><span class="p">():</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="k">pass</span>  <span class="c1"># 这里暂时没有实现任何功能</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"># 在类中使用 pass</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">    <span class="k">pass</span>  <span class="c1"># 这里暂时没有定义任何方法或属性</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"># 在条件语句中使用 pass</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="k">pass</span>  <span class="c1"># 如果条件为真，这里暂时没有执行任何操作</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">    <span class="c1"># 其他操作</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="k">pass</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1"># 在循环中使用 pass</span>
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="k">pass</span>  <span class="c1"># 这里暂时没有对每个元素执行任何操作</span>
+</span></span></code></pre></div><h3 id="空操作的进阶运用">空操作的进阶运用：
+</h3><ol>
+<li>
+<p><code>占位符</code>：在编写大型程序时，你可以使用 <em><strong>pass</strong></em> 来定义框架，然后逐步填充每个部分的逻辑。</p>
+</li>
+<li>
+<p><code>测试和调试</code>：在调试代码时，你可以使用 <em><strong>pass</strong></em> 来临时禁用某些代码块，以便专注于其他部分的调试。</p>
+</li>
+<li>
+<p><code>设计模式</code>：在某些设计模式中，如模板方法模式，你可以使用 <em><strong>pass</strong></em> 来定义抽象方法或钩子方法，这些方法在子类中被实现。</p>
+</li>
+<li>
+<p><code>代码文档</code>：在编写代码文档时，你可以使用 <em><strong>pass</strong></em> 来表示某个部分是“待实现”的，这有助于其他开发者理解代码的当前状态。</p>
+</li>
+<li>
+<p><code>占位符变量</code>：在某些情况下，你可能需要在代码中定义一个变量，但暂时不赋予它任何值。虽然这不是 <em><strong>pass</strong></em> 的直接用途，但你可以使用 <em><strong>pass</strong></em> 来初始化一个变量，例如 <em><strong>var = pass</strong></em> ，尽管这并不常见，也不推荐。</p>
+</li>
+</ol>
+<p>总之，<em><strong>pass</strong></em> 是一个简单但非常有用的语句，它可以帮助你保持代码的结构完整性，同时允许你逐步实现代码的逻辑。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+        
+            <a href="/tags/python/">Python</a>
+        
+    </section>
+        
+        
+        
+<div class="post-reward" onclick="anzhiyu.showReward()">
+  <div class="reward-button button--animated" title="赞赏作者">
+    <i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者
+  </div>
+  <div class="reward-main" style="display: none;">
+    <div class="reward-all">
+      <span class="reward-title">感谢你赐予我前进的力量</span>
+      <ul class="reward-group">
+        <li class="reward-item">
+          <a href="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" target="_blank">
+            <img class="post-qr-code-img entered loaded" src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" onerror="this.onerror=null,this.src='/img/404.jpg'" data-lazy-src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" alt="微信" data-ll-status="loaded">
+          </a>
+          <div class="post-qr-code-desc">微信</div>
+        </li>
+        <li class="reward-item">
+          <a href="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" target="_blank">
+            <img class="post-qr-code-img entered loaded" src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" onerror="this.onerror=null,this.src='/img/404.jpg'" data-lazy-src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" alt="支付宝" data-ll-status="loaded">
+          </a>
+          <div class="post-qr-code-desc">支付宝</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="quit-box" onclick="anzhiyu.hideReward()" style="display: none;"></div>
+
+<script>
+  var anzhiyu = {
+    showReward: function() {
+      document.querySelector('.reward-main').style.display = 'block';
+      document.getElementById('quit-box').style.display = 'block';
+      document.querySelector('.reward-main').classList.add('reward-animation');
+    },
+    hideReward: function() {
+      document.querySelector('.reward-main').style.display = 'none';
+      document.getElementById('quit-box').style.display = 'none';
+      document.querySelector('.reward-main').classList.remove('reward-animation');
+    }
+  };
+</script>
+
+<style>
+  .reward-main {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+     
+  }
+
+  .reward-animation {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+    
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+    
+    
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://tu1.lsyblog.live/img/py2.jpg" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/py2.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">python学习笔记---判断循环语法</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C语言入门--工具链</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 流水鱼
+    </section>
+    
+
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了6篇文章 · 
+        总计7.43k字
+    </section>
+
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+    </section>
+    
+    
+
+
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="了解工具链 明白什么是工具链 工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。\n">
+<title>C语言入门--工具链</title>
+
+<link rel='canonical' href='https://LuoC33.github.io/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/'>
+
+<link rel="stylesheet" href="/scss/style.min.b7b872f5831c398c0682e3cec3b83476d11496f480369c66880ce7103490c350.css"><meta property='og:title' content="C语言入门--工具链">
+<meta property='og:description' content="了解工具链 明白什么是工具链 工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。\n">
+<meta property='og:url' content='https://LuoC33.github.io/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/'>
+<meta property='og:site_name' content='流水鱼&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C语言' /><meta property='article:tag' content='心得' /><meta property='article:published_time' content='2024-09-26T22:45:35&#43;08:00'/><meta property='article:modified_time' content='2024-09-26T22:45:35&#43;08:00'/><meta property='og:image' content='https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png' />
+<meta name="twitter:title" content="C语言入门--工具链">
+<meta name="twitter:description" content="了解工具链 明白什么是工具链 工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended">
+    
+        <div id="article-toolbar" style="position: sticky;top: 5px;z-index: 1000;">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>返回</span>
+            </a>
+        </div>
+    
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#了解工具链">了解工具链</a>
+      <ol>
+        <li><a href="#明白什么是工具链">明白什么是工具链</a></li>
+        <li><a href="#为什么要来了解工具链">为什么要来了解工具链</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/">
+                
+                    <img src="https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png" loading="lazy" alt="Featured image of post C语言入门--工具链" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/" >
+                代码编程
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/">C语言入门--工具链</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Sep 26, 262645</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 3 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="了解工具链">了解工具链
+</h2><h3 id="明白什么是工具链">明白什么是工具链
+</h3><p>工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。</p>
+<p>这么说能理解吗？就好比你要吃饭，得先要用水洗米，然后装水后再用电饭锅煮米对吧？在这个过程中，你用到的水、电、电饭锅都是工具链中的一环。</p>
+<h3 id="为什么要来了解工具链">为什么要来了解工具链
+</h3><p>对于入门菜鸟来说，他所学的，他所看到的，未必是全面和绝对正确的，纵观各大教程，很少人会真正的去引导一个刚刚入门计算机、刚学习编程的小白菜鸟。</p>
+<p>工具链的理解我认为是新手必不可少的一部分，如下面代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1">//只有Gcc工具链的编译器才能执行
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">    <span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="c1">// 可变长数组
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="c1">// 初始化数组
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="c1">// 打印数组
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1"></span>    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Array elements are:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>可以拿这段代码去各个IDE跑一跑，你就会发现，有的IDE会报错，而有的IDE就能过。</p>
+<p>这其实就是工具链不同而导致的一些小差异，反正在我初学C语言的时候，就去网上找到一些有意思的代码，复制下来直接跑（如烟花大爆炸、 代码雨）但是很多时候都会遇上一路报红。</p>
+<p>这其实不是代码有问题，也不是你的电脑有问题，而是单纯的你们开发环境不一致导致的。</p>
+<p>更加离谱的是下面的 代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl">
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">    <span class="kt">long</span> <span class="kt">double</span> <span class="n">arr</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%lf&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">arr</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%lf&#34;</span><span class="p">,</span><span class="n">arr</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>你会发现这段代码，在VScode和DevC++上跑出来的结果始终为0.000,其实原因就是因为他们用的工具链是GCC，如果你用的是VS，那就能跑出正确的结果，因为VS用的是MSVC。</p>
+<p>你可能在看教学视频的时候，用的不是和博主同一个ide来写代码，这时候如果你去复现他的代码，可能就会出现我刚才举的这两个例子。</p>
+<p>你复现不出来，你会百思不得其解，其实是你一开始你就已经抛空了你学习的地基，你都不知道C语言能够被编译执行的流程和原理，你就会学得迷迷糊糊，或许你是练武天才，这种倒逆行施下没走火入魔也可以说是 韧性不错。</p>
+<p>到目前为止，我从未遇见过能把C或C++学得扎实的，遇见的更多都是，一入门跟着视频就走，学了判断，学了循环，或许又学了函数和一点指针就开始刷Oj了。</p>
+<p>这是真的学好了C吗？你Oj哪怕刷了一千题、一万题、一百万题，我都说没用。Oj更偏向数学算法，编程只是来实现这个算法的，你会基本的语法就行。 你让一个专打Oj的用C来做简单操作系统、网络应用、数据库引擎的部分功能，他可能会摇摇头。</p>
+<p>算法对软件开发也好，对嵌入式技术也好，都是必不可少的，只不过在嵌入式技术中，算法能力要求的没软件开发那边那么高。</p>
+<p>过于用Oj来评判自己编程基础我觉得是倒反天罡，真正先把底子学好了，摸清楚了框架，你到那时候才会明白算法对你的意义。</p>
+<p>我拿嵌入式这方面举例，你做了一个运动分析，跟踪手部动作的</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/c%E8%AF%AD%E8%A8%80/">C语言</a>
+        
+            <a href="/tags/%E5%BF%83%E5%BE%97/">心得</a>
+        
+    </section>
+        
+        
+        
+<div class="post-reward" onclick="anzhiyu.showReward()">
+  <div class="reward-button button--animated" title="赞赏作者">
+    <i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者
+  </div>
+  <div class="reward-main" style="display: none;">
+    <div class="reward-all">
+      <span class="reward-title">感谢你赐予我前进的力量</span>
+      <ul class="reward-group">
+        <li class="reward-item">
+          <a href="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" target="_blank">
+            <img class="post-qr-code-img entered loaded" src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" onerror="this.onerror=null,this.src='/img/404.jpg'" data-lazy-src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" alt="微信" data-ll-status="loaded">
+          </a>
+          <div class="post-qr-code-desc">微信</div>
+        </li>
+        <li class="reward-item">
+          <a href="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" target="_blank">
+            <img class="post-qr-code-img entered loaded" src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" onerror="this.onerror=null,this.src='/img/404.jpg'" data-lazy-src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" alt="支付宝" data-ll-status="loaded">
+          </a>
+          <div class="post-qr-code-desc">支付宝</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="quit-box" onclick="anzhiyu.hideReward()" style="display: none;"></div>
+
+<script>
+  var anzhiyu = {
+    showReward: function() {
+      document.querySelector('.reward-main').style.display = 'block';
+      document.getElementById('quit-box').style.display = 'block';
+      document.querySelector('.reward-main').classList.add('reward-animation');
+    },
+    hideReward: function() {
+      document.querySelector('.reward-main').style.display = 'none';
+      document.getElementById('quit-box').style.display = 'none';
+      document.querySelector('.reward-main').classList.remove('reward-animation');
+    }
+  };
+</script>
+
+<style>
+  .reward-main {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+     
+  }
+
+  .reward-animation {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+    
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+    
+    
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://tu1.lsyblog.live/img/py1.jpg" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/py1.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">python学习笔记---变量与空操作</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://tu1.lsyblog.live/img/py2.jpg" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/py2.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">python学习笔记---判断循环语法</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 流水鱼
+    </section>
+    
+
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了6篇文章 · 
+        总计7.43k字
+    </section>
+
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+    </section>
+    
+    
+
+
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

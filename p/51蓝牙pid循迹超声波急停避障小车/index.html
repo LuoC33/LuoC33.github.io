@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="实现功能： 能够实现自动识别黑线，完成5路循迹。 能够通过蓝牙于89C52系列芯片串口通信控制小车 能够自动感应障碍物实现自动刹停。 准备材料： 89C52芯片及最小系统板 ， L298n模块， 模拟量5路循迹模块, 稳压模块， HC-06模块， 超声波模块， 亚巧克力板， 4个电机， 12vDC电源， DC转接母头 普通小车使能实现原理： 利用51单片机IO口控制L298n模块引脚供电实现对电机触发。再通过EN使能端进行PWM调速，实现转弯，漂移，转圈等特殊转速。\nIN为L298N模块控制引脚\nEN为L298N模块使能引脚\nL298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反转\n">
+<title>51蓝牙PID循迹超声波急停避障小车</title>
+
+<link rel='canonical' href='https://LuoC33.github.io/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/'>
+
+<link rel="stylesheet" href="/scss/style.min.b7b872f5831c398c0682e3cec3b83476d11496f480369c66880ce7103490c350.css"><meta property='og:title' content="51蓝牙PID循迹超声波急停避障小车">
+<meta property='og:description' content="实现功能： 能够实现自动识别黑线，完成5路循迹。 能够通过蓝牙于89C52系列芯片串口通信控制小车 能够自动感应障碍物实现自动刹停。 准备材料： 89C52芯片及最小系统板 ， L298n模块， 模拟量5路循迹模块, 稳压模块， HC-06模块， 超声波模块， 亚巧克力板， 4个电机， 12vDC电源， DC转接母头 普通小车使能实现原理： 利用51单片机IO口控制L298n模块引脚供电实现对电机触发。再通过EN使能端进行PWM调速，实现转弯，漂移，转圈等特殊转速。\nIN为L298N模块控制引脚\nEN为L298N模块使能引脚\nL298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反转\n">
+<meta property='og:url' content='https://LuoC33.github.io/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/'>
+<meta property='og:site_name' content='流水鱼&#39;s Blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='51单片机' /><meta property='article:tag' content='教程' /><meta property='article:published_time' content='2024-05-29T01:07:19&#43;00:00'/><meta property='article:modified_time' content='2024-05-29T01:07:19&#43;00:00'/><meta property='og:image' content='https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png' />
+<meta name="twitter:title" content="51蓝牙PID循迹超声波急停避障小车">
+<meta name="twitter:description" content="实现功能： 能够实现自动识别黑线，完成5路循迹。 能够通过蓝牙于89C52系列芯片串口通信控制小车 能够自动感应障碍物实现自动刹停。 准备材料： 89C52芯片及最小系统板 ， L298n模块， 模拟量5路循迹模块, 稳压模块， HC-06模块， 超声波模块， 亚巧克力板， 4个电机， 12vDC电源， DC转接母头 普通小车使能实现原理： 利用51单片机IO口控制L298n模块引脚供电实现对电机触发。再通过EN使能端进行PWM调速，实现转弯，漂移，转圈等特殊转速。\nIN为L298N模块控制引脚\nEN为L298N模块使能引脚\nL298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反转\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png' />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "light");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended">
+    
+        <div id="article-toolbar" style="position: sticky;top: 5px;z-index: 1000;">
+            <a href="/" class="back-home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+                <span>返回</span>
+            </a>
+        </div>
+    
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#实现功能"><em><strong>实现功能：</strong></em></a></li>
+    <li><a href="#准备材料"><em><strong>准备材料：</strong></em></a></li>
+    <li><a href="#普通小车使能实现原理"><em><strong>普通小车使能实现原理：</strong></em></a></li>
+    <li><a href="#蓝牙小车原理"><em><strong>蓝牙小车原理：</strong></em></a></li>
+    <li><a href="#超声波急停避障小车原理"><em><strong>超声波急停避障小车原理：</strong></em></a></li>
+    <li><a href="#5路pid循迹小车原理"><em><strong>5路PID循迹小车原理：</strong></em></a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/">
+                
+                    <img src="https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png" loading="lazy" alt="Featured image of post 51蓝牙PID循迹超声波急停避障小车" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%88%91%E7%9A%84%E9%A1%B9%E7%9B%AE/" >
+                我的项目
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/">51蓝牙PID循迹超声波急停避障小车</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 29, 29297</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="实现功能"><em><strong>实现功能：</strong></em>
+</h2><ul>
+<li>能够实现自动识别黑线，完成5路循迹。</li>
+<li>能够通过蓝牙于89C52系列芯片串口通信控制小车</li>
+<li>能够自动感应障碍物实现自动刹停。</li>
+</ul>
+<h2 id="准备材料"><em><strong>准备材料：</strong></em>
+</h2><ul>
+<li>89C52芯片及最小系统板 ，</li>
+<li>L298n模块，</li>
+<li>模拟量5路循迹模块,</li>
+<li>稳压模块，</li>
+<li>HC-06模块，</li>
+<li>超声波模块，</li>
+<li>亚巧克力板，</li>
+<li>4个电机，</li>
+<li>12vDC电源，</li>
+<li>DC转接母头</li>
+</ul>
+<h2 id="普通小车使能实现原理"><em><strong>普通小车使能实现原理：</strong></em>
+</h2><p>利用51单片机IO口控制L298n模块引脚供电实现对电机触发。再通过EN使能端进行<a class="link" href="https://blog.csdn.net/weixin_45237963/article/details/122033273"  target="_blank" rel="noopener"
+    >PWM</a>调速，实现转弯，漂移，转圈等特殊转速。<br>
+IN为L298N模块控制引脚<br>
+EN为L298N模块使能引脚<br>
+L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反转</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;REGX52.H&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="cp"></span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">Duty_left</span><span class="p">,</span><span class="n">Duty_right</span><span class="p">,</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1">//l298n
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">IN11</span><span class="o">=</span><span class="n">P0</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span><span class="c1">//左前轮
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">IN12</span><span class="o">=</span><span class="n">P0</span><span class="o">^</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="n">sbit</span> <span class="n">IN13</span><span class="o">=</span><span class="n">P0</span><span class="o">^</span><span class="mi">3</span><span class="p">;</span><span class="c1">//右前轮
+</span></span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">IN14</span><span class="o">=</span><span class="n">P0</span><span class="o">^</span><span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="n">sbit</span> <span class="n">IN21</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">1</span><span class="p">;</span><span class="c1">//左后轮
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">IN22</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="n">sbit</span> <span class="n">IN23</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">4</span><span class="p">;</span><span class="c1">//右后轮
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">IN24</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl">
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1">//使能端
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">EN1A</span><span class="o">=</span><span class="n">P0</span><span class="o">^</span><span class="mi">0</span><span class="p">;</span><span class="c1">//左前
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">EN1B</span><span class="o">=</span><span class="n">P0</span><span class="o">^</span><span class="mi">5</span><span class="p">;</span><span class="c1">//右前1
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">EN2A</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">6</span><span class="p">;</span><span class="c1">//左后
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">EN2B</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">7</span><span class="p">;</span><span class="c1">//右后1
+</span></span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="ln">22</span><span class="cl">  <span class="c1">//定时器+中断
+</span></span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Timer0_Init</span><span class="p">()</span>		<span class="c1">//100微秒@11.0592MHz
+</span></span></span><span class="line"><span class="ln">24</span><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">    <span class="n">TMOD</span><span class="o">|=</span><span class="mh">0x01</span><span class="p">;</span><span class="c1">//定时器T0，，工作方式都为方式1
+</span></span></span><span class="line"><span class="ln">26</span><span class="cl"><span class="c1"></span>    <span class="n">TH0</span><span class="o">=</span><span class="mh">0xff</span><span class="p">;</span><span class="c1">//定时ff9c0.1ms    fe0c0.5ms
+</span></span></span><span class="line"><span class="ln">27</span><span class="cl"><span class="c1"></span>    <span class="n">TL0</span><span class="o">=</span><span class="mh">0x9c</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">    
+</span></span><span class="line"><span class="ln">29</span><span class="cl">    <span class="n">EA</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>  <span class="c1">//开启总中断
+</span></span></span><span class="line"><span class="ln">30</span><span class="cl"><span class="c1"></span>    <span class="n">ET0</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//开启中断允许
+</span></span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="c1"></span>    <span class="n">TR0</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//开启定时器中断
+</span></span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="c1"></span><span class="p">}</span>  
+</span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="c1">//利用中断，PWM调速
+</span></span></span><span class="line"><span class="ln">34</span><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Timer0_Routine</span><span class="p">()</span> <span class="n">interrupt</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl">    <span class="n">TH0</span><span class="o">=</span><span class="mh">0xff</span><span class="p">;</span><span class="c1">//定时ff9c0.1ms    fe0c0.5ms
+</span></span></span><span class="line"><span class="ln">37</span><span class="cl"><span class="c1"></span>    <span class="n">TL0</span><span class="o">=</span><span class="mh">0x9c</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">	
+</span></span><span class="line"><span class="ln">39</span><span class="cl">    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl">    <span class="n">j</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">41</span><span class="cl">
+</span></span><span class="line"><span class="ln">42</span><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">Duty_left</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">43</span><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="ln">44</span><span class="cl">		<span class="n">EN1A</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">45</span><span class="cl">		<span class="n">EN2A</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">46</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">47</span><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="ln">48</span><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="ln">49</span><span class="cl">		<span class="n">EN1A</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">50</span><span class="cl">		<span class="n">EN2A</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">51</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">52</span><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">&lt;=</span><span class="n">Duty_right</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">53</span><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="ln">54</span><span class="cl">		<span class="n">EN1B</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">55</span><span class="cl">		<span class="n">EN2B</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">56</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">57</span><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="ln">58</span><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="ln">59</span><span class="cl">		<span class="n">EN1B</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">60</span><span class="cl">		<span class="n">EN2B</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">61</span><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">62</span><span class="cl">	
+</span></span><span class="line"><span class="ln">63</span><span class="cl">	    <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">100</span><span class="p">)</span>        <span class="c1">//设置pwm周期=0.1ms*100=10ms,这样开头定义的变量正好表示占空比数值
+</span></span></span><span class="line"><span class="ln">64</span><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="ln">65</span><span class="cl">        <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//加到100后变为0，重新计数
+</span></span></span><span class="line"><span class="ln">66</span><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">67</span><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="mi">100</span><span class="p">)</span>        <span class="c1">//设置pwm周期=0.1ms*100=10ms,这样开头定义的变量正好表示占空比数值
+</span></span></span><span class="line"><span class="ln">68</span><span class="cl"><span class="c1"></span>    <span class="p">{</span>
+</span></span><span class="line"><span class="ln">69</span><span class="cl">        <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">70</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">71</span><span class="cl">
+</span></span><span class="line"><span class="ln">72</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="蓝牙小车原理"><em><strong>蓝牙小车原理：</strong></em>
+</h2><p>通过将蓝牙模块的{% label TX %}与{% label RX %}与单片机交叉相接进行串口通信，实现收发数据。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="ln">  1</span><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;REGX52.H&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="ln">  2</span><span class="cl"><span class="cp"></span><span class="c1">//l298n
+</span></span></span><span class="line"><span class="ln">  3</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">IN11</span><span class="o">=</span><span class="n">P0</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span><span class="c1">//左前轮
+</span></span></span><span class="line"><span class="ln">  4</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">IN12</span><span class="o">=</span><span class="n">P0</span><span class="o">^</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">  5</span><span class="cl">
+</span></span><span class="line"><span class="ln">  6</span><span class="cl"><span class="n">sbit</span> <span class="n">IN13</span><span class="o">=</span><span class="n">P0</span><span class="o">^</span><span class="mi">3</span><span class="p">;</span><span class="c1">//右前轮
+</span></span></span><span class="line"><span class="ln">  7</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">IN14</span><span class="o">=</span><span class="n">P0</span><span class="o">^</span><span class="mi">4</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">  8</span><span class="cl">
+</span></span><span class="line"><span class="ln">  9</span><span class="cl"><span class="n">sbit</span> <span class="n">IN21</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">1</span><span class="p">;</span><span class="c1">//左后轮
+</span></span></span><span class="line"><span class="ln"> 10</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">IN22</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 11</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 12</span><span class="cl"><span class="n">sbit</span> <span class="n">IN23</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">4</span><span class="p">;</span><span class="c1">//右后轮
+</span></span></span><span class="line"><span class="ln"> 13</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">IN24</span><span class="o">=</span><span class="n">P1</span><span class="o">^</span><span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 14</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 15</span><span class="cl"><span class="kt">char</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 16</span><span class="cl"><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">ReceiveData</span><span class="p">;</span> <span class="c1">//接收到的数据存放变量
+</span></span></span><span class="line"><span class="ln"> 17</span><span class="cl"><span class="c1">//向左转
+</span></span></span><span class="line"><span class="ln"> 18</span><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">correct_left</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 19</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 20</span><span class="cl">    <span class="n">IN11</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 21</span><span class="cl">    <span class="n">IN12</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 22</span><span class="cl">	<span class="n">IN21</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 23</span><span class="cl">    <span class="n">IN22</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 24</span><span class="cl">	
+</span></span><span class="line"><span class="ln"> 25</span><span class="cl">    <span class="n">IN13</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 26</span><span class="cl">    <span class="n">IN14</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 27</span><span class="cl">	<span class="n">IN23</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 28</span><span class="cl">    <span class="n">IN24</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 29</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 30</span><span class="cl">    
+</span></span><span class="line"><span class="ln"> 31</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 32</span><span class="cl"><span class="c1">//向右转
+</span></span></span><span class="line"><span class="ln"> 33</span><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">correct_right</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 34</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 35</span><span class="cl">    <span class="n">IN11</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 36</span><span class="cl">    <span class="n">IN12</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 37</span><span class="cl">	<span class="n">IN21</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 38</span><span class="cl">    <span class="n">IN22</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 39</span><span class="cl">	
+</span></span><span class="line"><span class="ln"> 40</span><span class="cl">    <span class="n">IN13</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 41</span><span class="cl">    <span class="n">IN14</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 42</span><span class="cl">	<span class="n">IN23</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 43</span><span class="cl">    <span class="n">IN24</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 44</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 45</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 46</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 47</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 48</span><span class="cl"><span class="c1">//左转
+</span></span></span><span class="line"><span class="ln"> 49</span><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Left_turning</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 50</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 51</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 52</span><span class="cl">    <span class="n">IN11</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="ln"> 53</span><span class="cl">    <span class="n">IN12</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 54</span><span class="cl">    <span class="n">IN21</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>        
+</span></span><span class="line"><span class="ln"> 55</span><span class="cl">    <span class="n">IN22</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 56</span><span class="cl">	
+</span></span><span class="line"><span class="ln"> 57</span><span class="cl">    <span class="n">IN13</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 58</span><span class="cl">    <span class="n">IN14</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 59</span><span class="cl">    <span class="n">IN23</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 60</span><span class="cl">    <span class="n">IN24</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 61</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 62</span><span class="cl"><span class="c1">//右转
+</span></span></span><span class="line"><span class="ln"> 63</span><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Right_turning</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 64</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 65</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 66</span><span class="cl">    <span class="n">IN11</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 67</span><span class="cl">    <span class="n">IN12</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 68</span><span class="cl">    <span class="n">IN21</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 69</span><span class="cl">    <span class="n">IN22</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 70</span><span class="cl">	
+</span></span><span class="line"><span class="ln"> 71</span><span class="cl">    <span class="n">IN13</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 72</span><span class="cl">    <span class="n">IN14</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 73</span><span class="cl">    <span class="n">IN23</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 74</span><span class="cl">    <span class="n">IN24</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 75</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 76</span><span class="cl"><span class="c1">//小车直走前行，不拐弯速度赋值
+</span></span></span><span class="line"><span class="ln"> 77</span><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">forward_move</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 78</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 79</span><span class="cl"> 
+</span></span><span class="line"><span class="ln"> 80</span><span class="cl">    <span class="n">IN11</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 81</span><span class="cl">    <span class="n">IN12</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 82</span><span class="cl">    <span class="n">IN21</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 83</span><span class="cl">    <span class="n">IN22</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 84</span><span class="cl">	
+</span></span><span class="line"><span class="ln"> 85</span><span class="cl">    <span class="n">IN13</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 86</span><span class="cl">    <span class="n">IN14</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 87</span><span class="cl">    <span class="n">IN23</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 88</span><span class="cl">    <span class="n">IN24</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 89</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln"> 90</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 91</span><span class="cl"><span class="kt">void</span> <span class="nf">back</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 92</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln"> 93</span><span class="cl"> 
+</span></span><span class="line"><span class="ln"> 94</span><span class="cl">    <span class="n">IN11</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 95</span><span class="cl">    <span class="n">IN12</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 96</span><span class="cl">    <span class="n">IN21</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 97</span><span class="cl">    <span class="n">IN22</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 98</span><span class="cl">	
+</span></span><span class="line"><span class="ln"> 99</span><span class="cl">    <span class="n">IN13</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">100</span><span class="cl">    <span class="n">IN14</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">101</span><span class="cl">    <span class="n">IN23</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">102</span><span class="cl">    <span class="n">IN24</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">103</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">104</span><span class="cl">
+</span></span><span class="line"><span class="ln">105</span><span class="cl"><span class="kt">void</span> <span class="nf">stop</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">106</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln">107</span><span class="cl"> 
+</span></span><span class="line"><span class="ln">108</span><span class="cl">    <span class="n">IN11</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">109</span><span class="cl">    <span class="n">IN12</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">110</span><span class="cl">    <span class="n">IN21</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">111</span><span class="cl">    <span class="n">IN22</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">112</span><span class="cl">	
+</span></span><span class="line"><span class="ln">113</span><span class="cl">    <span class="n">IN13</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">114</span><span class="cl">    <span class="n">IN14</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">115</span><span class="cl">    <span class="n">IN23</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">116</span><span class="cl">    <span class="n">IN24</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">117</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">118</span><span class="cl">
+</span></span><span class="line"><span class="ln">119</span><span class="cl">
+</span></span><span class="line"><span class="ln">120</span><span class="cl">
+</span></span><span class="line"><span class="ln">121</span><span class="cl"><span class="kt">void</span> <span class="nf">receive</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">m</span><span class="p">)</span><span class="c1">//执行函数
+</span></span></span><span class="line"><span class="ln">122</span><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">123</span><span class="cl">	<span class="k">switch</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">124</span><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="ln">125</span><span class="cl">		<span class="k">case</span> <span class="sc">&#39;8&#39;</span><span class="o">:</span><span class="nf">forward_move</span><span class="p">();</span><span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">126</span><span class="cl">		<span class="k">case</span> <span class="sc">&#39;5&#39;</span><span class="o">:</span><span class="nf">stop</span><span class="p">();</span><span class="k">break</span><span class="p">;</span><span class="c1">//停止
+</span></span></span><span class="line"><span class="ln">127</span><span class="cl"><span class="c1"></span>	<span class="p">}</span>
+</span></span><span class="line"><span class="ln">128</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">129</span><span class="cl">
+</span></span><span class="line"><span class="ln">130</span><span class="cl"><span class="kt">void</span> <span class="nf">Uart_Init</span><span class="p">()</span>		<span class="c1">//9600bps@11.0592MHz
+</span></span></span><span class="line"><span class="ln">131</span><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">132</span><span class="cl">	<span class="n">PCON</span> <span class="o">=</span> <span class="mh">0x00</span><span class="p">;</span>		<span class="c1">//波特率不倍速s
+</span></span></span><span class="line"><span class="ln">133</span><span class="cl"><span class="c1"></span>	<span class="n">SCON</span> <span class="o">=</span> <span class="mh">0x50</span><span class="p">;</span>		<span class="c1">//8位数据,可变波特率
+</span></span></span><span class="line"><span class="ln">134</span><span class="cl"><span class="c1"></span>	<span class="n">TMOD</span> <span class="o">=</span> <span class="mh">0x20</span><span class="p">;</span>		<span class="c1">//设定定时器1为8位自动重装方式
+</span></span></span><span class="line"><span class="ln">135</span><span class="cl"><span class="c1"></span>	<span class="n">TL1</span> <span class="o">=</span> <span class="mh">0xFD</span><span class="p">;</span>		<span class="c1">//设定定时初值
+</span></span></span><span class="line"><span class="ln">136</span><span class="cl"><span class="c1"></span>	<span class="n">TH1</span> <span class="o">=</span> <span class="mh">0xFD</span><span class="p">;</span>		<span class="c1">//设定定时器重装值
+</span></span></span><span class="line"><span class="ln">137</span><span class="cl"><span class="c1"></span>	<span class="n">ET1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>		<span class="c1">//禁止定时器1中断
+</span></span></span><span class="line"><span class="ln">138</span><span class="cl"><span class="c1"></span>	<span class="n">TR1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>		<span class="c1">//启动定时器1
+</span></span></span><span class="line"><span class="ln">139</span><span class="cl"><span class="c1"></span>	<span class="n">EA</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>        <span class="c1">//总中断
+</span></span></span><span class="line"><span class="ln">140</span><span class="cl"><span class="c1"></span>	<span class="n">ES</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>      <span class="c1">//打开串口中断
+</span></span></span><span class="line"><span class="ln">141</span><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">142</span><span class="cl">
+</span></span><span class="line"><span class="ln">143</span><span class="cl"><span class="kt">void</span> <span class="nf">Uart_Routine</span><span class="p">()</span> <span class="n">interrupt</span> <span class="mi">4</span> <span class="c1">//中断
+</span></span></span><span class="line"><span class="ln">144</span><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="ln">145</span><span class="cl">   <span class="nf">stop</span><span class="p">();</span>
+</span></span><span class="line"><span class="ln">146</span><span class="cl">   <span class="n">RI</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>      <span class="c1">//清除接收中断标志位
+</span></span></span><span class="line"><span class="ln">147</span><span class="cl"><span class="c1"></span>   <span class="n">ReceiveData</span><span class="o">=</span><span class="n">SBUF</span><span class="p">;</span>    <span class="c1">//除去接受的数据
+</span></span></span><span class="line"><span class="ln">148</span><span class="cl"><span class="c1"></span>	 <span class="nf">receive</span><span class="p">(</span><span class="n">ReceiveData</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">149</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">150</span><span class="cl">
+</span></span><span class="line"><span class="ln">151</span><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">152</span><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="ln">153</span><span class="cl">	<span class="nf">Uart_Init</span><span class="p">();</span>
+</span></span><span class="line"><span class="ln">154</span><span class="cl">	<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">155</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="超声波急停避障小车原理"><em><strong>超声波急停避障小车原理：</strong></em>
+</h2><p>1.采用 IO 口 {% label TRIG %} 触发测距，给一个 10us 的高电平信号；<br>
+2.模块自动发送 8 个 40khz 的方波，自动检测是否有信号返回；<br>
+3.有信号返回，通过 IO 口 {% label ECHO %} 输出一个高电平，高电平持续的时间就是超声波从发射到返回的时间。<br>
+4.测试距离=（高电平时间*声速（340M/S））/2</p>
+<p>{% image <a class="link" href="https://img2.imgtp.com/2024/05/29/C0lSwYoH.png"  target="_blank" rel="noopener"
+    >https://img2.imgtp.com/2024/05/29/C0lSwYoH.png</a>, alt= %}</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;REGX52.H&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;delay.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="cp"></span><span class="n">sbit</span> <span class="n">Trig</span><span class="o">=</span><span class="n">P3</span><span class="o">^</span><span class="mi">3</span><span class="p">;</span><span class="c1">//定义超声波模块引脚
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"></span><span class="n">sbit</span> <span class="n">Echo</span><span class="o">=</span><span class="n">P3</span><span class="o">^</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="n">distance</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="kt">int</span> <span class="nf">csb</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="p">{</span>		
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl">	
+</span></span><span class="line"><span class="ln">11</span><span class="cl">		<span class="n">TMOD</span> <span class="o">&amp;=</span> <span class="mh">0x0F</span><span class="p">;</span>			<span class="c1">//设置定时器模式
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="ln">13</span><span class="cl">		<span class="n">TL1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>				<span class="c1">//设置定时初始值
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"></span>		<span class="n">TH1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>				<span class="c1">//设置定时初始值
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="ln">16</span><span class="cl">	
+</span></span><span class="line"><span class="ln">17</span><span class="cl">	<span class="n">Trig</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="c1">//发射20US的脉冲
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1"></span>    <span class="nf">Delay10us</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="n">Trig</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="c1">//关闭    
+</span></span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="ln">21</span><span class="cl">	
+</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Echo</span><span class="p">);</span><span class="c1">//等待返回脉冲
+</span></span></span><span class="line"><span class="ln">23</span><span class="cl"><span class="c1"></span>        <span class="n">TR1</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">Echo</span><span class="p">);</span><span class="c1">//返回脉冲结束
+</span></span></span><span class="line"><span class="ln">25</span><span class="cl"><span class="c1"></span>        <span class="n">TR1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">	
+</span></span><span class="line"><span class="ln">27</span><span class="cl">    <span class="n">a</span><span class="o">=</span><span class="n">TH1</span><span class="o">*</span><span class="mi">256</span><span class="o">+</span><span class="n">TL1</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">28</span><span class="cl">       <span class="n">TH1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">       <span class="n">TL1</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">			 
+</span></span><span class="line"><span class="ln">31</span><span class="cl">    <span class="n">distance</span><span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="mf">1.7</span><span class="o">/</span><span class="mi">100</span><span class="p">;</span> <span class="c1">//计算公式，按照数据手册为准，不同环境不同计算方法。
+</span></span></span><span class="line"><span class="ln">32</span><span class="cl"><span class="c1"></span>		  
+</span></span><span class="line"><span class="ln">33</span><span class="cl">			<span class="n">Trig</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> 
+</span></span><span class="line"><span class="ln">34</span><span class="cl">			<span class="n">Echo</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">35</span><span class="cl">		<span class="k">return</span> <span class="n">distance</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">36</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl"> 
+</span></span></code></pre></div><h2 id="5路pid循迹小车原理"><em><strong>5路PID循迹小车原理：</strong></em>
+</h2><p>{% image <a class="link" href="https://img2.imgtp.com/2024/05/29/jT3cO80Q.png"  target="_blank" rel="noopener"
+    >https://img2.imgtp.com/2024/05/29/jT3cO80Q.png</a>, alt= %}</p>
+<p>简单的循迹就是通过循迹模块反馈给单片机的高低电平信号进行不断判断和迭代，列出全部情况，这里就不做赘述。在此分享和学习关于PID算法循迹。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;REGX52.H&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="c1">// 定义PID控制的参数
+</span></span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="c1"></span><span class="kt">float</span> <span class="n">Kp</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>  <span class="c1">// 比例系数
+</span></span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1"></span><span class="kt">float</span> <span class="n">Ki</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">;</span>  <span class="c1">// 积分系数
+</span></span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1"></span><span class="kt">float</span> <span class="n">Kd</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span>  <span class="c1">// 微分系数
+</span></span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="kt">int</span> <span class="n">error</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>            <span class="c1">// 当前误差
+</span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">lastError</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>        <span class="c1">// 上一次的误差
+</span></span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">integral</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>         <span class="c1">// 误差的积分
+</span></span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">derivative</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>       <span class="c1">// 误差的微分
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="c1">// 红外循迹传感器定义...
+</span></span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1">// L298N控制引脚定义...
+</span></span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="c1">// 使能端引脚定义...
+</span></span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="c1">// 延时函数定义...
+</span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1">// Timer0 初始化函数定义...
+</span></span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="c1">// 电机控制函数定义...
+</span></span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="ln">20</span><span class="cl"><span class="kt">void</span> <span class="nf">CalculatePID</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">21</span><span class="cl">    <span class="c1">// 根据传感器的读数计算误差，这里假设按照传感器是5个连续的数值
+</span></span></span><span class="line"><span class="ln">22</span><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">sensorValues</span> <span class="o">=</span> <span class="p">(</span><span class="n">left1</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">left2</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">mid3</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">right4</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">right5</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">23</span><span class="cl">
+</span></span><span class="line"><span class="ln">24</span><span class="cl">    <span class="k">switch</span><span class="p">(</span><span class="n">sensorValues</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">25</span><span class="cl">        <span class="k">case</span> <span class="mi">0</span><span class="nl">b00000</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">26</span><span class="cl">        <span class="k">case</span> <span class="mi">0</span><span class="nl">b11111</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">27</span><span class="cl">            <span class="c1">// 特殊情况处理，比如急转弯或者丢线
+</span></span></span><span class="line"><span class="ln">28</span><span class="cl"><span class="c1"></span>            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">29</span><span class="cl">        <span class="k">case</span> <span class="mi">0</span><span class="nl">b00100</span><span class="p">:</span>
+</span></span><span class="line"><span class="ln">30</span><span class="cl">            <span class="n">error</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 小车在中心线上
+</span></span></span><span class="line"><span class="ln">31</span><span class="cl"><span class="c1"></span>            <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">32</span><span class="cl">        <span class="c1">//...其它情况根据传感器值来设置误差值
+</span></span></span><span class="line"><span class="ln">33</span><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">34</span><span class="cl">
+</span></span><span class="line"><span class="ln">35</span><span class="cl">    <span class="c1">// PID计算
+</span></span></span><span class="line"><span class="ln">36</span><span class="cl"><span class="c1"></span>    <span class="n">integral</span> <span class="o">=</span> <span class="n">integral</span> <span class="o">+</span> <span class="n">error</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">37</span><span class="cl">    <span class="n">derivative</span> <span class="o">=</span> <span class="n">error</span> <span class="o">-</span> <span class="n">lastError</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">38</span><span class="cl">    <span class="kt">int</span> <span class="n">turn</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">Kp</span> <span class="o">*</span> <span class="n">error</span> <span class="o">+</span> <span class="n">Ki</span> <span class="o">*</span> <span class="n">integral</span> <span class="o">+</span> <span class="n">Kd</span> <span class="o">*</span> <span class="n">derivative</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">39</span><span class="cl">    <span class="n">lastError</span> <span class="o">=</span> <span class="n">error</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">40</span><span class="cl">
+</span></span><span class="line"><span class="ln">41</span><span class="cl">    <span class="c1">// 根据turn计算左右电机的占空比
+</span></span></span><span class="line"><span class="ln">42</span><span class="cl"><span class="c1"></span>    <span class="n">Duty_left</span> <span class="o">=</span> <span class="mi">26</span> <span class="o">+</span> <span class="n">turn</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">43</span><span class="cl">    <span class="n">Duty_right</span> <span class="o">=</span> <span class="mi">26</span> <span class="o">-</span> <span class="n">turn</span><span class="p">;</span>
+</span></span><span class="line"><span class="ln">44</span><span class="cl">
+</span></span><span class="line"><span class="ln">45</span><span class="cl">    <span class="c1">// 确保占空比在0-100之间
+</span></span></span><span class="line"><span class="ln">46</span><span class="cl"><span class="c1"></span>    <span class="n">Duty_left</span> <span class="o">=</span> <span class="n">Duty_left</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="p">(</span><span class="n">Duty_left</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="o">?</span> <span class="mi">100</span> <span class="o">:</span> <span class="n">Duty_left</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">47</span><span class="cl">    <span class="n">Duty_right</span> <span class="o">=</span> <span class="n">Duty_right</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="p">(</span><span class="n">Duty_right</span> <span class="o">&gt;</span> <span class="mi">100</span> <span class="o">?</span> <span class="mi">100</span> <span class="o">:</span> <span class="n">Duty_right</span><span class="p">);</span>
+</span></span><span class="line"><span class="ln">48</span><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="ln">49</span><span class="cl">
+</span></span><span class="line"><span class="ln">50</span><span class="cl"><span class="c1">// 中断服务函数，用于更新PWM信号
+</span></span></span><span class="line"><span class="ln">51</span><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">Timer0_Routine</span><span class="p">()</span> <span class="n">interrupt</span> <span class="mi">1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">52</span><span class="cl">    <span class="c1">// 更新定时器...
+</span></span></span><span class="line"><span class="ln">53</span><span class="cl"><span class="c1"></span>    <span class="c1">// PWM控制代码...
+</span></span></span><span class="line"><span class="ln">54</span><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">55</span><span class="cl">
+</span></span><span class="line"><span class="ln">56</span><span class="cl"><span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">57</span><span class="cl">    <span class="nf">Timer0_Init</span><span class="p">();</span> <span class="c1">// 定时器初始化
+</span></span></span><span class="line"><span class="ln">58</span><span class="cl"><span class="c1"></span>    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">59</span><span class="cl">        <span class="nf">CalculatePID</span><span class="p">();</span> <span class="c1">// 计算PID
+</span></span></span><span class="line"><span class="ln">60</span><span class="cl"><span class="c1"></span>        <span class="c1">// 控制电机...
+</span></span></span><span class="line"><span class="ln">61</span><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">62</span><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/51%E5%8D%95%E7%89%87%E6%9C%BA/">51单片机</a>
+        
+            <a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>
+        
+    </section>
+        
+        
+        
+<div class="post-reward" onclick="anzhiyu.showReward()">
+  <div class="reward-button button--animated" title="赞赏作者">
+    <i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者
+  </div>
+  <div class="reward-main" style="display: none;">
+    <div class="reward-all">
+      <span class="reward-title">感谢你赐予我前进的力量</span>
+      <ul class="reward-group">
+        <li class="reward-item">
+          <a href="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" target="_blank">
+            <img class="post-qr-code-img entered loaded" src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" onerror="this.onerror=null,this.src='/img/404.jpg'" data-lazy-src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" alt="微信" data-ll-status="loaded">
+          </a>
+          <div class="post-qr-code-desc">微信</div>
+        </li>
+        <li class="reward-item">
+          <a href="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" target="_blank">
+            <img class="post-qr-code-img entered loaded" src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" onerror="this.onerror=null,this.src='/img/404.jpg'" data-lazy-src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" alt="支付宝" data-ll-status="loaded">
+          </a>
+          <div class="post-qr-code-desc">支付宝</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="quit-box" onclick="anzhiyu.hideReward()" style="display: none;"></div>
+
+<script>
+  var anzhiyu = {
+    showReward: function() {
+      document.querySelector('.reward-main').style.display = 'block';
+      document.getElementById('quit-box').style.display = 'block';
+      document.querySelector('.reward-main').classList.add('reward-animation');
+    },
+    hideReward: function() {
+      document.querySelector('.reward-main').style.display = 'none';
+      document.getElementById('quit-box').style.display = 'none';
+      document.querySelector('.reward-main').classList.remove('reward-animation');
+    }
+  };
+</script>
+
+<style>
+  .reward-main {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+     
+  }
+
+  .reward-animation {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+    
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.body, {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+    
+    
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://tu1.lsyblog.live/img/%e8%99%9a%e6%8b%9f%e6%9c%ba%e5%ae%89%e8%a3%85.jpg" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/虚拟机安装.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">虚拟机安装W7/W10优化精简版</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://tu1.lsyblog.live/img/%e7%bd%91%e8%af%be.jpg" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/网课.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">OCS网课助手实现网课自动刷课</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2024 流水鱼
+    </section>
+    
+
+    <section class="totalcount">
+        
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+        发表了6篇文章 · 
+        总计7.43k字
+    </section>
+
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+    </section>
+    
+    
+
+
+</footer>
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

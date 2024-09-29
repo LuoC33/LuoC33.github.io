@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>油猴 on 流水鱼&#39;s Blog</title>
+        <link>https://LuoC33.github.io/tags/%E6%B2%B9%E7%8C%B4/</link>
+        <description>Recent content in 油猴 on 流水鱼&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>流水鱼</copyright>
+        <lastBuildDate>Sun, 05 May 2024 20:18:12 +0000</lastBuildDate><atom:link href="https://LuoC33.github.io/tags/%E6%B2%B9%E7%8C%B4/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>OCS网课助手实现网课自动刷课</title>
+        <link>https://LuoC33.github.io/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</link>
+        <pubDate>Sun, 05 May 2024 20:18:12 +0000</pubDate>
+        
+        <guid>https://LuoC33.github.io/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</guid>
+        <description>&lt;img src="https://tu1.lsyblog.live/img/网课.jpg" alt="Featured image of post OCS网课助手实现网课自动刷课" /&gt;&lt;h1 id=&#34;准备工作&#34;&gt;准备工作
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;下载-tampermonkeyhttpswwwtampermonkeynet-油猴也叫暴力猴&#34;&gt;&lt;em&gt;&lt;strong&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://www.tampermonkey.net/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Tampermonkey&lt;/a&gt; （油猴也叫暴力猴）&lt;/strong&gt;&lt;/em&gt;
+&lt;/h2&gt;&lt;p&gt;将油猴下载好后加进扩展，如果你是edg，谷歌，火狐可以在插件商店一键加入，这里就不赘诉了&lt;/p&gt;
+&lt;p&gt;我们首先确保扩展的正常启用。如图&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div style=&#34;display: flex; justify-content: space-between;&#34;&gt;
+    &lt;img src=&#34;https://img2.imgtp.com/2024/05/05/2SM9sSAx.png&#34; alt=&#34;First Image&#34; style=&#34;width: 70%;&#34;&gt;
+    &lt;img src=&#34;https://img2.imgtp.com/2024/05/05/tGH2pz6b.png&#34; alt=&#34;Second Image&#34; style=&#34;width: 70%;&#34;&gt;
+&lt;/div&gt;  
+&lt;ul&gt;
+&lt;li&gt;
+&lt;h2 id=&#34;浏览器输入网址下载ocs网课助手&#34;&gt;&lt;em&gt;&lt;strong&gt;浏览器输入网址下载OCS网课助手&lt;/strong&gt;&lt;/em&gt;
+&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;https://cdn.ocsjs.com/ocs.user.js	
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后可以看到有个安装，因为已经安装过了，所以看到的是更新。&lt;/p&gt;
+&lt;p&gt;安装好后就可以进入学习通看看脚本是不是已经启动了。&lt;/p&gt;
+&lt;p&gt;但是我们要想最大程度的启动脚本，实现自动答题等功能还需要配置题库，这里也不赘述了。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://img2.imgtp.com/2024/05/05/M2Hzm2SK.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1714914510184.png&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;具体配置教程可以参考 &lt;a class=&#34;link&#34; href=&#34;https://docs.ocsjs.com/docs/quickly-start&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;官网手册&lt;/a&gt;&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;关于U校园，welearn，批改网，以及其他的网课平台，我有时间会出教程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
