@@ -8,12 +8,13 @@
         <language>zh-cn</language>
         <copyright>流水鱼</copyright>
         <lastBuildDate>Sun, 29 Sep 2024 21:20:53 +0800</lastBuildDate><atom:link href="https://LuoC33.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>你的文章名</title>
-        <link>https://LuoC33.github.io/posts/%E4%BD%A0%E7%9A%84%E6%96%87%E7%AB%A0%E5%90%8D/</link>
+        <title>你名</title>
+        <link>https://LuoC33.github.io/p/%E4%BD%A0%E5%90%8D/</link>
         <pubDate>Sun, 29 Sep 2024 21:20:53 +0800</pubDate>
         
-        <guid>https://LuoC33.github.io/posts/%E4%BD%A0%E7%9A%84%E6%96%87%E7%AB%A0%E5%90%8D/</guid>
-        <description></description>
+        <guid>https://LuoC33.github.io/p/%E4%BD%A0%E5%90%8D/</guid>
+        <description>&lt;p&gt;你好&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>C语言入门--工具链</title>
