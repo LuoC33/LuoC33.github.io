@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="准备工作 下载 Tampermonkey （油猴也叫暴力猴） 将油猴下载好后加进扩展，如果你是edg，谷歌，火狐可以在插件商店一键加入，这里就不赘诉了\n我们首先确保扩展的正常启用。如图\n">
-<title>OCS网课助手实现网课自动刷课</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="GPIO输出输入的简单原理 输出：通过寄存器写0或者是1，控制引脚输出低电压或者是高电压。\n输入：通过读取引脚的寄存器是0还是1，判断是高电压还是低电压。\nGPIO的四种输出模式 推挽与开漏 推挽输出是GPIO（通用输入输出）的一种输出配置，能够驱动电平高或低。\n">
+<title>STM32-IO输出与输入（一）</title>
 
-<link rel='canonical' href='https://LuoC33.github.io/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/'>
+<link rel='canonical' href='https://LuoC33.github.io/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/'>
 
-<link rel="stylesheet" href="/scss/style.min.dc493e94bb04b3da816a3472089b5b60e2365fb9f148f2a1d411d1836ff939dc.css"><meta property='og:title' content="OCS网课助手实现网课自动刷课">
-<meta property='og:description' content="准备工作 下载 Tampermonkey （油猴也叫暴力猴） 将油猴下载好后加进扩展，如果你是edg，谷歌，火狐可以在插件商店一键加入，这里就不赘诉了\n我们首先确保扩展的正常启用。如图\n">
-<meta property='og:url' content='https://LuoC33.github.io/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/'>
+<link rel="stylesheet" href="/scss/style.min.dc493e94bb04b3da816a3472089b5b60e2365fb9f148f2a1d411d1836ff939dc.css"><meta property='og:title' content="STM32-IO输出与输入（一）">
+<meta property='og:description' content="GPIO输出输入的简单原理 输出：通过寄存器写0或者是1，控制引脚输出低电压或者是高电压。\n输入：通过读取引脚的寄存器是0还是1，判断是高电压还是低电压。\nGPIO的四种输出模式 推挽与开漏 推挽输出是GPIO（通用输入输出）的一种输出配置，能够驱动电平高或低。\n">
+<meta property='og:url' content='https://LuoC33.github.io/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/'>
 <meta property='og:site_name' content='流水鱼&#39;s Blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='油猴' /><meta property='article:tag' content='网课' /><meta property='article:tag' content='教程' /><meta property='article:published_time' content='2024-05-05T20:18:12&#43;00:00'/><meta property='article:modified_time' content='2024-05-05T20:18:12&#43;00:00'/><meta property='og:image' content='https://tu1.lsyblog.live/img/网课.jpg' />
-<meta name="twitter:title" content="OCS网课助手实现网课自动刷课">
-<meta name="twitter:description" content="准备工作 下载 Tampermonkey （油猴也叫暴力猴） 将油猴下载好后加进扩展，如果你是edg，谷歌，火狐可以在插件商店一键加入，这里就不赘诉了\n我们首先确保扩展的正常启用。如图\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://tu1.lsyblog.live/img/网课.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='单片机' /><meta property='article:tag' content='STM32' /><meta property='article:published_time' content='2024-10-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-02T00:00:00&#43;00:00'/><meta property='og:image' content='https://tu1.lsyblog.live/img/%E5%8D%95%E7%89%87%E6%9C%BA.jpg' />
+<meta name="twitter:title" content="STM32-IO输出与输入（一）">
+<meta name="twitter:description" content="GPIO输出输入的简单原理 输出：通过寄存器写0或者是1，控制引脚输出低电压或者是高电压。\n输入：通过读取引脚的寄存器是0还是1，判断是高电压还是低电压。\nGPIO的四种输出模式 推挽与开漏 推挽输出是GPIO（通用输入输出）的一种输出配置，能够驱动电平高或低。\n"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://tu1.lsyblog.live/img/%E5%8D%95%E7%89%87%E6%9C%BA.jpg' />
     </head>
     <body class="
     article-page
@@ -78,8 +78,13 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#下载-tampermonkeyhttpswwwtampermonkeynet-油猴也叫暴力猴"><em><strong>下载 <a href="https://www.tampermonkey.net/">Tampermonkey</a> （油猴也叫暴力猴）</strong></em></a></li>
-    <li><a href="#浏览器输入网址下载ocs网课助手"><em><strong>浏览器输入网址下载OCS网课助手</strong></em></a></li>
+    <li><a href="#gpio输出输入的简单原理">GPIO输出输入的简单原理</a></li>
+    <li><a href="#gpio的四种输出模式">GPIO的四种输出模式</a>
+      <ol>
+        <li><a href="#推挽与开漏">推挽与开漏</a></li>
+        <li><a href="#复用推挽与复用开漏">复用推挽与复用开漏</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -95,9 +100,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/">
+            <a href="/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/">
                 
-                    <img src="https://tu1.lsyblog.live/img/%e7%bd%91%e8%af%be.jpg" loading="lazy" alt="Featured image of post OCS网课助手实现网课自动刷课" />
+                    <img src="https://tu1.lsyblog.live/img/%E5%8D%95%E7%89%87%E6%9C%BA.jpg" loading="lazy" alt="Featured image of post STM32-IO输出与输入（一）" />
                 
             </a>
         </div>
@@ -107,8 +112,8 @@
     
     <header class="article-category">
         
-            <a href="/categories/%E6%88%91%E7%9A%84%E9%A1%B9%E7%9B%AE/" >
-                我的项目
+            <a href="/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/" >
+                代码编程
             </a>
         
     </header>
@@ -116,7 +121,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/">OCS网课助手实现网课自动刷课</a>
+            <a href="/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/">STM32-IO输出与输入（一）</a>
         </h2>
     
         
@@ -138,7 +143,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2024-5-5</time>
+                <time class="article-time--published">2024-10-2</time>
             </div>
         
 
@@ -153,7 +158,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -168,45 +173,104 @@
     <section class="article-content">
     
     
-    <h1 id="准备工作">准备工作
-</h1><ul>
+    <h2 id="gpio输出输入的简单原理">GPIO输出输入的简单原理
+</h2><ul>
 <li>
-<h2 id="下载-tampermonkeyhttpswwwtampermonkeynet-油猴也叫暴力猴"><em><strong>下载 <a class="link" href="https://www.tampermonkey.net/"  target="_blank" rel="noopener"
-    >Tampermonkey</a> （油猴也叫暴力猴）</strong></em>
-</h2><p>将油猴下载好后加进扩展，如果你是edg，谷歌，火狐可以在插件商店一键加入，这里就不赘诉了</p>
-<p>我们首先确保扩展的正常启用。如图</p>
+<p>输出：通过<code>寄存器</code>写<code>0</code>或者是<code>1</code>，控制引脚输出<code>低电压</code>或者是<code>高电压</code>。</p>
+</li>
+<li>
+<p>输入：通过读取引脚的<code>寄存器</code>是<code>0</code>还是<code>1</code>，判断是<code>高电压</code>还是<code>低电压</code>。</p>
 </li>
 </ul>
-<div style="display: flex; justify-content: space-between;">
-    <img src="https://img2.imgtp.com/2024/05/05/2SM9sSAx.png" alt="First Image" style="width: 70%;">
-    <img src="https://img2.imgtp.com/2024/05/05/tGH2pz6b.png" alt="Second Image" style="width: 70%;">
-</div>  
-<ul>
-<li>
-<h2 id="浏览器输入网址下载ocs网课助手"><em><strong>浏览器输入网址下载OCS网课助手</strong></em>
-</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">https://cdn.ocsjs.com/ocs.user.js	
-</span></span></code></pre></div><p>然后可以看到有个安装，因为已经安装过了，所以看到的是更新。</p>
-<p>安装好后就可以进入学习通看看脚本是不是已经启动了。</p>
-<p>但是我们要想最大程度的启动脚本，实现自动答题等功能还需要配置题库，这里也不赘述了。</p>
-</li>
-</ul>
-<p><img src="https://img2.imgtp.com/2024/05/05/M2Hzm2SK.png"
+<h2 id="gpio的四种输出模式">GPIO的四种输出模式
+</h2><h3 id="推挽与开漏">推挽与开漏
+</h3><p><img src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/PNmos.png"
 	
 	
 	
 	loading="lazy"
 	
-		alt="1714914510184.png"
+		alt="推挽与开漏"
 	
 	
 ></p>
-<ul>
+<ol>
 <li>
-<p><em><strong>具体配置教程可以参考 <a class="link" href="https://docs.ocsjs.com/docs/quickly-start"  target="_blank" rel="noopener"
-    >官网手册</a></strong></em></p>
-<p>关于U校园，welearn，批改网，以及其他的网课平台，我有时间会出教程。</p>
+<p>推挽输出是GPIO（通用输入输出）的一种输出配置，能够驱动电平高或低。</p>
+<p>实现原理：STM32中的推挽输出配置由一个PMOS和一个NMOS组成：</p>
+<pre><code> - PMOS：连接到VDD，导通时输出高电平。  
+
+ - NMOS：连接到GND，导通时输出低电平。  
+</code></pre>
+<p>应用：用于需要驱动电流的场合，如驱动LED、继电器等。</p>
 </li>
-</ul>
+</ol>
+<hr>
+<ol start="2">
+<li>
+<p>开漏输出仅能拉低电平，不能主动拉高，需要通过外部上拉电阻将电平拉高到逻辑高</p>
+<p>实现原理：开漏配置只有一个NMOS连接到GND：</p>
+<pre><code> - 当NMOS导通时，输出低电平。  
+
+ - 需要外部上拉电阻将电平拉高。  
+</code></pre>
+<p>应用：适合I2C总线等需要多个设备连接的场合。</p>
+</li>
+</ol>
+<hr>
+<h3 id="复用推挽与复用开漏">复用推挽与复用开漏
+</h3><p>通用模式，是由CPU通过寄存器输出控制IO的高低电压。但实际开发功能需求中许多功能是需要一个源源不断的信号作为通信、工作的基础，那么直接通过CPU模拟工作就显得不足。<br>
+<img src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/%E9%80%9A%E7%94%A8%E5%92%8C%E5%A4%8D%E7%94%A8.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="复用推挽与复用开漏"
+	
+	
+><br>
+故此，引入了复用模式，如图所见，直接将控制权交给片上外设，由他们直接来输出信号。<br>
+<img src="https://tu1.lsyblog.live/img/%E4%BE%8B%E5%AD%90%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%BC%8F.webp"
+	
+	
+	
+	loading="lazy"
+	
+		alt="例子"
+	
+	
+> <br>
+采用复用模式通过硬件外设实现功能，效率高，不容易出错。避免了CPU模拟持续监控和控制引脚的缺点。在时序精度和稳定性上表现的都更加的出色。</p>
+<p>而且硬件外设可以处理复杂协议，如I2C，SPI，UART等，而软件模拟实现复杂协议较为困难。且硬件外设通常设计为低功耗，而软件模拟需要CPU持续工作，功耗更高。</p>
+<hr>
+<ol>
+<li>
+<p>复用推挽<br>
+电平输出：</p>
+<pre><code>- 高电平时：PMOS导通，输出VDD。  
+
+- 低电平时：NMOS导通，输出GND。  
+</code></pre>
+<p>特性：</p>
+<pre><code>- 能源驱动：允许双向电流流动，适合高驱动应用。  
+
+- 输出速度快，适合需要快速切换的信号。  
+</code></pre>
+</li>
+<li>
+<p>复用开漏<br>
+电平输出：</p>
+<pre><code>- 低电平时：NMOS导通，连接GND。  
+
+- 高电平时：NMOS关断，依靠外部上拉电阻提供高电平。  
+</code></pre>
+<p>特性：</p>
+<pre><code>- 线与功能：多个设备可连接同一条线上，实现多设备通信（如I2C）。  
+
+- 对外部干扰敏感度低。</code></pre>
+</li>
+</ol>
 
 </section>
 
@@ -215,11 +279,9 @@
     
     <section class="article-tags">
         
-            <a href="/tags/%E6%B2%B9%E7%8C%B4/">油猴</a>
+            <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">单片机</a>
         
-            <a href="/tags/%E7%BD%91%E8%AF%BE/">网课</a>
-        
-            <a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>
+            <a href="/tags/stm32/">STM32</a>
         
     </section>
         
@@ -345,18 +407,18 @@
             
                 
 <article class="has-image">
-    <a href="/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/">
+    <a href="/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/">
         
         
             <div class="article-image">
                 
-                    <img src="https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png"/>
+                    <img src="https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">51蓝牙PID循迹超声波急停避障小车</h2>
+            <h2 class="article-title">C语言入门--工具链</h2>
         </div>
     </a>
 </article>
@@ -364,18 +426,37 @@
             
                 
 <article class="has-image">
-    <a href="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/">
+    <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/">
         
         
             <div class="article-image">
                 
-                    <img src="https://tu1.lsyblog.live/img/%e8%99%9a%e6%8b%9f%e6%9c%ba%e5%ae%89%e8%a3%85.jpg" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/虚拟机安装.jpg"/>
+                    <img src="https://tu1.lsyblog.live/img/py1.jpg" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/py1.jpg"/>
                 
             </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">虚拟机安装W7/W10优化精简版</h2>
+            <h2 class="article-title">python学习笔记---变量与空操作</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="https://tu1.lsyblog.live/img/py2.jpg" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/py2.jpg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">python学习笔记---判断循环语法</h2>
         </div>
     </a>
 </article>

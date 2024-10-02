@@ -7,7 +7,113 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>流水鱼</copyright>
-        <lastBuildDate>Thu, 26 Sep 2024 22:45:35 +0800</lastBuildDate><atom:link href="https://LuoC33.github.io/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 02 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://LuoC33.github.io/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>STM32-IO输出与输入（一）</title>
+        <link>https://LuoC33.github.io/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</link>
+        <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://LuoC33.github.io/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</guid>
+        <description>&lt;img src="https://tu1.lsyblog.live/img/%E5%8D%95%E7%89%87%E6%9C%BA.jpg" alt="Featured image of post STM32-IO输出与输入（一）" /&gt;&lt;h2 id=&#34;gpio输出输入的简单原理&#34;&gt;GPIO输出输入的简单原理
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;输出：通过&lt;code&gt;寄存器&lt;/code&gt;写&lt;code&gt;0&lt;/code&gt;或者是&lt;code&gt;1&lt;/code&gt;，控制引脚输出&lt;code&gt;低电压&lt;/code&gt;或者是&lt;code&gt;高电压&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;输入：通过读取引脚的&lt;code&gt;寄存器&lt;/code&gt;是&lt;code&gt;0&lt;/code&gt;还是&lt;code&gt;1&lt;/code&gt;，判断是&lt;code&gt;高电压&lt;/code&gt;还是&lt;code&gt;低电压&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;gpio的四种输出模式&#34;&gt;GPIO的四种输出模式
+&lt;/h2&gt;&lt;h3 id=&#34;推挽与开漏&#34;&gt;推挽与开漏
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/PNmos.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;推挽与开漏&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;推挽输出是GPIO（通用输入输出）的一种输出配置，能够驱动电平高或低。&lt;/p&gt;
+&lt;p&gt;实现原理：STM32中的推挽输出配置由一个PMOS和一个NMOS组成：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; - PMOS：连接到VDD，导通时输出高电平。  
+
+ - NMOS：连接到GND，导通时输出低电平。  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;应用：用于需要驱动电流的场合，如驱动LED、继电器等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;开漏输出仅能拉低电平，不能主动拉高，需要通过外部上拉电阻将电平拉高到逻辑高&lt;/p&gt;
+&lt;p&gt;实现原理：开漏配置只有一个NMOS连接到GND：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; - 当NMOS导通时，输出低电平。  
+
+ - 需要外部上拉电阻将电平拉高。  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;应用：适合I2C总线等需要多个设备连接的场合。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;复用推挽与复用开漏&#34;&gt;复用推挽与复用开漏
+&lt;/h3&gt;&lt;p&gt;通用模式，是由CPU通过寄存器输出控制IO的高低电压。但实际开发功能需求中许多功能是需要一个源源不断的信号作为通信、工作的基础，那么直接通过CPU模拟工作就显得不足。&lt;br&gt;
+&lt;img src=&#34;https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/%E9%80%9A%E7%94%A8%E5%92%8C%E5%A4%8D%E7%94%A8.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;复用推挽与复用开漏&#34;
+	
+	
+&gt;&lt;br&gt;
+故此，引入了复用模式，如图所见，直接将控制权交给片上外设，由他们直接来输出信号。&lt;br&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/%E4%BE%8B%E5%AD%90%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%BC%8F.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;例子&#34;
+	
+	
+&gt; &lt;br&gt;
+采用复用模式通过硬件外设实现功能，效率高，不容易出错。避免了CPU模拟持续监控和控制引脚的缺点。在时序精度和稳定性上表现的都更加的出色。&lt;/p&gt;
+&lt;p&gt;而且硬件外设可以处理复杂协议，如I2C，SPI，UART等，而软件模拟实现复杂协议较为困难。且硬件外设通常设计为低功耗，而软件模拟需要CPU持续工作，功耗更高。&lt;/p&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;复用推挽&lt;br&gt;
+电平输出：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- 高电平时：PMOS导通，输出VDD。  
+
+- 低电平时：NMOS导通，输出GND。  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;特性：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- 能源驱动：允许双向电流流动，适合高驱动应用。  
+
+- 输出速度快，适合需要快速切换的信号。  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;复用开漏&lt;br&gt;
+电平输出：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- 低电平时：NMOS导通，连接GND。  
+
+- 高电平时：NMOS关断，依靠外部上拉电阻提供高电平。  
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;特性：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- 线与功能：多个设备可连接同一条线上，实现多设备通信（如I2C）。  
+
+- 对外部干扰敏感度低。&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
         <title>C语言入门--工具链</title>
         <link>https://LuoC33.github.io/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
         <pubDate>Thu, 26 Sep 2024 22:45:35 +0800</pubDate>
