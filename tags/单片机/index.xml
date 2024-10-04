@@ -22,6 +22,16 @@
 &lt;p&gt;输入：通过读取引脚的&lt;code&gt;寄存器&lt;/code&gt;是&lt;code&gt;0&lt;/code&gt;还是&lt;code&gt;1&lt;/code&gt;，判断是&lt;code&gt;高电压&lt;/code&gt;还是&lt;code&gt;低电压&lt;/code&gt;。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/IO%E7%AB%AF%E5%8F%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;IO端口的基本结构&#34;
+	
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;gpio的四种输出模式&#34;&gt;GPIO的四种输出模式
 &lt;/h2&gt;&lt;h3 id=&#34;推挽与开漏&#34;&gt;推挽与开漏
 &lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/PNmos.png&#34;
@@ -123,7 +133,23 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;gpio的四种输入模式&#34;&gt;GPIO的四种输入模式
-&lt;/h2&gt;</description>
+&lt;/h2&gt;&lt;h3 id=&#34;输入上拉和输入下拉&#34;&gt;输入上拉和输入下拉
+&lt;/h3&gt;&lt;p&gt;如图所示，输入上拉即Vdd接通通过上拉电阻，因为施密特触发器输入阻抗无穷大，可等效为一个无穷大电阻,输入上拉和输入下拉是指当引脚处于浮空状态时，通过上拉电阻和下拉电阻来 确定电压，避免外界噪声干扰。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/%E8%BE%93%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB%E4%B8%8E%E4%B8%8B%E6%8B%89%E7%94%B5%E9%98%BB.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;输上拉电阻与下拉电阻&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;输入浮空&#34;&gt;输入浮空
+&lt;/h3&gt;&lt;p&gt;顾名思义，即不采用上拉电阻，也不采用下拉电阻，这时候易受到外界噪声干扰，产生浮动。&lt;/p&gt;
+&lt;h3 id=&#34;模拟输入&#34;&gt;模拟输入
+&lt;/h3&gt;&lt;p&gt;我们有时候需要用AD采集到IO口上面的真实电压。这就有了我们所需要的模拟输入。为了让外部的电压真实的读取到单片机的AD模块，我们既不能闭合上拉和下拉的开关，也不能让信号经过施密特触发器进行滤波。&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>51蓝牙PID循迹超声波急停避障小车</title>

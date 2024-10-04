@@ -95,7 +95,13 @@
         </li>
       </ol>
     </li>
-    <li><a href="#gpio的四种输入模式">GPIO的四种输入模式</a></li>
+    <li><a href="#gpio的四种输入模式">GPIO的四种输入模式</a>
+      <ol>
+        <li><a href="#输入上拉和输入下拉">输入上拉和输入下拉</a></li>
+        <li><a href="#输入浮空">输入浮空</a></li>
+        <li><a href="#模拟输入">模拟输入</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -169,7 +175,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -193,6 +199,16 @@
 <p>输入：通过读取引脚的<code>寄存器</code>是<code>0</code>还是<code>1</code>，判断是<code>高电压</code>还是<code>低电压</code>。</p>
 </li>
 </ul>
+<p><img src="https://tu1.lsyblog.live/img/IO%E7%AB%AF%E5%8F%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="IO端口的基本结构"
+	
+	
+></p>
 <h2 id="gpio的四种输出模式">GPIO的四种输出模式
 </h2><h3 id="推挽与开漏">推挽与开漏
 </h3><p><img src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/PNmos.png"
@@ -294,7 +310,23 @@
 </li>
 </ul>
 <h2 id="gpio的四种输入模式">GPIO的四种输入模式
-</h2>
+</h2><h3 id="输入上拉和输入下拉">输入上拉和输入下拉
+</h3><p>如图所示，输入上拉即Vdd接通通过上拉电阻，因为施密特触发器输入阻抗无穷大，可等效为一个无穷大电阻,输入上拉和输入下拉是指当引脚处于浮空状态时，通过上拉电阻和下拉电阻来 确定电压，避免外界噪声干扰。</p>
+<p><img src="https://tu1.lsyblog.live/img/%E8%BE%93%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB%E4%B8%8E%E4%B8%8B%E6%8B%89%E7%94%B5%E9%98%BB.jpg"
+	
+	
+	
+	loading="lazy"
+	
+		alt="输上拉电阻与下拉电阻"
+	
+	
+></p>
+<h3 id="输入浮空">输入浮空
+</h3><p>顾名思义，即不采用上拉电阻，也不采用下拉电阻，这时候易受到外界噪声干扰，产生浮动。</p>
+<h3 id="模拟输入">模拟输入
+</h3><p>我们有时候需要用AD采集到IO口上面的真实电压。这就有了我们所需要的模拟输入。为了让外部的电压真实的读取到单片机的AD模块，我们既不能闭合上拉和下拉的开关，也不能让信号经过施密特触发器进行滤波。</p>
+
 </section>
 
 
@@ -529,7 +561,7 @@
             
         
         发表了8篇文章 · 
-        总计8.28k字
+        总计8.53k字
     </section>
 
     <section class="powerby">
