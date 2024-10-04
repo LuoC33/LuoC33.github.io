@@ -34,30 +34,30 @@
 	
 	
 &gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;推挽输出是GPIO（通用输入输出）的一种输出配置，能够驱动电平高或低。&lt;/p&gt;
+&lt;h4 id=&#34;推挽输出&#34;&gt;&lt;em&gt;&lt;strong&gt;推挽输出&lt;/strong&gt;&lt;/em&gt;
+&lt;/h4&gt;&lt;p&gt;推挽输出是GPIO（通用输入输出）的一种输出配置，能够驱动电平高或低。&lt;/p&gt;
 &lt;p&gt;实现原理：STM32中的推挽输出配置由一个PMOS和一个NMOS组成：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; - PMOS：连接到VDD，导通时输出高电平。  
-
- - NMOS：连接到GND，导通时输出低电平。  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;应用：用于需要驱动电流的场合，如驱动LED、继电器等。&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;ol start=&#34;2&#34;&gt;
+&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;开漏输出仅能拉低电平，不能主动拉高，需要通过外部上拉电阻将电平拉高到逻辑高&lt;/p&gt;
-&lt;p&gt;实现原理：开漏配置只有一个NMOS连接到GND：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; - 当NMOS导通时，输出低电平。  
-
- - 需要外部上拉电阻将电平拉高。  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;应用：适合I2C总线等需要多个设备连接的场合。&lt;/p&gt;
+&lt;p&gt;PMOS：连接到VDD，导通时输出高电平。&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
+&lt;li&gt;
+&lt;p&gt;NMOS：连接到GND，导通时输出低电平。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;应用：用于需要驱动电流的场合，如驱动LED、继电器等。&lt;/p&gt;
+&lt;h4 id=&#34;开漏输出&#34;&gt;&lt;em&gt;&lt;strong&gt;开漏输出&lt;/strong&gt;&lt;/em&gt;
+&lt;/h4&gt;&lt;p&gt;开漏输出仅能拉低电平，不能主动拉高，需要通过外部上拉电阻将电平拉高到逻辑高&lt;/p&gt;
+&lt;p&gt;实现原理：开漏配置只有一个NMOS连接到GND：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;当NMOS导通时，输出低电平。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;需要外部上拉电阻将电平拉高。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;应用：适合I2C总线等需要多个设备连接的场合。&lt;/p&gt;
 &lt;h3 id=&#34;复用推挽与复用开漏&#34;&gt;复用推挽与复用开漏
 &lt;/h3&gt;&lt;p&gt;通用模式，是由CPU通过寄存器输出控制IO的高低电压。但实际开发功能需求中许多功能是需要一个源源不断的信号作为通信、工作的基础，那么直接通过CPU模拟工作就显得不足。&lt;br&gt;
 &lt;img src=&#34;https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/%E9%80%9A%E7%94%A8%E5%92%8C%E5%A4%8D%E7%94%A8.png&#34;
@@ -84,34 +84,46 @@
 采用复用模式通过硬件外设实现功能，效率高，不容易出错。避免了CPU模拟持续监控和控制引脚的缺点。在时序精度和稳定性上表现的都更加的出色。&lt;/p&gt;
 &lt;p&gt;而且硬件外设可以处理复杂协议，如I2C，SPI，UART等，而软件模拟实现复杂协议较为困难。且硬件外设通常设计为低功耗，而软件模拟需要CPU持续工作，功耗更高。&lt;/p&gt;
 &lt;hr&gt;
-&lt;ol&gt;
+&lt;h4 id=&#34;复用推挽&#34;&gt;&lt;em&gt;&lt;strong&gt;复用推挽&lt;/strong&gt;&lt;/em&gt;
+&lt;/h4&gt;&lt;p&gt;电平输出：&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;复用推挽&lt;br&gt;
-电平输出：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 高电平时：PMOS导通，输出VDD。  
-
-- 低电平时：NMOS导通，输出GND。  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;特性：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 能源驱动：允许双向电流流动，适合高驱动应用。  
-
-- 输出速度快，适合需要快速切换的信号。  
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;高电平时：PMOS导通，输出VDD。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;复用开漏&lt;br&gt;
-电平输出：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 低电平时：NMOS导通，连接GND。  
-
-- 高电平时：NMOS关断，依靠外部上拉电阻提供高电平。  
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;特性：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- 线与功能：多个设备可连接同一条线上，实现多设备通信（如I2C）。  
-
-- 对外部干扰敏感度低。&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;低电平时：NMOS导通，输出GND。&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;
-</description>
+&lt;/ul&gt;
+&lt;p&gt;特性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;能源驱动：允许双向电流流动，适合高驱动应用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;输出速度快，适合需要快速切换的信号。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;复用开漏&#34;&gt;&lt;em&gt;&lt;strong&gt;复用开漏&lt;/strong&gt;&lt;/em&gt;
+&lt;/h4&gt;&lt;p&gt;电平输出：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;低电平时：NMOS导通，连接GND。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;高电平时：NMOS关断，依靠外部上拉电阻提供高电平。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;特性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;线与功能：多个设备可连接同一条线上，实现多设备通信（如I2C）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对外部干扰敏感度低。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;gpio的四种输入模式&#34;&gt;GPIO的四种输入模式
+&lt;/h2&gt;</description>
         </item>
         <item>
         <title>第一颗樱桃：单恋</title>
