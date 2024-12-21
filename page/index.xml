@@ -42,10 +42,20 @@
         <guid>https://LuoC33.github.io/%E5%85%B3%E4%BA%8E/</guid>
         <description>&lt;h2 id=&#34;hello&#34;&gt;Hello🥰
 &lt;/h2&gt;&lt;p&gt;Hi，欢迎来到我的 About，自我介绍一下，我叫波罗吹鱼，一名励志做全栈高手的菜鸟鱼。&lt;/p&gt;
-&lt;p class=&#34;about-images&#34; align=&#34;center&#34; dir=&#34;auto&#34;&gt;
+&lt;!-- &lt;p class=&#34;about-images&#34; align=&#34;center&#34; dir=&#34;auto&#34;&gt;
   &lt;img class=&#34;about-img&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/bde29bf7562555fd6b724e678eba18a211f6794681d18748b76edda000136655/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f6c6566742d77696e672e706e67&#34; style=&#34;width: 30%;&#34;&gt;
+
  &lt;img class=&#34;about-img&#34; align=&#34;center&#34; src=&#34;https://tu1.lsyblog.live/img/computerAboutDog.jpg&#34; style=&#34;width: 13%;&#34;&gt;  
+
   &lt;img class=&#34;about-img&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/b6d03df0b0a54643f2171081e8ded484bfecbc191d146ea126f55902f64ca187/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f72696768742d77696e672e706e67 &#34; style=&#34;width: 30%;&#34;&gt;
+&lt;/p&gt; --&gt;
+&lt;p class=&#34;about-images&#34; align=&#34;center&#34; dir=&#34;auto&#34;&gt;
+  &lt;!-- 左翅膀 --&gt;
+  &lt;img class=&#34;about-img left-wing&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/bde29bf7562555fd6b724e678eba18a211f6794681d18748b76edda000136655/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f6c6566742d77696e672e706e67&#34; style=&#34;width: 30%;&#34;&gt;
+  &lt;!-- 头像 --&gt;
+  &lt;img class=&#34;about-img avatar&#34; align=&#34;center&#34; src=&#34;https://tu1.lsyblog.live/img/computerAboutDog.jpg&#34; style=&#34;width: 13%;&#34;&gt;  
+  &lt;!-- 右翅膀 --&gt;
+  &lt;img class=&#34;about-img right-wing&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/b6d03df0b0a54643f2171081e8ded484bfecbc191d146ea126f55902f64ca187/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f72696768742d77696e672e706e67&#34; style=&#34;width: 30%;&#34;&gt;
 &lt;/p&gt;
 &lt;h2 id=&#34;爱好--特长&#34;&gt;爱好 &amp;amp; 特长🥰
 &lt;/h2&gt;&lt;h3 id=&#34;运动&#34;&gt;运动
