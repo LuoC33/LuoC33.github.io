@@ -13,45 +13,46 @@
         <pubDate>Sun, 05 May 2024 20:18:12 +0000</pubDate>
         
         <guid>https://LuoC33.github.io/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</guid>
-        <description>&lt;img src="https://tu1.lsyblog.live/img/网课.jpg" alt="Featured image of post OCS网课助手实现网课自动刷课" /&gt;&lt;h1 id=&#34;准备工作&#34;&gt;准备工作
-&lt;/h1&gt;&lt;ul&gt;
+        <description>&lt;img src="https://tu1.lsyblog.live/img/网课.jpg" alt="Featured image of post OCS网课助手实现网课自动刷课" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+&lt;/h2&gt;&lt;p&gt;之前写过一篇基础教程，但是不够直白和连续，现 &lt;em&gt;&lt;strong&gt;2024/12/31&lt;/strong&gt;&lt;/em&gt; 对该文章重构。&lt;/p&gt;
+&lt;ol&gt;
 &lt;li&gt;
-&lt;h2 id=&#34;下载-tampermonkeyhttpswwwtampermonkeynet-油猴也叫暴力猴&#34;&gt;&lt;em&gt;&lt;strong&gt;下载 &lt;a class=&#34;link&#34; href=&#34;https://www.tampermonkey.net/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Tampermonkey&lt;/a&gt; （油猴也叫暴力猴）&lt;/strong&gt;&lt;/em&gt;
-&lt;/h2&gt;&lt;p&gt;将油猴下载好后加进扩展，如果你是edg，谷歌，火狐可以在插件商店一键加入，这里就不赘诉了&lt;/p&gt;
-&lt;p&gt;我们首先确保扩展的正常启用。如图&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div style=&#34;display: flex; justify-content: space-between;&#34;&gt;
-    &lt;img src=&#34;https://img2.imgtp.com/2024/05/05/2SM9sSAx.png&#34; alt=&#34;First Image&#34; style=&#34;width: 70%;&#34;&gt;
-    &lt;img src=&#34;https://img2.imgtp.com/2024/05/05/tGH2pz6b.png&#34; alt=&#34;Second Image&#34; style=&#34;width: 70%;&#34;&gt;
-&lt;/div&gt;  
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;目的：&lt;/strong&gt;&lt;/em&gt; 实现学习通等网课平台自动挂视频和答题&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;h2 id=&#34;浏览器输入网址下载ocs网课助手&#34;&gt;&lt;em&gt;&lt;strong&gt;浏览器输入网址下载OCS网课助手&lt;/strong&gt;&lt;/em&gt;
-&lt;/h2&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;https://cdn.ocsjs.com/ocs.user.js	
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后可以看到有个安装，因为已经安装过了，所以看到的是更新。&lt;/p&gt;
-&lt;p&gt;安装好后就可以进入学习通看看脚本是不是已经启动了。&lt;/p&gt;
-&lt;p&gt;但是我们要想最大程度的启动脚本，实现自动答题等功能还需要配置题库，这里也不赘述了。&lt;/p&gt;
+&lt;p&gt;对网课视频中的弹窗题目作答&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;对课后习题自动作答，并设置正确率为界限提交&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;自动复习，自动翻ppt&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可定义倍速，1倍数、2倍数、3倍数等&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://img2.imgtp.com/2024/05/05/M2Hzm2SK.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;1714914510184.png&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;原理：&lt;/strong&gt;&lt;/em&gt; 通过浏览器加载扩展程序，用以启动js脚本。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;em&gt;&lt;strong&gt;具体配置教程可以参考 &lt;a class=&#34;link&#34; href=&#34;https://docs.ocsjs.com/docs/quickly-start&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;官网手册&lt;/a&gt;&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;关于U校园，welearn，批改网，以及其他的网课平台，我有时间会出教程。&lt;/p&gt;
+&lt;p&gt;浏览器：Edg浏览器、火狐、谷歌    (三选一)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;扩展程序：油猴、脚本猫（二选一）&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;开始&#34;&gt;开始
+&lt;/h2&gt;&lt;h3 id=&#34;下载扩展&#34;&gt;下载扩展
+&lt;/h3&gt;&lt;p&gt;进入&lt;a class=&#34;link&#34; href=&#34;https://www.tampermonkey.net/index.php?ext=gcal&amp;amp;version=4.19.6180&amp;amp;locale=zh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;油猴官网&lt;/a&gt;，如图所示，先选择你的浏览器,这里我以Chrome（谷歌为例）&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20241231200258711.webp&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;p&gt;然后下拉，找到下载这里， 这里有两种方法，具体如图所示，第一种方法简单快捷，就正常下载然后安装就行，但是对于网络要求高，一般直连是无法进入商店。只能用第二种方法。&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/osc_youhou.webp&#34; style=&#34;zoom: 67%;&#34; /&gt;
+&lt;p&gt;剩下的懒得写了，等后面再补吧。。。&lt;/p&gt;
 </description>
         </item>
         
