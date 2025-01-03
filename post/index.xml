@@ -895,9 +895,146 @@ VMware Workstation Pro 16 许可证密钥，批量永久激活&lt;/li&gt;
 &lt;/h3&gt;&lt;p&gt;进入&lt;a class=&#34;link&#34; href=&#34;https://www.tampermonkey.net/index.php?ext=gcal&amp;amp;version=4.19.6180&amp;amp;locale=zh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;油猴官网&lt;/a&gt;，如图所示，先选择你的浏览器,这里我以Chrome（谷歌为例）&lt;/p&gt;
 &lt;img src=&#34;https://tu1.lsyblog.live/img/20241231200258711.webp&#34; style=&#34;zoom:50%;&#34; /&gt;
-&lt;p&gt;然后下拉，找到下载这里， 这里有两种方法，具体如图所示，第一种方法简单快捷，就正常下载然后安装就行，但是对于网络要求高，一般直连是无法进入商店。只能用第二种方法。&lt;/p&gt;
+&lt;p&gt;然后下拉，找到下载这里， 这里有两种安装方案，具体如图所示，第一种方法简单快捷，就正常下载然后安装就行，但是对于网络有特殊要求，一般无法直连，需要梯子。 故此我们分类讲述。&lt;/p&gt;
 &lt;img src=&#34;https://tu1.lsyblog.live/img/osc_youhou.webp&#34; style=&#34;zoom: 67%;&#34; /&gt;
-&lt;p&gt;剩下的懒得写了，等后面再补吧。。。&lt;/p&gt;
+&lt;h4 id=&#34;第一种方案&#34;&gt;第一种方案
+&lt;/h4&gt;&lt;p&gt;点击去商店会跳转到chrome商店（因为我是谷歌浏览器，如果你是edg浏览器，就选择edg的，此时点击去商店就会跳转到对应的浏览器商店）&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/yh_wk_1.3.1.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;图二&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103143551010.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这时候就可以看到我们已经安装成功了油猴&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103143632666.webp&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;h4 id=&#34;第二种方案&#34;&gt;第二种方案
+&lt;/h4&gt;&lt;p&gt;我们先下载好扩展程序，然后人为导入到浏览器的扩展里面。所以第一步，我们先直接下载这个扩展程序，下载好后要记住你下载的位置在哪。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144213899.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接着打开浏览器的设置，在设置里面找到扩展这一选项&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144454966.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后&lt;strong&gt;记得打开 开发者模式&lt;/strong&gt;，开发者模式不打开的话是无法导入扩展的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144553596.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;接着就将我们刚刚下载好的扩展 直接拖到这里。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144713486.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后会出现提示框询问你是否添加该扩展，选择添加扩展程序&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144732786.webp&#34; style=&#34;zoom: 33%;&#34; /&gt;
+&lt;p&gt;最后 我们就成功安装好了扩展了。&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144741420.webp&#34; style=&#34;zoom: 50%;&#34; /&gt;
+&lt;h3 id=&#34;安装网课脚本&#34;&gt;安装网课脚本
+&lt;/h3&gt;&lt;p&gt;现在我们已经安装好了扩展，只需要再安装对应的脚本就行了。我这里推荐使用OSC网课助手。&lt;/p&gt;
+&lt;p&gt;首先我们先进入&lt;a class=&#34;link&#34; href=&#34;https://greasyfork.org/zh-CN&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;脚本网站&lt;/a&gt;搜索我们要的OCS网课助手。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145554772.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;然后安装该脚本&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145626247.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这时候会跳转到油猴这里，我们只需要再次点击安装就行。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145638167.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;当你点击安装，安装完成后会自动关闭该界面，并且速度很快，这是正常现象，我们可以去到油猴管理界面看看我们的脚本是否安装成功。点击油猴，找到管理面板，进入其中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145659327.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以看到，我们是已经成功安装好了该网课脚本。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145707032.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;当然，当你安装好了该网课脚本，你也可以直接进入学习通，这时候会有对应脚本的出现。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103150432443.webp&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;配置题库&#34;&gt;配置题库
+&lt;/h3&gt;&lt;p&gt;配置题库教程参考&lt;a class=&#34;link&#34; href=&#34;https://tk.enncy.cn/tk/article?uid=d5a1de0cf21b44fabedbac3d840674a4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;言溪题库官方教程 &lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;我在此阐述一下油猴扩展、OCS网课助手、言溪题库之间的关系及其各作用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;油猴扩展程序：作为浏览器的扩展程序，可以运行各种脚本实现不同功能，如果刷网课，屏蔽广告等等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;OCS网课助手：脚本文件，要想运行在浏览器上面需要用到扩展程序如油猴、脚本猫，该助手全部功能免费，可以自动刷网课，但是无法答题，因为答题需要向题库查询对应题目，如果你没题库，就需要用别人的题库，这也是为什么我会提到言溪题库。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;言溪题库：就是题库，里面有很多的题目。具体可以去官方详情里看。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;结语&#34;&gt;结语
+&lt;/h2&gt;&lt;p&gt;如果你只是想刷完课程时间，而不想答题，那么题库是可以不用配置的。&lt;/p&gt;
+&lt;p&gt;这篇教程算是完结了，算是比上次写的更通俗一点。&lt;/p&gt;
 </description>
         </item>
         
