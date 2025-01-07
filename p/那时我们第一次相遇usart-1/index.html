@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Usart通信简易原理图 GND 供地是为了平衡电压基准，使得双方共用套电压标准，用于评判高低电压。 Tx ：发送数据 Rx：接收数据 数据的串并转换 STM32 的串并转化寄存器 \u200b\n寄存器 TDR 实现将并行数据转换为串行数据。 寄存器 RDR 实现串行数据转换为并行数据。 串并数据的详细解释 \u200b\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Usart通信简易原理图 GND 供地是为了平衡电压基准，使得双方共用一套电压标准，用于评判高低电压。 Tx ：发送数据 Rx：接收数据 数据的串并转换 STM32 的串并转化寄存器 \u200b\n寄存器 TDR 实现将并行数据转换为串行数据。 寄存器 RDR 实现串行数据转换为并行数据。 串并数据的详细解释 \u200b\n">
 <title>那时我们第一次相遇：USART 1</title>
 
 <link rel='canonical' href='https://LuoC33.github.io/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/'>
 
 <link rel="stylesheet" href="/scss/style.min.522bf39f959f1a0781ff54dbe0e7dafb44d57d8026e32f48be8f9ee1e81116b1.css"><meta property='og:title' content="那时我们第一次相遇：USART 1">
-<meta property='og:description' content="Usart通信简易原理图 GND 供地是为了平衡电压基准，使得双方共用套电压标准，用于评判高低电压。 Tx ：发送数据 Rx：接收数据 数据的串并转换 STM32 的串并转化寄存器 \u200b\n寄存器 TDR 实现将并行数据转换为串行数据。 寄存器 RDR 实现串行数据转换为并行数据。 串并数据的详细解释 \u200b\n">
+<meta property='og:description' content="Usart通信简易原理图 GND 供地是为了平衡电压基准，使得双方共用一套电压标准，用于评判高低电压。 Tx ：发送数据 Rx：接收数据 数据的串并转换 STM32 的串并转化寄存器 \u200b\n寄存器 TDR 实现将并行数据转换为串行数据。 寄存器 RDR 实现串行数据转换为并行数据。 串并数据的详细解释 \u200b\n">
 <meta property='og:url' content='https://LuoC33.github.io/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/'>
 <meta property='og:site_name' content='波罗吹鱼&#39;s Blog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='单片机' /><meta property='article:tag' content='STM32' /><meta property='article:published_time' content='2025-01-06T22:34:07&#43;08:00'/><meta property='article:modified_time' content='2025-01-06T22:34:07&#43;08:00'/><meta property='og:image' content='https://tu1.lsyblog.live/img/Usart_post_cover.webp' />
 <meta name="twitter:title" content="那时我们第一次相遇：USART 1">
-<meta name="twitter:description" content="Usart通信简易原理图 GND 供地是为了平衡电压基准，使得双方共用套电压标准，用于评判高低电压。 Tx ：发送数据 Rx：接收数据 数据的串并转换 STM32 的串并转化寄存器 \u200b\n寄存器 TDR 实现将并行数据转换为串行数据。 寄存器 RDR 实现串行数据转换为并行数据。 串并数据的详细解释 \u200b\n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Usart通信简易原理图 GND 供地是为了平衡电压基准，使得双方共用一套电压标准，用于评判高低电压。 Tx ：发送数据 Rx：接收数据 数据的串并转换 STM32 的串并转化寄存器 \u200b\n寄存器 TDR 实现将并行数据转换为串行数据。 寄存器 RDR 实现串行数据转换为并行数据。 串并数据的详细解释 \u200b\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://tu1.lsyblog.live/img/Usart_post_cover.webp' />
     </head>
     <body class="
@@ -203,7 +203,7 @@
     <h2 id="usart通信简易原理图">Usart通信简易原理图
 </h2><img src="https://tu1.lsyblog.live/img/image-20250105172816-ltdpdzx.webp" style="zoom: 37%;" />
 <ul>
-<li>GND 供地是为了平衡电压基准，使得双方共用套电压标准，用于评判高低电压。</li>
+<li>GND 供地是为了平衡电压基准，使得双方共用一套电压标准，用于评判高低电压。</li>
 <li>Tx ：发送数据 Rx：接收数据</li>
 </ul>
 <h2 id="数据的串并转换">数据的串并转换

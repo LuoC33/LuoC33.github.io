@@ -16,7 +16,7 @@
         <description>&lt;img src="https://tu1.lsyblog.live/img/Usart_post_cover.webp" alt="Featured image of post 那时我们第一次相遇：USART 1" /&gt;&lt;h2 id=&#34;usart通信简易原理图&#34;&gt;Usart通信简易原理图
 &lt;/h2&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250105172816-ltdpdzx.webp&#34; style=&#34;zoom: 37%;&#34; /&gt;
 &lt;ul&gt;
-&lt;li&gt;GND 供地是为了平衡电压基准，使得双方共用套电压标准，用于评判高低电压。&lt;/li&gt;
+&lt;li&gt;GND 供地是为了平衡电压基准，使得双方共用一套电压标准，用于评判高低电压。&lt;/li&gt;
 &lt;li&gt;Tx ：发送数据 Rx：接收数据&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;数据的串并转换&#34;&gt;数据的串并转换
