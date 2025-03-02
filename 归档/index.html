@@ -711,6 +711,26 @@
         background-size: cover;  
         z-index: 100;  
     }
+
+  
+    @media (max-width: 768px) {
+        #backTopBtn {
+            right: 10px;  
+        }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+        #backTopBtn {
+            right: 140px;  
+        }
+    }
+
+    @media (min-width: 1025px) {
+        #backTopBtn {
+            right: calc((100vw - 1140px) / 2 - 60px);  
+        }
+    }
+
 </style>
 
 <script>
