@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>虚拟机 on 波罗吹鱼&#39;s Blog</title>
-        <link>https://LuoC33.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</link>
-        <description>Recent content in 虚拟机 on 波罗吹鱼&#39;s Blog</description>
+        <title>虚拟机 on 流水鱼のBlog</title>
+        <link>http://localhost:1313/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</link>
+        <description>Recent content in 虚拟机 on 流水鱼のBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>波罗吹鱼</copyright>
-        <lastBuildDate>Thu, 09 May 2024 15:33:49 +0000</lastBuildDate><atom:link href="https://LuoC33.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>流水鱼</copyright>
+        <lastBuildDate>Thu, 09 May 2024 15:33:49 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>虚拟机安装W7/W10优化精简版</title>
-        <link>https://LuoC33.github.io/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</link>
+        <link>http://localhost:1313/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</link>
         <pubDate>Thu, 09 May 2024 15:33:49 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</guid>
+        <guid>http://localhost:1313/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/虚拟机安装.jpg" alt="Featured image of post 虚拟机安装W7/W10优化精简版" /&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;h3 id=&#34;-p-blue-安装虚拟机的目的-&#34;&gt;{% p blue, 安装虚拟机的目的 %}

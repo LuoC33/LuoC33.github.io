@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="了解工具链 明白什么是工具链 工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。\n">
+
+<head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="了解工具链\r明白什么是工具链\r工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。\n这么说能理解吗？就好比你要吃饭，得先要用水洗米，然后装水后再用电饭锅煮米对吧？在这个过程中，你用到的水、电、电饭锅都是工具链中的一环。\n为什么要来了解工具链\r对于入门菜鸟来说，他所学的，他所看到的，未必是全面和绝对正确的，纵观各大教程，很少人会真正的去引导一个刚刚入门计算机、刚学习编程的小白菜鸟。\n工具链的理解我认为是新手必不可少的一部分，如下面代码：\n1//只有Gcc工具链的编译器才能执行 2#include &lt;stdio.h&gt; 3 4int main() { 5 int n; 6 scanf(&#34;%d&#34;, &amp;n); 7 8 // 可变长数组 9 int arr[n]; 10 11 // 初始化数组 12 for (int i: 0; i &lt; n; i++) { 13 arr[i]: i * i; 14 } 15 16 // 打印数组 17 printf(&#34;Array elements are:\\n&#34;); 18 for (int i: 0; i &lt; n; i++) { 19 printf(&#34;%d &#34;, arr[i]); 20 } 21 22 printf(&#34;\\n&#34;); 23 24 return 0; 25} 可以拿这段代码去各个IDE跑一跑，你就会发现，有的IDE会报错，而有的IDE就能过。\n这其实就是工具链不同而导致的一些小差异，反正在我初学C语言的时候，就去网上找到一些有意思的代码，复制下来直接跑（如烟花大爆炸、 代码雨）但是很多时候都会遇上一路报红。\n这其实不是代码有问题，也不是你的电脑有问题，而是单纯的你们开发环境不一致导致的。\n更加离谱的是下面的 代码：\n1 2#include &lt;stdio.h&gt; 3 4int main(void) { 5 long double arr[100]; 6 scanf(&#34;%lf&#34;,&amp;arr); 7 printf(&#34;%lf&#34;,arr); 8 return 0; 9} 你会发现这段代码，在VScode和DevC++上跑出来的结果始终为0.000,其实原因就是因为他们用的工具链是GCC，如果你用的是VS，那就能跑出正确的结果，因为VS用的是MSVC。\n你可能在看教学视频的时候，用的不是和博主同一个ide来写代码，这时候如果你去复现他的代码，可能就会出现我刚才举的这两个例子。\n你复现不出来，你会百思不得其解，其实是你一开始你就已经抛空了你学习的地基，你都不知道C语言能够被编译执行的流程和原理，你就会学得迷迷糊糊，或许你是练武天才，这种倒逆行施下没走火入魔也可以说是 韧性不错。\n">
 <title>C语言入门--工具链</title>
 
-<link rel='canonical' href='https://LuoC33.github.io/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/'>
+<link rel='canonical' href='http://localhost:1313/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/'>
 
-<link rel="stylesheet" href="/scss/style.min.522bf39f959f1a0781ff54dbe0e7dafb44d57d8026e32f48be8f9ee1e81116b1.css"><meta property='og:title' content="C语言入门--工具链">
-<meta property='og:description' content="了解工具链 明白什么是工具链 工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。\n">
-<meta property='og:url' content='https://LuoC33.github.io/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/'>
-<meta property='og:site_name' content='波罗吹鱼&#39;s Blog'>
+<link rel="stylesheet" href="/scss/style.min.54882c509e0afe9fc58c774a990195b23f8db9c9782f2e4c05e094055040a039.css"><meta property='og:title' content="C语言入门--工具链">
+<meta property='og:description' content="了解工具链\r明白什么是工具链\r工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。\n这么说能理解吗？就好比你要吃饭，得先要用水洗米，然后装水后再用电饭锅煮米对吧？在这个过程中，你用到的水、电、电饭锅都是工具链中的一环。\n为什么要来了解工具链\r对于入门菜鸟来说，他所学的，他所看到的，未必是全面和绝对正确的，纵观各大教程，很少人会真正的去引导一个刚刚入门计算机、刚学习编程的小白菜鸟。\n工具链的理解我认为是新手必不可少的一部分，如下面代码：\n1//只有Gcc工具链的编译器才能执行 2#include &lt;stdio.h&gt; 3 4int main() { 5 int n; 6 scanf(&#34;%d&#34;, &amp;n); 7 8 // 可变长数组 9 int arr[n]; 10 11 // 初始化数组 12 for (int i: 0; i &lt; n; i++) { 13 arr[i]: i * i; 14 } 15 16 // 打印数组 17 printf(&#34;Array elements are:\\n&#34;); 18 for (int i: 0; i &lt; n; i++) { 19 printf(&#34;%d &#34;, arr[i]); 20 } 21 22 printf(&#34;\\n&#34;); 23 24 return 0; 25} 可以拿这段代码去各个IDE跑一跑，你就会发现，有的IDE会报错，而有的IDE就能过。\n这其实就是工具链不同而导致的一些小差异，反正在我初学C语言的时候，就去网上找到一些有意思的代码，复制下来直接跑（如烟花大爆炸、 代码雨）但是很多时候都会遇上一路报红。\n这其实不是代码有问题，也不是你的电脑有问题，而是单纯的你们开发环境不一致导致的。\n更加离谱的是下面的 代码：\n1 2#include &lt;stdio.h&gt; 3 4int main(void) { 5 long double arr[100]; 6 scanf(&#34;%lf&#34;,&amp;arr); 7 printf(&#34;%lf&#34;,arr); 8 return 0; 9} 你会发现这段代码，在VScode和DevC++上跑出来的结果始终为0.000,其实原因就是因为他们用的工具链是GCC，如果你用的是VS，那就能跑出正确的结果，因为VS用的是MSVC。\n你可能在看教学视频的时候，用的不是和博主同一个ide来写代码，这时候如果你去复现他的代码，可能就会出现我刚才举的这两个例子。\n你复现不出来，你会百思不得其解，其实是你一开始你就已经抛空了你学习的地基，你都不知道C语言能够被编译执行的流程和原理，你就会学得迷迷糊糊，或许你是练武天才，这种倒逆行施下没走火入魔也可以说是 韧性不错。\n">
+<meta property='og:url' content='http://localhost:1313/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/'>
+<meta property='og:site_name' content='流水鱼のBlog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C语言' /><meta property='article:tag' content='心得' /><meta property='article:published_time' content='2024-09-26T22:45:35&#43;08:00'/><meta property='article:modified_time' content='2024-09-26T22:45:35&#43;08:00'/><meta property='og:image' content='https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png' />
 <meta name="twitter:title" content="C语言入门--工具链">
-<meta name="twitter:description" content="了解工具链 明白什么是工具链 工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。\n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="了解工具链\r明白什么是工具链\r工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。\n这么说能理解吗？就好比你要吃饭，得先要用水洗米，然后装水后再用电饭锅煮米对吧？在这个过程中，你用到的水、电、电饭锅都是工具链中的一环。\n为什么要来了解工具链\r对于入门菜鸟来说，他所学的，他所看到的，未必是全面和绝对正确的，纵观各大教程，很少人会真正的去引导一个刚刚入门计算机、刚学习编程的小白菜鸟。\n工具链的理解我认为是新手必不可少的一部分，如下面代码：\n1//只有Gcc工具链的编译器才能执行 2#include &lt;stdio.h&gt; 3 4int main() { 5 int n; 6 scanf(&#34;%d&#34;, &amp;n); 7 8 // 可变长数组 9 int arr[n]; 10 11 // 初始化数组 12 for (int i: 0; i &lt; n; i++) { 13 arr[i]: i * i; 14 } 15 16 // 打印数组 17 printf(&#34;Array elements are:\\n&#34;); 18 for (int i: 0; i &lt; n; i++) { 19 printf(&#34;%d &#34;, arr[i]); 20 } 21 22 printf(&#34;\\n&#34;); 23 24 return 0; 25} 可以拿这段代码去各个IDE跑一跑，你就会发现，有的IDE会报错，而有的IDE就能过。\n这其实就是工具链不同而导致的一些小差异，反正在我初学C语言的时候，就去网上找到一些有意思的代码，复制下来直接跑（如烟花大爆炸、 代码雨）但是很多时候都会遇上一路报红。\n这其实不是代码有问题，也不是你的电脑有问题，而是单纯的你们开发环境不一致导致的。\n更加离谱的是下面的 代码：\n1 2#include &lt;stdio.h&gt; 3 4int main(void) { 5 long double arr[100]; 6 scanf(&#34;%lf&#34;,&amp;arr); 7 printf(&#34;%lf&#34;,arr); 8 return 0; 9} 你会发现这段代码，在VScode和DevC++上跑出来的结果始终为0.000,其实原因就是因为他们用的工具链是GCC，如果你用的是VS，那就能跑出正确的结果，因为VS用的是MSVC。\n你可能在看教学视频的时候，用的不是和博主同一个ide来写代码，这时候如果你去复现他的代码，可能就会出现我刚才举的这两个例子。\n你复现不出来，你会百思不得其解，其实是你一开始你就已经抛空了你学习的地基，你都不知道C语言能够被编译执行的流程和原理，你就会学得迷迷糊糊，或许你是练武天才，这种倒逆行施下没走火入魔也可以说是 韧性不错。\n"><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png' />
-    </head>
-    <body class="
+
+
+</head>
+
+<body class="
     article-page
-    ">
+    " style="display:flex; flex-direction: column;">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
             if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "light");
+                localStorage.setItem(colorSchemeKey, "auto");
             }
         })();
     </script><script>
@@ -40,26 +44,278 @@
         }
     })();
 </script>
-<div class="container main-container flex on-phone--column extended">
-    
-        <div id="article-toolbar" style="position: sticky;top: 5px;z-index: 1000;">
-            <a href="/" class="back-home">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>        
+            <l1 class="site-name"><a href="/">流水鱼のBlog</a></l1>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="15 6 9 12 15 18" />
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
 </svg>
 
 
 
-                <span>返回</span>
+                
+                <span>Home</span>
             </a>
-        </div>
-    
-
-    <aside class="sidebar right-sidebar sticky">
+        </li>
         
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+    </ol>
+
+    <ol class="right-menu">
+        <a href="https://index.lsyblog.live/" target="_blank" class="travelling-button">
+            <li id="travelling">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-train"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 5c6.634 0 10.853 3.11 10.996 7.754l.004 .246a3 3 0 0 1 -3 3h-16a1 1 0 0 1 -1 -1v-9a1 1 0 0 1 1 -1zm-4 2h-3v3h3zm4 0h-2v3h3v-2.974a19 19 0 0 0 -1 -.026m3.001 .257l-.001 2.743h5.04c-.979 -1.337 -2.689 -2.306 -5.039 -2.743m6.999 10.743a1 1 0 0 1 0 2h-18a1 1 0 0 1 0 -2z" /></svg>
+            </li>
+        </a>
+
+        
+        <li id="dark-mode-toggle">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 1.992a10 10 0 1 0 9.236 13.838c.341 -.82 -.476 -1.644 -1.298 -1.31a6.5 6.5 0 0 1 -6.864 -10.787l.077 -.08c.551 -.63 .113 -1.653 -.758 -1.653h-.266l-.068 -.006l-.06 -.002z" /></svg>
+        </li>
+        
+    </ol>
+</aside>
+
+<div class="container main-container flex on-phone--column extended">
+    
+    
+    <aside class="right-sidebar">
+        <div class="sticky-container">
             
                 
+                <div class="author-sticky">
+                    
+                    <div class="widget">
+    
+    <div class="author">
+            <figure class="site-avatar">
+                <a href="/about/">
+                    
+                    <img src="/img/avatar.png" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                </a>
+                
+                <span class="emoji">🍥</span>
+            </figure>
+            <div class="site-meta">
+                
+                <h1 class="about-site-name"><a href="/about/">流水鱼</a></h1>
+                <h2 class="about-site-description">事非经过不知难👑</h2>
+                <ol class="menu-social">
+                    <li>
+                        
+                        <img src="https://tu1.lsyblog.live/img/Wechatlogo.png" alt="GitHub" style="width: 24px; height: 24px;">
+                    </li>
+                    <li>
+                        
+                        <img src="https://tu1.lsyblog.live/img/QQlogo.png" alt="GitHub" style="width: 24px; height: 24px;">
+                    </li>
+                </ol>
+            </div>
+    
+
+    </div>
+</div>
+
+<style>
+    .author {
+        background: var(--author-background);
+    }
+
+    .author {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding: 0;
+        border: none;
+        height: 300px;
+    }
+
+    .author {
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+
+        transition: .3s;
+        position: relative;
+        overflow: hidden;
+        padding: 1rem;
+        display: flex;
+        gap: 8px;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+<style>
+    .site-avatar {
+        position: relative;
+        margin: 0;
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        margin-inline: auto;
+        user-select: none;
+    }
+
+    .site-avatar img {
+        border-radius: 50%;
+        position: relative;
+        width: 80px;
+        height: 80px;
+        user-select: none;
+    }
+
+    .site-avatar .emoji {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 100%;
+        bottom: 0;
+        right: 0;
+        text-align: center;
+        font-size: 15px;
+        background-color: var(--card-background);
+        box-shadow: 30px;
+    }
+
+    .site-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        margin-inline: auto;
+        align-items: center;
+        user-select: none;
+    }
+
+    .about-site-name {
+        color: #ecf0f1 !important;
+        margin: 0;
+        font-size: 1.8rem;
+        margin-top: 10px;
+        user-select: none;
+    }
+
+    .about-site-name a{
+        color: #ecf0f1 !important;
+    }
+
+    .about-site-description {
+        margin-left: 15px;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 400;
+        margin-top: 0;
+        font-size: 1.6rem;
+        user-select: none;
+    }
+
+    .menu-social svg{
+        stroke: rgba(255, 255, 255, 0.7);
+    }
+</style>
+
+                </div>
+
+                
+                <div class="toc-sticky">
+                    
     <section class="widget archives">
         <div class="widget-icon">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -89,14 +345,12 @@
         </div>
     </section>
 
+                </div>
             
-        
+        </div>
     </aside>
 
-
-
-            <main class="main full-width">
-
+        <main class="main full-width">
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
@@ -109,32 +363,33 @@
     
 
     <div class="article-details">
-    
-    <header class="article-category">
-        
-            <a href="/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/" >
-                代码编程
-            </a>
-        
-    </header>
-    
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
             <a href="/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/">C语言入门--工具链</a>
         </h2>
-    
+
         
     </div>
-
     
     
     
     
     <footer class="article-time">
+
         
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <header class="article-category">
+            
+            <a href="/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/">
+                代码编程
+            </a>
+            
+        </header>
+        
+
+        
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
   <circle cx="18" cy="18" r="4" />
@@ -143,13 +398,13 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2024-9-26</time>
-            </div>
+            <time class="article-time--published">2024-9-26</time>
+        </div>
         
 
         
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="12" cy="12" r="9" />
   <polyline points="12 7 12 12 15 15" />
@@ -157,17 +412,16 @@
 
 
 
-                <time class="article-time--reading">
-                    阅读时长: 2 分钟
-                </time>
-            </div>
+            <time class="article-time--reading">
+                阅读时长: 1 分钟
+            </time>
+        </div>
         
     </footer>
     
 
     
 </div>
-
 </header>
 
     <section class="article-content">
@@ -191,13 +445,13 @@
 </span></span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
 </span></span><span class="line"><span class="ln">10</span><span class="cl">
 </span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="c1">// 初始化数组
-</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span>
+</span></span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">i</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">:</span> <span class="n">i</span> <span class="o">*</span> <span class="n">i</span><span class="p">;</span>
 </span></span><span class="line"><span class="ln">14</span><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="ln">15</span><span class="cl">
 </span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="c1">// 打印数组
 </span></span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="c1"></span>    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Array elements are:</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="ln">18</span><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nl">i</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="ln">19</span><span class="cl">        <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d &#34;</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
 </span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="ln">21</span><span class="cl">    
@@ -223,8 +477,30 @@
 <p>你复现不出来，你会百思不得其解，其实是你一开始你就已经抛空了你学习的地基，你都不知道C语言能够被编译执行的流程和原理，你就会学得迷迷糊糊，或许你是练武天才，这种倒逆行施下没走火入魔也可以说是 韧性不错。</p>
 
 </section>
-
-
+    
+      
+    <div class="post-reward" data-html2canvas-ignore>
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="https://tu1.lsyblog.live/img/wxzf.webp">
+        <span>微信打赏</span>
+      </label>
+      
+      
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="https://tu1.lsyblog.live/img/zfbzf.webp">
+        <span>支付宝打赏</span>
+      </label>
+      
+      
+    </div>
+  </div>
+  
+    
+     
     <footer class="article-footer">
     
     <section class="article-tags">
@@ -234,75 +510,6 @@
             <a href="/tags/%E5%BF%83%E5%BE%97/">心得</a>
         
     </section>
-        
-        
-        
-<div class="post-reward" onclick="anzhiyu.showReward()">
-  <div class="reward-button button--animated" title="赞赏作者">
-    <i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者
-  </div>
-  <div class="reward-main" style="display: none;">
-    <div class="reward-all">
-      <span class="reward-title">感谢你赐予我前进的力量</span>
-      <ul class="reward-group">
-        <li class="reward-item">
-          <a href="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" target="_blank">
-            <img class="post-qr-code-img entered loaded" src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" onerror="this.onerror=null,this.src='/img/404.jpg'" data-lazy-src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" alt="微信" data-ll-status="loaded">
-          </a>
-          <div class="post-qr-code-desc">微信</div>
-        </li>
-        <li class="reward-item">
-          <a href="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" target="_blank">
-            <img class="post-qr-code-img entered loaded" src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" onerror="this.onerror=null,this.src='/img/404.jpg'" data-lazy-src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" alt="支付宝" data-ll-status="loaded">
-          </a>
-          <div class="post-qr-code-desc">支付宝</div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div id="quit-box" onclick="anzhiyu.hideReward()" style="display: none;"></div>
-
-<script>
-  var anzhiyu = {
-    showReward: function() {
-      document.querySelector('.reward-main').style.display = 'block';
-      document.getElementById('quit-box').style.display = 'block';
-      document.querySelector('.reward-main').classList.add('reward-animation');
-    },
-    hideReward: function() {
-      document.querySelector('.reward-main').style.display = 'none';
-      document.getElementById('quit-box').style.display = 'none';
-      document.querySelector('.reward-main').classList.remove('reward-animation');
-    }
-  };
-</script>
-
-<style>
-  .reward-main {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 45%;
-    transform: translate(-50%, -50%);
-     
-  }
-
-  .reward-animation {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-</style>
-
-    
 
 
     
@@ -321,33 +528,9 @@
 
 
     
-        <link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
-            ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
-                defer
-                >
-            </script><script>
-    window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.body, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
-    
 </article>
     
-    
+
     
 
 <aside class="related-content--wrapper">
@@ -356,7 +539,7 @@
         <div class="flex article-list--tile">
             
                 
-<article class="has-image">
+<article class="article-card has-image">
     <a href="/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/">
         
         
@@ -372,10 +555,9 @@
         </div>
     </a>
 </article>
-
             
                 
-<article class="has-image">
+<article class="article-card has-image">
     <a href="/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/">
         
         
@@ -391,10 +573,9 @@
         </div>
     </a>
 </article>
-
             
                 
-<article class="has-image">
+<article class="article-card has-image">
     <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/">
         
         
@@ -410,10 +591,9 @@
         </div>
     </a>
 </article>
-
             
                 
-<article class="has-image">
+<article class="article-card has-image">
     <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/">
         
         
@@ -429,7 +609,6 @@
         </div>
     </a>
 </article>
-
             
         </div>
     </div>
@@ -439,60 +618,101 @@
     
         
     
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2024 - 
-        
-        2025 波罗吹鱼
-    </section>
-    
-
-    <section class="totalcount">
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        发表了11篇文章 · 
-        总计13.24k字
-    </section>
-
-    <section class="powerby">
-        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-    </section>
-    
-    
 
 
+    <style>
+    footer.site-footer {
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        padding: 20px 10px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        line-height: 1.75;
+        color: var(--card-text-color-secondary);
+        background-color: var(--footer-bg);
+        box-shadow: 0 -3px 1px -3px var(--card-text-color-main);
+        padding: 10px;
+        user-select: none;
+    }
+
+    .footer-info {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    .right-footer {
+        text-align: left;
+        display: flex;
+        align-items: right;
+    }
+
+    footer.site-footer a {
+        font-size: 15px;
+        color: var(--card-text-color-main);
+        transition: color .2s ease-in-out;
+        margin-inline: 15px;
+    }
+
+    .copyright{
+        font-size: 15px;
+        color: var(--card-text-color-main) !important;
+        transition: color .2s ease-in-out;
+        margin-inline: 15px;
+    }
+
+</style><div style="display: flex;
+    justify-content: center; 
+    align-items: center; flex-direction: column;margin-top: 60px; color:var(--card-text-color-main); margin:30px;">
+</div>
+<footer class="site-footer">
+    <div class="footer-info">
+        <div class="left-footer">
+            <section class="copyright">
+                &copy;
+                
+                2024 -
+                
+                2025 流水鱼
+            </section>
+        </div>
+        <section class="totalcount">
+            
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+            发表了11篇文章 · 
+            总计2.15k字
+        </section>
+    </div>
 </footer>
 
     
@@ -573,21 +793,25 @@
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
 
-            </main>
-        </div>
-        <script 
+        </main>
+    </div>
+    <script 
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
 
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300&family=Noto+Serif+SC:wght@300&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
-
-<script src=https://LuoC33.github.io/background/sakura.js></script>
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script src=http://localhost:1313/background/sakura.js></script>
 
 <style>
     #TableOfContents > ul, ol {
@@ -635,77 +859,6 @@
     }
     initTocHide()
 </script>
+</body>
 
- 
-<style>
-    #backTopBtn {
-        display: none;
-        position: absolute;  
-        bottom: -20px;  
-        right: 240px;  
-        cursor: pointer;
-        width: 40px;  
-        height: 40px;  
-        background-image: url(https://LuoC33.github.io/icons/backTop-light.svg);
-        background-size: cover;  
-        z-index: 100;  
-    }
-
-  
-    @media (max-width: 768px) {
-        #backTopBtn {
-            right: 10px;  
-        }
-    }
-
-    @media (min-width: 769px) and (max-width: 1024px) {
-        #backTopBtn {
-            right: 140px;  
-        }
-    }
-
-    @media (min-width: 1025px) {
-        #backTopBtn {
-            right: calc((100vw - 1140px) / 2 - 60px);  
-        }
-    }
-
-</style>
-
-<script>
-    function initScrollTop() {
-        
-        let rightSidebar = document.querySelector(".right-sidebar.sticky"); 
-        if (!rightSidebar) {
-            console.warn("Right sidebar not found!");
-            return;
-        }
-
-        
-        let btn = document.createElement("div");
-        btn.id = "backTopBtn";
-        btn.onclick = backToTop;
-
-        
-        rightSidebar.appendChild(btn);
-
-        
-        window.onscroll = function () {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                btn.style.display = "block"; 
-            } else {
-                btn.style.display = "none"; 
-            }
-        };
-    }
-
-    function backToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" }); 
-    }
-
-    document.addEventListener("DOMContentLoaded", initScrollTop); 
-</script>
-
-
-    </body>
 </html>

@@ -1,106 +1,50 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Pages on 波罗吹鱼&#39;s Blog</title>
-        <link>https://LuoC33.github.io/page/</link>
-        <description>Recent content in Pages on 波罗吹鱼&#39;s Blog</description>
+        <title>Pages on 流水鱼のBlog</title>
+        <link>http://localhost:1313/page/</link>
+        <description>Recent content in Pages on 流水鱼のBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>波罗吹鱼</copyright>
-        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://LuoC33.github.io/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>流水鱼</copyright>
+        <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>归档</title>
-        <link>https://LuoC33.github.io/%E5%BD%92%E6%A1%A3/</link>
+        <link>http://localhost:1313/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/%E5%BD%92%E6%A1%A3/</guid>
+        <guid>http://localhost:1313/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Links</title>
-        <link>https://LuoC33.github.io/links/</link>
+        <link>http://localhost:1313/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/links/</guid>
+        <guid>http://localhost:1313/links/</guid>
         <description>&lt;h2 id=&#34;hi&#34;&gt;🤪Hi
 &lt;/h2&gt;&lt;p&gt;这是我的Blog（偷懒中&amp;hellip;）&lt;/p&gt;
 &lt;p&gt;（个人导航、小企鹅、都放在下面卡片了）&lt;/p&gt;
 </description>
         </item>
         <item>
-        <title>Search</title>
-        <link>https://LuoC33.github.io/search/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://LuoC33.github.io/search/</guid>
-        <description>&lt;img src="https://tu1.lsyblog.live/img/py2.jpg" alt="Featured image of post Search" /&gt;</description>
-        </item>
-        <item>
         <title>关于</title>
-        <link>https://LuoC33.github.io/%E5%85%B3%E4%BA%8E/</link>
+        <link>http://localhost:1313/about/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/%E5%85%B3%E4%BA%8E/</guid>
-        <description>&lt;h2 id=&#34;hello&#34;&gt;Hello🥰
-&lt;/h2&gt;&lt;p&gt;Hi，欢迎来到我的 About，自我介绍一下，我叫&lt;em&gt;波罗吹鱼&lt;/em&gt;(又名&lt;em&gt;流水鱼&lt;/em&gt;)，一名励志做全栈高手的菜鸟鱼。&lt;/p&gt;
-&lt;!-- &lt;p class=&#34;about-images&#34; align=&#34;center&#34; dir=&#34;auto&#34;&gt;
-  &lt;img class=&#34;about-img&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/bde29bf7562555fd6b724e678eba18a211f6794681d18748b76edda000136655/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f6c6566742d77696e672e706e67&#34; style=&#34;width: 30%;&#34;&gt;
-
- &lt;img class=&#34;about-img&#34; align=&#34;center&#34; src=&#34;https://tu1.lsyblog.live/img/computerAboutDog.jpg&#34; style=&#34;width: 13%;&#34;&gt;  
-
-  &lt;img class=&#34;about-img&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/b6d03df0b0a54643f2171081e8ded484bfecbc191d146ea126f55902f64ca187/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f72696768742d77696e672e706e67 &#34; style=&#34;width: 30%;&#34;&gt;
-&lt;/p&gt; --&gt;
-&lt;p class=&#34;about-images&#34; align=&#34;center&#34; dir=&#34;auto&#34;&gt;
-  &lt;!-- 左翅膀 --&gt;
-  &lt;img class=&#34;about-img left-wing&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/bde29bf7562555fd6b724e678eba18a211f6794681d18748b76edda000136655/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f6c6566742d77696e672e706e67&#34; style=&#34;width: 30%;&#34;&gt;
-  &lt;!-- 头像 --&gt;
-  &lt;img class=&#34;about-img avatar&#34; align=&#34;center&#34; src=&#34;https://tu1.lsyblog.live/img/computerAboutDog.jpg&#34; style=&#34;width: 13%;&#34;&gt;  
-  &lt;!-- 右翅膀 --&gt;
-  &lt;img class=&#34;about-img right-wing&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/b6d03df0b0a54643f2171081e8ded484bfecbc191d146ea126f55902f64ca187/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f72696768742d77696e672e706e67&#34; style=&#34;width: 30%;&#34;&gt;
-&lt;/p&gt;
-&lt;h2 id=&#34;爱好--特长&#34;&gt;爱好 &amp;amp; 特长🥰
-&lt;/h2&gt;&lt;h3 id=&#34;运动&#34;&gt;运动
-&lt;/h3&gt;&lt;p&gt;🏀篮球、🏓乒乓球、🚵‍♀️骑行、爬山，这些都是我喜欢的运动。秉持着生命在于运动的理念，格言：&lt;em&gt;&lt;strong&gt;让海浪见识见识山的高&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;h3 id=&#34;阅读&#34;&gt;阅读
-&lt;/h3&gt;&lt;p&gt;《活着》、《第七天》、《许三观卖血记》、《肖申克的救赎》、《白夜行》、《嫌疑人X的献身》、《恶意》、《十宗罪》、《诗经》、《窄门》&lt;/p&gt;
-&lt;h2 id=&#34;技术栈-&#34;&gt;技术栈 🎯
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;计划学习   🎉🎉🎉&lt;/p&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/5722d353fd4d76009d2d39b13beb7018324901e501c1efa954044d0de93a7090/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d6a6176612d79656c6c6f773f7374796c653d666c61742d737175617265266c6f676f3d6a617661&#34; alt=&#34;Java&#34; data-canonical-src=&#34;https://img.shields.io/badge/-java-yellow?style=flat-square&amp;amp;logo=java&#34; style=&#34;max-width: 100%;&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/b00f8fc1b82a6815d35d8379b482747291b658aa666b8e1cba7de52e85a17ee7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6d7973716c2d2532333030662e7376673f7374796c653d666c61742d737175617265266c6f676f3d6d7973716c266c6f676f436f6c6f723d7768697465&#34; &gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/c0f60c84bd23525a0f1e5972ff5052f878eb4104e88b347b7f0004d0e6ad8898/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d48544d4c352d4533344632363f7374796c653d666c61742d737175617265266c6f676f3d68746d6c35266c6f676f436f6c6f723d7768697465&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/d2de8f341090cb9d72d132ef5f73c2a2c9be3081193bd9c7f3fee5b4973ece27/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d435353332d3135373242363f7374796c653d666c61742d737175617265266c6f676f3d63737333&#34; &gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/047bb7a31e978114872ee3519eaae1754e505fa97f4caf89628cdd759b929e5e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4a6176615363726970742d6f72696e67653f7374796c653d666c61742d737175617265266c6f676f3d6a617661736372697074&#34; alt=&#34;JavaScript&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/37566148057ec77bd6178f864df7cfa1772d2df4b80597eb6d58d689c754f4a8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6a71756572792d2532333037363941442e7376673f7374796c653d7374796c653d666c61742d737175617265266c6f676f3d6a7175657279266c6f676f436f6c6f723d7768697465&#34; alt=&#34;jQuery&#34;  style=&#34;max-width: 100%;&#34;&gt;&lt;/a&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/4261a58fce29b46505eff574c23d600885997d19b2b5917a0c0a1d5354aed1e5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f747970657363726970742d2532333030374143432e7376673f7374796c653d666c61742d737175617265266c6f676f3d74797065736372697074266c6f676f436f6c6f723d7768697465&#34; alt=&#34;TypeScript&#34;  style=&#34;max-width: 100%;&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/336cf0087a263fc5275fa34950a810a60ad2120b8580e8b6dcb73cc2ea0201bd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d5675652e6a732d3366373435633f7374796c653d666c61742d737175617265266c6f676f3d5675652e6a73&#34; alt=&#34;Vue&#34; style=&#34;max-width: 100%;&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/aae266e93c1aaf19d6e1cb9064161213d2cdc31fd7016c20f0b8686acdaa2f1c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52656163742d3037616664393f7374796c653d666c61742d737175617265266c6f676f3d5265616374&#34; alt=&#34;React&#34; style=&#34;max-width: 100%;&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/a292f85b9e9006d929df5fbe34fc5c6de5890e1adcb4a566f03b39f51a47f9df/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656a732d63306562643f7374796c653d666c61742d737175617265266c6f676f3d4e6f64652e6a73&#34; alt=&#34;Nodejs&#34; style=&#34;max-width: 100%;&#34;&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;正在学习 ✨️✨️✨️&lt;/p&gt;
-  &lt;img src=&#34;https://camo.githubusercontent.com/87ebcbcddc1c9b3546d45ade2bef001c7414da050990771aed92e6a35874ca36/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d432b2b2d3030353939433f7374796c653d666c61742d737175617265266c6f676f3d63&#34; alt=&#34;C++&#34; data-canonical-src=&#34;https://img.shields.io/badge/-C++-00599C?style=flat-square&amp;amp;logo=c&#34; style=&#34;max-width: 100%;&#34;&gt;
-  &lt;img src=&#34;https://camo.githubusercontent.com/3f0ceee57fc4a5f084e5e1b29a96e84979881967b3023aab6d39865a971ce5f6/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f632d2532333030353939432e7376673f7374796c653d666c61742d737175617265266c6f676f3d63266c6f676f436f6c6f723d7768697465&#34; alt=&#34;C&#34; &gt;
-  &lt;img src=&#34;https://camo.githubusercontent.com/f72c706c4895c38a77a6c44ac19070ba5ad67c9f1e75e5b103d22cf0ebe0d7f5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d507974686f6e2d70696e6b3f7374796c653d666c61742d737175617265266c6f676f3d507974686f6e&#34; alt=&#34;Python&#34; &gt;
-  &lt;img src=&#34;https://camo.githubusercontent.com/5a38333b9b1c3501638ef4867883021c7809540e18a44da16275ca7eee5cde8e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d446f636b65722d4643433632343f7374796c653d666c61742d737175617265266c6f676f3d646f636b6572&#34; alt=&#34;Docker&#34; &gt;
-  &lt;img src=&#34;https://camo.githubusercontent.com/ca3553fe6bca4d8136e78273b2bb3d7690c7282ac6339e347861835818d42d7e/68747470733a2f2f63646e2e6362642e696e742f616e7a686979752d61737365747340312e302e31312f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f706572736f6e616c2d686f6d65706167652d62616e6e65722e6a7067&#34; &gt;    
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;荣誉--经历-&#34;&gt;荣誉 &amp;amp; 经历 🏆️
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;本科第一学年
-&lt;ul&gt;
-&lt;li&gt;院级奖 三项&lt;/li&gt;
-&lt;li&gt;省级奖 四项&lt;/li&gt;
-&lt;li&gt;国级奖 一项&lt;/li&gt;
-&lt;li&gt;校级立项科研项目 二项&lt;/li&gt;
-&lt;li&gt;省级立项研究项目 一项&lt;/li&gt;
-&lt;li&gt;软著 二项&lt;/li&gt;
-&lt;li&gt;嵌入式工程师证书&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+        <guid>http://localhost:1313/about/</guid>
+        <description>&lt;h1 id=&#34;关于本站&#34;&gt;🔗关于本站
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;2024年本站建立&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+        </item>
+        <item>
+        <title>搜索</title>
+        <link>http://localhost:1313/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/search/</guid>
+        <description></description>
         </item>
         
     </channel>

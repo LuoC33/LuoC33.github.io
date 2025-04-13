@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
-    <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言 之前写过一篇基础教程，但是不够直白和连续，现 2024/12/31 对该文章重构。\n目的： 实现学习通等网课平台自动挂视频和答题\n对网课视频中的弹窗题目作答\n对课后习题自动作答，并设置正确率为界限提交\n">
+
+<head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言\r之前写过一篇基础教程，但是不够直白和连续，现 2024/12/31 对该文章重构。\n目的： 实现学习通等网课平台自动挂视频和答题\n对网课视频中的弹窗题目作答\n对课后习题自动作答，并设置正确率为界限提交\n自动复习，自动翻ppt\n可定义倍速，1倍数、2倍数、3倍数等\n原理： 通过浏览器加载扩展程序，用以启动js脚本。\n浏览器：Edg浏览器、火狐、谷歌 (三选一)\n扩展程序：油猴、脚本猫（二选一）\n开始\r下载扩展\r进入油猴官网，如图所示，先选择你的浏览器,这里我以Chrome（谷歌为例）\n然后下拉，找到下载这里， 这里有两种安装方案，具体如图所示，第一种方法简单快捷，就正常下载然后安装就行，但是对于网络有特殊要求，一般无法直连，需要梯子。 故此我们分类讲述。\n第一种方案\r点击去商店会跳转到chrome商店（因为我是谷歌浏览器，如果你是edg浏览器，就选择edg的，此时点击去商店就会跳转到对应的浏览器商店）\n这时候就可以看到我们已经安装成功了油猴\n第二种方案\r我们先下载好扩展程序，然后人为导入到浏览器的扩展里面。所以第一步，我们先直接下载这个扩展程序，下载好后要记住你下载的位置在哪。\n接着打开浏览器的设置，在设置里面找到扩展这一选项\n然后记得打开 开发者模式，开发者模式不打开的话是无法导入扩展的。\n接着就将我们刚刚下载好的扩展 直接拖到这里。\n然后会出现提示框询问你是否添加该扩展，选择添加扩展程序\n最后 我们就成功安装好了扩展了。\n安装网课脚本\r现在我们已经安装好了扩展，只需要再安装对应的脚本就行了。我这里推荐使用OSC网课助手。\n首先我们先进入脚本网站搜索我们要的OCS网课助手。\n然后安装该脚本 这时候会跳转到油猴这里，我们只需要再次点击安装就行。\r当你点击安装，安装完成后会自动关闭该界面，并且速度很快，这是正常现象，我们可以去到油猴管理界面看看我们的脚本是否安装成功。点击油猴，找到管理面板，进入其中。\r可以看到，我们是已经成功安装好了该网课脚本。\r当然，当你安装好了该网课脚本，你也可以直接进入学习通，这时候会有对应脚本的出现。\n配置题库\r配置题库教程参考言溪题库官方教程 ">
 <title>OCS网课助手实现网课自动刷课</title>
 
-<link rel='canonical' href='https://LuoC33.github.io/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/'>
+<link rel='canonical' href='http://localhost:1313/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/'>
 
-<link rel="stylesheet" href="/scss/style.min.522bf39f959f1a0781ff54dbe0e7dafb44d57d8026e32f48be8f9ee1e81116b1.css"><meta property='og:title' content="OCS网课助手实现网课自动刷课">
-<meta property='og:description' content="前言 之前写过一篇基础教程，但是不够直白和连续，现 2024/12/31 对该文章重构。\n目的： 实现学习通等网课平台自动挂视频和答题\n对网课视频中的弹窗题目作答\n对课后习题自动作答，并设置正确率为界限提交\n">
-<meta property='og:url' content='https://LuoC33.github.io/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/'>
-<meta property='og:site_name' content='波罗吹鱼&#39;s Blog'>
+<link rel="stylesheet" href="/scss/style.min.54882c509e0afe9fc58c774a990195b23f8db9c9782f2e4c05e094055040a039.css"><meta property='og:title' content="OCS网课助手实现网课自动刷课">
+<meta property='og:description' content="前言\r之前写过一篇基础教程，但是不够直白和连续，现 2024/12/31 对该文章重构。\n目的： 实现学习通等网课平台自动挂视频和答题\n对网课视频中的弹窗题目作答\n对课后习题自动作答，并设置正确率为界限提交\n自动复习，自动翻ppt\n可定义倍速，1倍数、2倍数、3倍数等\n原理： 通过浏览器加载扩展程序，用以启动js脚本。\n浏览器：Edg浏览器、火狐、谷歌 (三选一)\n扩展程序：油猴、脚本猫（二选一）\n开始\r下载扩展\r进入油猴官网，如图所示，先选择你的浏览器,这里我以Chrome（谷歌为例）\n然后下拉，找到下载这里， 这里有两种安装方案，具体如图所示，第一种方法简单快捷，就正常下载然后安装就行，但是对于网络有特殊要求，一般无法直连，需要梯子。 故此我们分类讲述。\n第一种方案\r点击去商店会跳转到chrome商店（因为我是谷歌浏览器，如果你是edg浏览器，就选择edg的，此时点击去商店就会跳转到对应的浏览器商店）\n这时候就可以看到我们已经安装成功了油猴\n第二种方案\r我们先下载好扩展程序，然后人为导入到浏览器的扩展里面。所以第一步，我们先直接下载这个扩展程序，下载好后要记住你下载的位置在哪。\n接着打开浏览器的设置，在设置里面找到扩展这一选项\n然后记得打开 开发者模式，开发者模式不打开的话是无法导入扩展的。\n接着就将我们刚刚下载好的扩展 直接拖到这里。\n然后会出现提示框询问你是否添加该扩展，选择添加扩展程序\n最后 我们就成功安装好了扩展了。\n安装网课脚本\r现在我们已经安装好了扩展，只需要再安装对应的脚本就行了。我这里推荐使用OSC网课助手。\n首先我们先进入脚本网站搜索我们要的OCS网课助手。\n然后安装该脚本 这时候会跳转到油猴这里，我们只需要再次点击安装就行。\r当你点击安装，安装完成后会自动关闭该界面，并且速度很快，这是正常现象，我们可以去到油猴管理界面看看我们的脚本是否安装成功。点击油猴，找到管理面板，进入其中。\r可以看到，我们是已经成功安装好了该网课脚本。\r当然，当你安装好了该网课脚本，你也可以直接进入学习通，这时候会有对应脚本的出现。\n配置题库\r配置题库教程参考言溪题库官方教程 ">
+<meta property='og:url' content='http://localhost:1313/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/'>
+<meta property='og:site_name' content='流水鱼のBlog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='油猴' /><meta property='article:tag' content='网课' /><meta property='article:tag' content='教程' /><meta property='article:published_time' content='2024-05-05T20:18:12&#43;00:00'/><meta property='article:modified_time' content='2024-05-05T20:18:12&#43;00:00'/><meta property='og:image' content='https://tu1.lsyblog.live/img/网课.jpg' />
 <meta name="twitter:title" content="OCS网课助手实现网课自动刷课">
-<meta name="twitter:description" content="前言 之前写过一篇基础教程，但是不够直白和连续，现 2024/12/31 对该文章重构。\n目的： 实现学习通等网课平台自动挂视频和答题\n对网课视频中的弹窗题目作答\n对课后习题自动作答，并设置正确率为界限提交\n"><meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="前言\r之前写过一篇基础教程，但是不够直白和连续，现 2024/12/31 对该文章重构。\n目的： 实现学习通等网课平台自动挂视频和答题\n对网课视频中的弹窗题目作答\n对课后习题自动作答，并设置正确率为界限提交\n自动复习，自动翻ppt\n可定义倍速，1倍数、2倍数、3倍数等\n原理： 通过浏览器加载扩展程序，用以启动js脚本。\n浏览器：Edg浏览器、火狐、谷歌 (三选一)\n扩展程序：油猴、脚本猫（二选一）\n开始\r下载扩展\r进入油猴官网，如图所示，先选择你的浏览器,这里我以Chrome（谷歌为例）\n然后下拉，找到下载这里， 这里有两种安装方案，具体如图所示，第一种方法简单快捷，就正常下载然后安装就行，但是对于网络有特殊要求，一般无法直连，需要梯子。 故此我们分类讲述。\n第一种方案\r点击去商店会跳转到chrome商店（因为我是谷歌浏览器，如果你是edg浏览器，就选择edg的，此时点击去商店就会跳转到对应的浏览器商店）\n这时候就可以看到我们已经安装成功了油猴\n第二种方案\r我们先下载好扩展程序，然后人为导入到浏览器的扩展里面。所以第一步，我们先直接下载这个扩展程序，下载好后要记住你下载的位置在哪。\n接着打开浏览器的设置，在设置里面找到扩展这一选项\n然后记得打开 开发者模式，开发者模式不打开的话是无法导入扩展的。\n接着就将我们刚刚下载好的扩展 直接拖到这里。\n然后会出现提示框询问你是否添加该扩展，选择添加扩展程序\n最后 我们就成功安装好了扩展了。\n安装网课脚本\r现在我们已经安装好了扩展，只需要再安装对应的脚本就行了。我这里推荐使用OSC网课助手。\n首先我们先进入脚本网站搜索我们要的OCS网课助手。\n然后安装该脚本 这时候会跳转到油猴这里，我们只需要再次点击安装就行。\r当你点击安装，安装完成后会自动关闭该界面，并且速度很快，这是正常现象，我们可以去到油猴管理界面看看我们的脚本是否安装成功。点击油猴，找到管理面板，进入其中。\r可以看到，我们是已经成功安装好了该网课脚本。\r当然，当你安装好了该网课脚本，你也可以直接进入学习通，这时候会有对应脚本的出现。\n配置题库\r配置题库教程参考言溪题库官方教程 "><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://tu1.lsyblog.live/img/网课.jpg' />
-    </head>
-    <body class="
+
+
+</head>
+
+<body class="
     article-page
-    ">
+    " style="display:flex; flex-direction: column;">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
             if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "light");
+                localStorage.setItem(colorSchemeKey, "auto");
             }
         })();
     </script><script>
@@ -40,26 +44,278 @@
         }
     })();
 </script>
-<div class="container main-container flex on-phone--column extended">
-    
-        <div id="article-toolbar" style="position: sticky;top: 5px;z-index: 1000;">
-            <a href="/" class="back-home">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>        
+            <l1 class="site-name"><a href="/">流水鱼のBlog</a></l1>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
-  <polyline points="15 6 9 12 15 18" />
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
 </svg>
 
 
 
-                <span>返回</span>
+                
+                <span>Home</span>
             </a>
-        </div>
-    
-
-    <aside class="sidebar right-sidebar sticky">
+        </li>
         
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+    </ol>
+
+    <ol class="right-menu">
+        <a href="https://index.lsyblog.live/" target="_blank" class="travelling-button">
+            <li id="travelling">
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-train"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 5c6.634 0 10.853 3.11 10.996 7.754l.004 .246a3 3 0 0 1 -3 3h-16a1 1 0 0 1 -1 -1v-9a1 1 0 0 1 1 -1zm-4 2h-3v3h3zm4 0h-2v3h3v-2.974a19 19 0 0 0 -1 -.026m3.001 .257l-.001 2.743h5.04c-.979 -1.337 -2.689 -2.306 -5.039 -2.743m6.999 10.743a1 1 0 0 1 0 2h-18a1 1 0 0 1 0 -2z" /></svg>
+            </li>
+        </a>
+
+        
+        <li id="dark-mode-toggle">
+            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-moon"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 1.992a10 10 0 1 0 9.236 13.838c.341 -.82 -.476 -1.644 -1.298 -1.31a6.5 6.5 0 0 1 -6.864 -10.787l.077 -.08c.551 -.63 .113 -1.653 -.758 -1.653h-.266l-.068 -.006l-.06 -.002z" /></svg>
+        </li>
+        
+    </ol>
+</aside>
+
+<div class="container main-container flex on-phone--column extended">
+    
+    
+    <aside class="right-sidebar">
+        <div class="sticky-container">
             
                 
+                <div class="author-sticky">
+                    
+                    <div class="widget">
+    
+    <div class="author">
+            <figure class="site-avatar">
+                <a href="/about/">
+                    
+                    <img src="/img/avatar.png" width="300" height="300" class="site-logo" loading="lazy" alt="Avatar">
+                </a>
+                
+                <span class="emoji">🍥</span>
+            </figure>
+            <div class="site-meta">
+                
+                <h1 class="about-site-name"><a href="/about/">流水鱼</a></h1>
+                <h2 class="about-site-description">事非经过不知难👑</h2>
+                <ol class="menu-social">
+                    <li>
+                        
+                        <img src="https://tu1.lsyblog.live/img/Wechatlogo.png" alt="GitHub" style="width: 24px; height: 24px;">
+                    </li>
+                    <li>
+                        
+                        <img src="https://tu1.lsyblog.live/img/QQlogo.png" alt="GitHub" style="width: 24px; height: 24px;">
+                    </li>
+                </ol>
+            </div>
+    
+
+    </div>
+</div>
+
+<style>
+    .author {
+        background: var(--author-background);
+    }
+
+    .author {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding: 0;
+        border: none;
+        height: 300px;
+    }
+
+    .author {
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+
+        transition: .3s;
+        position: relative;
+        overflow: hidden;
+        padding: 1rem;
+        display: flex;
+        gap: 8px;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+<style>
+    .site-avatar {
+        position: relative;
+        margin: 0;
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        margin-inline: auto;
+        user-select: none;
+    }
+
+    .site-avatar img {
+        border-radius: 50%;
+        position: relative;
+        width: 80px;
+        height: 80px;
+        user-select: none;
+    }
+
+    .site-avatar .emoji {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 100%;
+        bottom: 0;
+        right: 0;
+        text-align: center;
+        font-size: 15px;
+        background-color: var(--card-background);
+        box-shadow: 30px;
+    }
+
+    .site-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        margin-inline: auto;
+        align-items: center;
+        user-select: none;
+    }
+
+    .about-site-name {
+        color: #ecf0f1 !important;
+        margin: 0;
+        font-size: 1.8rem;
+        margin-top: 10px;
+        user-select: none;
+    }
+
+    .about-site-name a{
+        color: #ecf0f1 !important;
+    }
+
+    .about-site-description {
+        margin-left: 15px;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 400;
+        margin-top: 0;
+        font-size: 1.6rem;
+        user-select: none;
+    }
+
+    .menu-social svg{
+        stroke: rgba(255, 255, 255, 0.7);
+    }
+</style>
+
+                </div>
+
+                
+                <div class="toc-sticky">
+                    
     <section class="widget archives">
         <div class="widget-icon">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -97,14 +353,12 @@
         </div>
     </section>
 
+                </div>
             
-        
+        </div>
     </aside>
 
-
-
-            <main class="main full-width">
-
+        <main class="main full-width">
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
@@ -117,32 +371,33 @@
     
 
     <div class="article-details">
-    
-    <header class="article-category">
-        
-            <a href="/categories/%E6%88%91%E7%9A%84%E9%A1%B9%E7%9B%AE/" >
-                我的项目
-            </a>
-        
-    </header>
-    
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
             <a href="/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/">OCS网课助手实现网课自动刷课</a>
         </h2>
-    
+
         
     </div>
-
     
     
     
     
     <footer class="article-time">
+
         
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <header class="article-category">
+            
+            <a href="/categories/%E6%88%91%E7%9A%84%E9%A1%B9%E7%9B%AE/">
+                我的项目
+            </a>
+            
+        </header>
+        
+
+        
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
   <circle cx="18" cy="18" r="4" />
@@ -151,13 +406,13 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2024-5-5</time>
-            </div>
+            <time class="article-time--published">2024-5-5</time>
+        </div>
         
 
         
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <circle cx="12" cy="12" r="9" />
   <polyline points="12 7 12 12 15 15" />
@@ -165,17 +420,16 @@
 
 
 
-                <time class="article-time--reading">
-                    阅读时长: 3 分钟
-                </time>
-            </div>
+            <time class="article-time--reading">
+                阅读时长: 1 分钟
+            </time>
+        </div>
         
     </footer>
     
 
     
 </div>
-
 </header>
 
     <section class="article-content">
@@ -217,129 +471,43 @@
 </h2><h3 id="下载扩展">下载扩展
 </h3><p>进入<a class="link" href="https://www.tampermonkey.net/index.php?ext=gcal&amp;version=4.19.6180&amp;locale=zh"  target="_blank" rel="noopener"
     >油猴官网</a>，如图所示，先选择你的浏览器,这里我以Chrome（谷歌为例）</p>
-<img src="https://tu1.lsyblog.live/img/20241231200258711.webp" style="zoom:50%;" />
+<img src="https://tu1.lsyblog.live/img/20241231200258711.webp" style="zoom:200%;" />
 <p>然后下拉，找到下载这里， 这里有两种安装方案，具体如图所示，第一种方法简单快捷，就正常下载然后安装就行，但是对于网络有特殊要求，一般无法直连，需要梯子。 故此我们分类讲述。</p>
-<img src="https://tu1.lsyblog.live/img/osc_youhou.webp" style="zoom: 67%;" />
+<img src="https://tu1.lsyblog.live/img/osc_youhou.webp" style="zoom: 200%;" />
 <h4 id="第一种方案">第一种方案
 </h4><p>点击去商店会跳转到chrome商店（因为我是谷歌浏览器，如果你是edg浏览器，就选择edg的，此时点击去商店就会跳转到对应的浏览器商店）</p>
-<p><img src="https://tu1.lsyblog.live/img/yh_wk_1.3.1.webp"
-	
-	
-	
-	loading="lazy"
-	
-		alt="图二"
-	
-	
-></p>
-<p><img src="https://tu1.lsyblog.live/img/20250103143551010.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
+<img src="https://tu1.lsyblog.live/img/yh_wk_1.3.1.webp" style="zoom:150%;" />
+<img src="https://tu1.lsyblog.live/img/20250103143551010.webp" style="zoom:150%;" />
 <p>这时候就可以看到我们已经安装成功了油猴</p>
-<img src="https://tu1.lsyblog.live/img/20250103143632666.webp" style="zoom:50%;" />
+<img src="https://tu1.lsyblog.live/img/20250103143632666.webp" style="zoom:150%;" />
 <h4 id="第二种方案">第二种方案
 </h4><p>我们先下载好扩展程序，然后人为导入到浏览器的扩展里面。所以第一步，我们先直接下载这个扩展程序，下载好后要记住你下载的位置在哪。</p>
-<p><img src="https://tu1.lsyblog.live/img/20250103144213899.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
+<img src="https://tu1.lsyblog.live/img/20250103144213899.webp" style="zoom:150%;" />
 <p>接着打开浏览器的设置，在设置里面找到扩展这一选项</p>
-<p><img src="https://tu1.lsyblog.live/img/20250103144454966.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
+<img src="https://tu1.lsyblog.live/img/20250103144454966.webp" style="zoom:150%;" />
 <p>然后<strong>记得打开 开发者模式</strong>，开发者模式不打开的话是无法导入扩展的。</p>
-<p><img src="https://tu1.lsyblog.live/img/20250103144553596.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
+<img src="https://tu1.lsyblog.live/img/20250103144454966.webp" style="zoom:150%;" />
 <p>接着就将我们刚刚下载好的扩展 直接拖到这里。</p>
-<p><img src="https://tu1.lsyblog.live/img/20250103144713486.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
+<img src="https://tu1.lsyblog.live/img/20250103144713486.webp" style="zoom:150%;" />
 <p>然后会出现提示框询问你是否添加该扩展，选择添加扩展程序</p>
-<img src="https://tu1.lsyblog.live/img/20250103144732786.webp" style="zoom: 33%;" />
+<img src="https://tu1.lsyblog.live/img/20250103144732786.webp" style="zoom: 133%;" />
 <p>最后 我们就成功安装好了扩展了。</p>
-<img src="https://tu1.lsyblog.live/img/20250103144741420.webp" style="zoom: 50%;" />
+<img src="https://tu1.lsyblog.live/img/20250103144741420.webp" style="zoom: 150%;" />
 <h3 id="安装网课脚本">安装网课脚本
 </h3><p>现在我们已经安装好了扩展，只需要再安装对应的脚本就行了。我这里推荐使用OSC网课助手。</p>
 <p>首先我们先进入<a class="link" href="https://greasyfork.org/zh-CN"  target="_blank" rel="noopener"
     >脚本网站</a>搜索我们要的OCS网课助手。</p>
-<p><img src="https://tu1.lsyblog.live/img/20250103145554772.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>然后安装该脚本</p>
-<p><img src="https://tu1.lsyblog.live/img/20250103145626247.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>这时候会跳转到油猴这里，我们只需要再次点击安装就行。</p>
-<p><img src="https://tu1.lsyblog.live/img/20250103145638167.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>当你点击安装，安装完成后会自动关闭该界面，并且速度很快，这是正常现象，我们可以去到油猴管理界面看看我们的脚本是否安装成功。点击油猴，找到管理面板，进入其中。</p>
-<p><img src="https://tu1.lsyblog.live/img/20250103145659327.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
-<p>可以看到，我们是已经成功安装好了该网课脚本。</p>
-<p><img src="https://tu1.lsyblog.live/img/20250103145707032.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
+<img src="https://tu1.lsyblog.live/img/20250103145554772.webp" style="zoom: 150%;" />
+然后安装该脚本  
+<img src="https://tu1.lsyblog.live/img/20250103145626247.webp" style="zoom: 150%;" />
+这时候会跳转到油猴这里，我们只需要再次点击安装就行。
+<img src="https://tu1.lsyblog.live/img/20250103145638167.webp" style="zoom: 150%;" />
+当你点击安装，安装完成后会自动关闭该界面，并且速度很快，这是正常现象，我们可以去到油猴管理界面看看我们的脚本是否安装成功。点击油猴，找到管理面板，进入其中。
+<img src="https://tu1.lsyblog.live/img/20250103145659327.webp" style="zoom: 150%;" />
+可以看到，我们是已经成功安装好了该网课脚本。
+<img src="https://tu1.lsyblog.live/img/20250103145707032.webp" style="zoom: 150%;" />
 <p>当然，当你安装好了该网课脚本，你也可以直接进入学习通，这时候会有对应脚本的出现。</p>
-<p><img src="https://tu1.lsyblog.live/img/20250103150432443.webp"
-	
-	
-	
-	loading="lazy"
-	
-	
-></p>
+<img src="https://tu1.lsyblog.live/img/20250103150432443.webp" style="zoom: 150%;" />
 <h3 id="配置题库">配置题库
 </h3><p>配置题库教程参考<a class="link" href="https://tk.enncy.cn/tk/article?uid=d5a1de0cf21b44fabedbac3d840674a4"  target="_blank" rel="noopener"
     >言溪题库官方教程 </a></p>
@@ -360,8 +528,30 @@
 <p>这篇教程算是完结了，算是比上次写的更通俗一点。</p>
 
 </section>
-
-
+    
+      
+    <div class="post-reward" data-html2canvas-ignore>
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="https://tu1.lsyblog.live/img/wxzf.webp">
+        <span>微信打赏</span>
+      </label>
+      
+      
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="https://tu1.lsyblog.live/img/zfbzf.webp">
+        <span>支付宝打赏</span>
+      </label>
+      
+      
+    </div>
+  </div>
+  
+    
+     
     <footer class="article-footer">
     
     <section class="article-tags">
@@ -373,75 +563,6 @@
             <a href="/tags/%E6%95%99%E7%A8%8B/">教程</a>
         
     </section>
-        
-        
-        
-<div class="post-reward" onclick="anzhiyu.showReward()">
-  <div class="reward-button button--animated" title="赞赏作者">
-    <i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者
-  </div>
-  <div class="reward-main" style="display: none;">
-    <div class="reward-all">
-      <span class="reward-title">感谢你赐予我前进的力量</span>
-      <ul class="reward-group">
-        <li class="reward-item">
-          <a href="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" target="_blank">
-            <img class="post-qr-code-img entered loaded" src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" onerror="this.onerror=null,this.src='/img/404.jpg'" data-lazy-src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/wxzf.webp" alt="微信" data-ll-status="loaded">
-          </a>
-          <div class="post-qr-code-desc">微信</div>
-        </li>
-        <li class="reward-item">
-          <a href="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" target="_blank">
-            <img class="post-qr-code-img entered loaded" src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" onerror="this.onerror=null,this.src='/img/404.jpg'" data-lazy-src="https://jsd.onmicrosoft.cn/gh/LuoC33/tuchuang@main/img/zfbzf.webp" alt="支付宝" data-ll-status="loaded">
-          </a>
-          <div class="post-qr-code-desc">支付宝</div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<div id="quit-box" onclick="anzhiyu.hideReward()" style="display: none;"></div>
-
-<script>
-  var anzhiyu = {
-    showReward: function() {
-      document.querySelector('.reward-main').style.display = 'block';
-      document.getElementById('quit-box').style.display = 'block';
-      document.querySelector('.reward-main').classList.add('reward-animation');
-    },
-    hideReward: function() {
-      document.querySelector('.reward-main').style.display = 'none';
-      document.getElementById('quit-box').style.display = 'none';
-      document.querySelector('.reward-main').classList.remove('reward-animation');
-    }
-  };
-</script>
-
-<style>
-  .reward-main {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 45%;
-    transform: translate(-50%, -50%);
-     
-  }
-
-  .reward-animation {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-</style>
-
-    
 
 
     
@@ -460,33 +581,9 @@
 
 
     
-        <link 
-                rel="stylesheet" 
-                href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI&#43;WdtXRGWt2kTvGFasHpSy3SV"crossorigin="anonymous"
-            ><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG&#43;vnGctmUb0ZY0l8"crossorigin="anonymous"
-                defer
-                >
-            </script><script 
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"integrity="sha384-&#43;VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4&#43;/RRE05"crossorigin="anonymous"
-                defer
-                >
-            </script><script>
-    window.addEventListener("DOMContentLoaded", () => {
-        renderMathInElement(document.body, {
-            delimiters: [
-                { left: "$$", right: "$$", display: true },
-                { left: "$", right: "$", display: false },
-                { left: "\\(", right: "\\)", display: false },
-                { left: "\\[", right: "\\]", display: true }
-            ],
-            ignoredClasses: ["gist"]
-        });})
-</script>
-    
 </article>
     
-    
+
     
 
 <aside class="related-content--wrapper">
@@ -495,7 +592,7 @@
         <div class="flex article-list--tile">
             
                 
-<article class="has-image">
+<article class="article-card has-image">
     <a href="/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/">
         
         
@@ -511,10 +608,9 @@
         </div>
     </a>
 </article>
-
             
                 
-<article class="has-image">
+<article class="article-card has-image">
     <a href="/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/">
         
         
@@ -530,7 +626,6 @@
         </div>
     </a>
 </article>
-
             
         </div>
     </div>
@@ -540,60 +635,101 @@
     
         
     
-    <footer class="site-footer">
-    <section class="copyright">
-        &copy; 
-        
-            2024 - 
-        
-        2025 波罗吹鱼
-    </section>
-    
-
-    <section class="totalcount">
-        
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-        发表了11篇文章 · 
-        总计13.24k字
-    </section>
-
-    <section class="powerby">
-        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
-    </section>
-    
-    
 
 
+    <style>
+    footer.site-footer {
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        padding: 20px 10px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        line-height: 1.75;
+        color: var(--card-text-color-secondary);
+        background-color: var(--footer-bg);
+        box-shadow: 0 -3px 1px -3px var(--card-text-color-main);
+        padding: 10px;
+        user-select: none;
+    }
+
+    .footer-info {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    .right-footer {
+        text-align: left;
+        display: flex;
+        align-items: right;
+    }
+
+    footer.site-footer a {
+        font-size: 15px;
+        color: var(--card-text-color-main);
+        transition: color .2s ease-in-out;
+        margin-inline: 15px;
+    }
+
+    .copyright{
+        font-size: 15px;
+        color: var(--card-text-color-main) !important;
+        transition: color .2s ease-in-out;
+        margin-inline: 15px;
+    }
+
+</style><div style="display: flex;
+    justify-content: center; 
+    align-items: center; flex-direction: column;margin-top: 60px; color:var(--card-text-color-main); margin:30px;">
+</div>
+<footer class="site-footer">
+    <div class="footer-info">
+        <div class="left-footer">
+            <section class="copyright">
+                &copy;
+                
+                2024 -
+                
+                2025 流水鱼
+            </section>
+        </div>
+        <section class="totalcount">
+            
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+            发表了11篇文章 · 
+            总计2.15k字
+        </section>
+    </div>
 </footer>
 
     
@@ -674,21 +810,25 @@
                 href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
             >
 
-            </main>
-        </div>
-        <script 
+        </main>
+    </div>
+    <script 
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
 
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Long+Cang&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300&family=Noto+Serif+SC:wght@300&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
-
-<script src=https://LuoC33.github.io/background/sakura.js></script>
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script src=http://localhost:1313/background/sakura.js></script>
 
 <style>
     #TableOfContents > ul, ol {
@@ -736,77 +876,6 @@
     }
     initTocHide()
 </script>
+</body>
 
- 
-<style>
-    #backTopBtn {
-        display: none;
-        position: absolute;  
-        bottom: -20px;  
-        right: 240px;  
-        cursor: pointer;
-        width: 40px;  
-        height: 40px;  
-        background-image: url(https://LuoC33.github.io/icons/backTop-light.svg);
-        background-size: cover;  
-        z-index: 100;  
-    }
-
-  
-    @media (max-width: 768px) {
-        #backTopBtn {
-            right: 10px;  
-        }
-    }
-
-    @media (min-width: 769px) and (max-width: 1024px) {
-        #backTopBtn {
-            right: 140px;  
-        }
-    }
-
-    @media (min-width: 1025px) {
-        #backTopBtn {
-            right: calc((100vw - 1140px) / 2 - 60px);  
-        }
-    }
-
-</style>
-
-<script>
-    function initScrollTop() {
-        
-        let rightSidebar = document.querySelector(".right-sidebar.sticky"); 
-        if (!rightSidebar) {
-            console.warn("Right sidebar not found!");
-            return;
-        }
-
-        
-        let btn = document.createElement("div");
-        btn.id = "backTopBtn";
-        btn.onclick = backToTop;
-
-        
-        rightSidebar.appendChild(btn);
-
-        
-        window.onscroll = function () {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                btn.style.display = "block"; 
-            } else {
-                btn.style.display = "none"; 
-            }
-        };
-    }
-
-    function backToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" }); 
-    }
-
-    document.addEventListener("DOMContentLoaded", initScrollTop); 
-</script>
-
-
-    </body>
 </html>

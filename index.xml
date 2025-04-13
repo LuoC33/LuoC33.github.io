@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>波罗吹鱼&#39;s Blog</title>
-        <link>https://LuoC33.github.io/</link>
-        <description>Recent content on 波罗吹鱼&#39;s Blog</description>
+        <title>流水鱼のBlog</title>
+        <link>http://localhost:1313/</link>
+        <description>Recent content on 流水鱼のBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>波罗吹鱼</copyright>
-        <lastBuildDate>Sun, 26 Jan 2025 22:33:13 +0800</lastBuildDate><atom:link href="https://LuoC33.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>流水鱼</copyright>
+        <lastBuildDate>Sun, 26 Jan 2025 22:33:13 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>小狗日记2</title>
-        <link>https://LuoC33.github.io/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B02/</link>
+        <link>http://localhost:1313/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B02/</link>
         <pubDate>Sun, 26 Jan 2025 22:33:13 +0800</pubDate>
         
-        <guid>https://LuoC33.github.io/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B02/</guid>
+        <guid>http://localhost:1313/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B02/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/dog_diart_cover2.webp" alt="Featured image of post 小狗日记2" /&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
 &lt;p&gt;我讨厌等 等雨停 等排队&lt;/p&gt;
 &lt;p&gt;等食堂吃饭 等你的消息 等电影开场&lt;/p&gt;
@@ -69,10 +69,10 @@
         </item>
         <item>
         <title>小狗日记1</title>
-        <link>https://LuoC33.github.io/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B01/</link>
+        <link>http://localhost:1313/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B01/</link>
         <pubDate>Tue, 07 Jan 2025 23:35:43 +0800</pubDate>
         
-        <guid>https://LuoC33.github.io/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B01/</guid>
+        <guid>http://localhost:1313/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B01/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/dog_diary_cover.webp" alt="Featured image of post 小狗日记1" /&gt;&lt;p&gt;我曾特别喜欢看一个人的背影，&lt;/p&gt;
 &lt;p&gt;以至于只要在视线范围内，无论是哪个刁钻位置，我总能，出于本能的，捕捉到那抹身影。&lt;/p&gt;
 &lt;p&gt;我试着一点点靠近她，&lt;/p&gt;
@@ -87,31 +87,31 @@
         </item>
         <item>
         <title>那时我们第一次相遇：USART 1</title>
-        <link>https://LuoC33.github.io/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</link>
+        <link>http://localhost:1313/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</link>
         <pubDate>Mon, 06 Jan 2025 22:34:07 +0800</pubDate>
         
-        <guid>https://LuoC33.github.io/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</guid>
+        <guid>http://localhost:1313/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/Usart_post_cover.webp" alt="Featured image of post 那时我们第一次相遇：USART 1" /&gt;&lt;h2 id=&#34;usart通信简易原理图&#34;&gt;Usart通信简易原理图
-&lt;/h2&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250105172816-ltdpdzx.webp&#34; style=&#34;zoom: 37%;&#34; /&gt;
+&lt;/h2&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250105172816-ltdpdzx.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
 &lt;ul&gt;
 &lt;li&gt;GND 供地是为了平衡电压基准，使得双方共用一套电压标准，用于评判高低电压。&lt;/li&gt;
 &lt;li&gt;Tx ：发送数据 Rx：接收数据&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;数据的串并转换&#34;&gt;数据的串并转换
 &lt;/h2&gt;&lt;h3 id=&#34;stm32-的串并转化寄存器&#34;&gt;STM32 的串并转化寄存器
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106202849-l2ex87r.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 70%;&#34; /&gt;​&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106202849-l2ex87r.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;寄存器 TDR 实现将并行数据转换为串行数据。&lt;/li&gt;
 &lt;li&gt;寄存器 RDR 实现串行数据转换为并行数据。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;串并数据的详细解释&#34;&gt;串并数据的详细解释
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106201019-g40kzlz.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 40%;&#34; /&gt;​&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106201019-g40kzlz.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;串行数据是指数据以一个接一个的方式在时间上连续传输，也就是说，数据位是按顺序逐个发送的。这种方式通常用于长距离传输，因为它可以减少所需的线缆数量。&lt;/li&gt;
 &lt;li&gt;并行数据则是指数据的多个位在同一时刻通过多条通道同时传输，这种方式在短距离传输中效率较高，但由于受限于线路数量和信号干扰，通常不适合长距离通信。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;stm32_usart-模块完整示意图&#34;&gt;STM32_Usart 模块完整示意图
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106170147-po6k7k8.webp&#34; alt=&#34;image&#34; style=&#34;zoom:33%;&#34; /&gt;​&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106170147-po6k7k8.webp&#34; alt=&#34;image&#34; style=&#34;zoom:150%;&#34; /&gt;​&lt;/p&gt;
 &lt;h3 id=&#34;状态寄存器sr&#34;&gt;状态寄存器(SR)
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -222,7 +222,7 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106172304-oj6745a.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 40%;&#34; /&gt;​&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106172304-oj6745a.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;CR 寄存器主要用于&lt;em&gt;&lt;strong&gt;数据帧&lt;/strong&gt;&lt;/em&gt;的配置，数据帧通常由&lt;em&gt;&lt;strong&gt;起始位&lt;/strong&gt;&lt;/em&gt;(1 bit)+ &lt;em&gt;&lt;strong&gt;数据位&lt;/strong&gt;&lt;/em&gt;(8~9 bit)+ &lt;em&gt;&lt;strong&gt;停止位&lt;/strong&gt;&lt;/em&gt;(0.5、1、1.5、2 bit)构成。&lt;/p&gt;
@@ -239,10 +239,10 @@
 &lt;li&gt;
 &lt;p&gt;STOP - 停止位长度&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;STOP = 00 ~ 1 位&lt;/li&gt;
-&lt;li&gt;STOP = 01 ~ 0.5 位&lt;/li&gt;
-&lt;li&gt;STOP = 10 ~ 2 位&lt;/li&gt;
-&lt;li&gt;STOP = 11 ~ 1.5 位&lt;/li&gt;
+&lt;li&gt;STOP: 00 ~ 1 位&lt;/li&gt;
+&lt;li&gt;STOP: 01 ~ 0.5 位&lt;/li&gt;
+&lt;li&gt;STOP: 10 ~ 2 位&lt;/li&gt;
+&lt;li&gt;STOP: 11 ~ 1.5 位&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -254,8 +254,8 @@
 &lt;li&gt;
 &lt;p&gt;UE - Usart 使能&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;UE = 0 Usart 禁止&lt;/li&gt;
-&lt;li&gt;UE = 1 Usart 使能&lt;/li&gt;
+&lt;li&gt;UE: 0 Usart 禁止&lt;/li&gt;
+&lt;li&gt;UE: 1 Usart 使能&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -263,7 +263,7 @@
 &lt;/h3&gt;&lt;h4 id=&#34;波特率的定义&#34;&gt;波特率的定义
 &lt;/h4&gt;&lt;p&gt;&lt;em&gt;&lt;strong&gt;波特率：每秒传输码元的个数&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;h5 id=&#34;brr-寄存器位数解释&#34;&gt;BRR 寄存器位数解释
-&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106173254-j99cwkq.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 60%;&#34; /&gt;​&lt;/p&gt;
+&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106173254-j99cwkq.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
 &lt;h2 id=&#34;双缓冲与连续发送&#34;&gt;双缓冲与连续发送
 &lt;/h2&gt;&lt;h3 id=&#34;双缓冲与连续发送概述&#34;&gt;双缓冲与连续发送概述
 &lt;/h3&gt;&lt;ol&gt;
@@ -297,26 +297,26 @@
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//基于寄存器开发的伪代码
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 3&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//数据的单个发送
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TXE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//等待TDR寄存器为空
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TDR&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//将数据写入TDR寄存器当中
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 4&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nl&#34;&gt;TXE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//等待TDR寄存器为空
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 5&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nl&#34;&gt;TDR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//将数据写入TDR寄存器当中
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 6&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//等待全部数据发送完毕
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 7&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//数据的连续发送
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 8&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TXE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;TDR&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nl&#34;&gt;TXE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;nl&#34;&gt;TDR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TC&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//数据的接收
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RXEN&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//当接收移位寄存器没有数据时，代表数据已经完整写入RDR中
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RDR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//通过变量读取RDR寄存器中的数据
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nl&#34;&gt;RXEN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//当接收移位寄存器没有数据时，代表数据已经完整写入RDR中
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;nl&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RDR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//通过变量读取RDR寄存器中的数据
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;//连续接收多个数据
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MAXSIZE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;MAXSIZE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;RXEN&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//当接收移位寄存器没有数据时，代表数据已经完整写入RDR中
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RDR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//通过变量读取RDR寄存器中的数据
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;22&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nl&#34;&gt;RXEN&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;//当接收移位寄存器没有数据时，代表数据已经完整写入RDR中
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;23&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;	&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RDR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;//通过变量读取RDR寄存器中的数据
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;24&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;stm32标准库usart的编程实现&#34;&gt;STM32标准库Usart的编程实现
 &lt;/h2&gt;&lt;h3 id=&#34;基础5大接口&#34;&gt;基础5大接口
@@ -384,7 +384,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// @返回值：读取到的数据
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;uint16_t&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;USART_ReceiveData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;USART_TypeDef&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;USARTx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;uint8_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;USART_ReceiveData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;USART1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;uint8_t&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;USART_ReceiveData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;USART1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;usart_getflagstatus接口&#34;&gt;USART_GetFlagStatus接口
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// @简介：向TDR写数据
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 2&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// @参数：USARTx-选择要操作的串口，可以是USART1,USART2,USART3,UART4或USART5
@@ -400,10 +400,10 @@
         </item>
         <item>
         <title>STM32-IO输出与输入（一）</title>
-        <link>https://LuoC33.github.io/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</link>
+        <link>http://localhost:1313/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</link>
         <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</guid>
+        <guid>http://localhost:1313/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/%E5%8D%95%E7%89%87%E6%9C%BA.jpg" alt="Featured image of post STM32-IO输出与输入（一）" /&gt;&lt;h2 id=&#34;gpio输出输入的简单原理&#34;&gt;GPIO输出输入的简单原理
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -544,20 +544,20 @@
         </item>
         <item>
         <title>第一颗樱桃：单恋</title>
-        <link>https://LuoC33.github.io/p/%E7%AC%AC%E4%B8%80%E9%A2%97%E6%A8%B1%E6%A1%83%E5%8D%95%E6%81%8B/</link>
+        <link>http://localhost:1313/p/%E7%AC%AC%E4%B8%80%E9%A2%97%E6%A8%B1%E6%A1%83%E5%8D%95%E6%81%8B/</link>
         <pubDate>Mon, 30 Sep 2024 10:22:55 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/p/%E7%AC%AC%E4%B8%80%E9%A2%97%E6%A8%B1%E6%A1%83%E5%8D%95%E6%81%8B/</guid>
+        <guid>http://localhost:1313/p/%E7%AC%AC%E4%B8%80%E9%A2%97%E6%A8%B1%E6%A1%83%E5%8D%95%E6%81%8B/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/%E5%8D%95%E6%81%8B.webp" alt="Featured image of post 第一颗樱桃：单恋" /&gt;&lt;p&gt;第一颗樱桃：单恋 作者：南雪&lt;br&gt;
 17岁，我上高中。爱上了一个男生。我没告诉他。高考，那个男生落了榜，卖掉了高中参考书，要远走西藏。那天，我到学校拿录取通知书，在校门口见他守在一大堆书前，身边一个穿蓝衣的老头儿，用秤称一沓沓书的重量。那一天，他卖掉的书中，有一本崭新的、从未翻阅过的《朱自清散文选》。在老头儿那里，我将书买了回来，花2元钱，原书的十分之一的价钱。回家，翻到了第20页，那儿写着小小的一行字：我喜欢你。清楚的四个字，他没有看到。他是不喜欢朱自清的人。那本书，是我送给他的，那行字是我写的。 很久很久以后，我知道，在一个不爱的人眼中，单恋的价格如同打哈欠时流出的眼泪，廉价，刚开始时是19块8，后来是2块。&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>C语言入门--工具链</title>
-        <link>https://LuoC33.github.io/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
+        <link>http://localhost:1313/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
         <pubDate>Thu, 26 Sep 2024 22:45:35 +0800</pubDate>
         
-        <guid>https://LuoC33.github.io/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</guid>
+        <guid>http://localhost:1313/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png" alt="Featured image of post C语言入门--工具链" /&gt;&lt;h2 id=&#34;了解工具链&#34;&gt;了解工具链
 &lt;/h2&gt;&lt;h3 id=&#34;明白什么是工具链&#34;&gt;明白什么是工具链
 &lt;/h3&gt;&lt;p&gt;工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。&lt;/p&gt;
@@ -576,13 +576,13 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt; 9&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// 初始化数组
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;13&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;14&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;15&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// 打印数组
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;17&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Array elements are:&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;19&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;%d &amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;21&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;    
@@ -610,10 +610,10 @@
         </item>
         <item>
         <title>51蓝牙PID循迹超声波急停避障小车</title>
-        <link>https://LuoC33.github.io/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</link>
+        <link>http://localhost:1313/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</link>
         <pubDate>Wed, 29 May 2024 01:07:19 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</guid>
+        <guid>http://localhost:1313/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png" alt="Featured image of post 51蓝牙PID循迹超声波急停避障小车" /&gt;&lt;h2 id=&#34;实现功能&#34;&gt;&lt;em&gt;&lt;strong&gt;实现功能：&lt;/strong&gt;&lt;/em&gt;
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;能够实现自动识别黑线，完成5路循迹。&lt;/li&gt;
@@ -982,10 +982,10 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
         </item>
         <item>
         <title>python学习笔记---变量与空操作</title>
-        <link>https://LuoC33.github.io/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</link>
+        <link>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</link>
         <pubDate>Fri, 10 May 2024 23:50:02 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</guid>
+        <guid>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/py1.jpg" alt="Featured image of post python学习笔记---变量与空操作" /&gt;&lt;p&gt;{% note info simple %}在Python中，变量的类型是动态的，这意味着你不需要在声明变量时指定类型，Python会根据变量的值自动确定其类型。{% endnote %}&lt;/p&gt;
 &lt;h3 id=&#34;数据类型&#34;&gt;数据类型
 &lt;/h3&gt;&lt;ol&gt;
@@ -1120,10 +1120,10 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
         </item>
         <item>
         <title>python学习笔记---判断循环语法</title>
-        <link>https://LuoC33.github.io/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</link>
+        <link>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</link>
         <pubDate>Fri, 10 May 2024 13:38:46 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</guid>
+        <guid>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/py2.jpg" alt="Featured image of post python学习笔记---判断循环语法" /&gt;&lt;p&gt;{% note info simple %}Python 是一种非常注重代码格式和缩进的编程语言。在 Python 中，缩进不仅仅是美观的考量，它实际上是语法的一部分，用来定义代码块的结构。正确的缩进对于 Python 代码的运行至关重要。{% endnote %}&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1189,10 +1189,10 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
         </item>
         <item>
         <title>虚拟机安装W7/W10优化精简版</title>
-        <link>https://LuoC33.github.io/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</link>
+        <link>http://localhost:1313/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</link>
         <pubDate>Thu, 09 May 2024 15:33:49 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</guid>
+        <guid>http://localhost:1313/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/虚拟机安装.jpg" alt="Featured image of post 虚拟机安装W7/W10优化精简版" /&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;h3 id=&#34;-p-blue-安装虚拟机的目的-&#34;&gt;{% p blue, 安装虚拟机的目的 %}
@@ -1242,10 +1242,10 @@ VMware Workstation Pro 16 许可证密钥，批量永久激活&lt;/li&gt;
         </item>
         <item>
         <title>OCS网课助手实现网课自动刷课</title>
-        <link>https://LuoC33.github.io/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</link>
+        <link>http://localhost:1313/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</link>
         <pubDate>Sun, 05 May 2024 20:18:12 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</guid>
+        <guid>http://localhost:1313/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/网课.jpg" alt="Featured image of post OCS网课助手实现网课自动刷课" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;之前写过一篇基础教程，但是不够直白和连续，现 &lt;em&gt;&lt;strong&gt;2024/12/31&lt;/strong&gt;&lt;/em&gt; 对该文章重构。&lt;/p&gt;
 &lt;ol&gt;
@@ -1282,129 +1282,43 @@ VMware Workstation Pro 16 许可证密钥，批量永久激活&lt;/li&gt;
 &lt;/h2&gt;&lt;h3 id=&#34;下载扩展&#34;&gt;下载扩展
 &lt;/h3&gt;&lt;p&gt;进入&lt;a class=&#34;link&#34; href=&#34;https://www.tampermonkey.net/index.php?ext=gcal&amp;amp;version=4.19.6180&amp;amp;locale=zh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;油猴官网&lt;/a&gt;，如图所示，先选择你的浏览器,这里我以Chrome（谷歌为例）&lt;/p&gt;
-&lt;img src=&#34;https://tu1.lsyblog.live/img/20241231200258711.webp&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20241231200258711.webp&#34; style=&#34;zoom:200%;&#34; /&gt;
 &lt;p&gt;然后下拉，找到下载这里， 这里有两种安装方案，具体如图所示，第一种方法简单快捷，就正常下载然后安装就行，但是对于网络有特殊要求，一般无法直连，需要梯子。 故此我们分类讲述。&lt;/p&gt;
-&lt;img src=&#34;https://tu1.lsyblog.live/img/osc_youhou.webp&#34; style=&#34;zoom: 67%;&#34; /&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/osc_youhou.webp&#34; style=&#34;zoom: 200%;&#34; /&gt;
 &lt;h4 id=&#34;第一种方案&#34;&gt;第一种方案
 &lt;/h4&gt;&lt;p&gt;点击去商店会跳转到chrome商店（因为我是谷歌浏览器，如果你是edg浏览器，就选择edg的，此时点击去商店就会跳转到对应的浏览器商店）&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/yh_wk_1.3.1.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;图二&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103143551010.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/yh_wk_1.3.1.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103143551010.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
 &lt;p&gt;这时候就可以看到我们已经安装成功了油猴&lt;/p&gt;
-&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103143632666.webp&#34; style=&#34;zoom:50%;&#34; /&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103143632666.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
 &lt;h4 id=&#34;第二种方案&#34;&gt;第二种方案
 &lt;/h4&gt;&lt;p&gt;我们先下载好扩展程序，然后人为导入到浏览器的扩展里面。所以第一步，我们先直接下载这个扩展程序，下载好后要记住你下载的位置在哪。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144213899.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144213899.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
 &lt;p&gt;接着打开浏览器的设置，在设置里面找到扩展这一选项&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144454966.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144454966.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
 &lt;p&gt;然后&lt;strong&gt;记得打开 开发者模式&lt;/strong&gt;，开发者模式不打开的话是无法导入扩展的。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144553596.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144454966.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
 &lt;p&gt;接着就将我们刚刚下载好的扩展 直接拖到这里。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144713486.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144713486.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
 &lt;p&gt;然后会出现提示框询问你是否添加该扩展，选择添加扩展程序&lt;/p&gt;
-&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144732786.webp&#34; style=&#34;zoom: 33%;&#34; /&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144732786.webp&#34; style=&#34;zoom: 133%;&#34; /&gt;
 &lt;p&gt;最后 我们就成功安装好了扩展了。&lt;/p&gt;
-&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144741420.webp&#34; style=&#34;zoom: 50%;&#34; /&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103144741420.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
 &lt;h3 id=&#34;安装网课脚本&#34;&gt;安装网课脚本
 &lt;/h3&gt;&lt;p&gt;现在我们已经安装好了扩展，只需要再安装对应的脚本就行了。我这里推荐使用OSC网课助手。&lt;/p&gt;
 &lt;p&gt;首先我们先进入&lt;a class=&#34;link&#34; href=&#34;https://greasyfork.org/zh-CN&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;脚本网站&lt;/a&gt;搜索我们要的OCS网课助手。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145554772.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;然后安装该脚本&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145626247.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;这时候会跳转到油猴这里，我们只需要再次点击安装就行。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145638167.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;当你点击安装，安装完成后会自动关闭该界面，并且速度很快，这是正常现象，我们可以去到油猴管理界面看看我们的脚本是否安装成功。点击油猴，找到管理面板，进入其中。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145659327.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;可以看到，我们是已经成功安装好了该网课脚本。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145707032.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145554772.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
+然后安装该脚本  
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145626247.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
+这时候会跳转到油猴这里，我们只需要再次点击安装就行。
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145638167.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
+当你点击安装，安装完成后会自动关闭该界面，并且速度很快，这是正常现象，我们可以去到油猴管理界面看看我们的脚本是否安装成功。点击油猴，找到管理面板，进入其中。
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145659327.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
+可以看到，我们是已经成功安装好了该网课脚本。
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103145707032.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
 &lt;p&gt;当然，当你安装好了该网课脚本，你也可以直接进入学习通，这时候会有对应脚本的出现。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103150432443.webp&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-	
-&gt;&lt;/p&gt;
+&lt;img src=&#34;https://tu1.lsyblog.live/img/20250103150432443.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
 &lt;h3 id=&#34;配置题库&#34;&gt;配置题库
 &lt;/h3&gt;&lt;p&gt;配置题库教程参考&lt;a class=&#34;link&#34; href=&#34;https://tk.enncy.cn/tk/article?uid=d5a1de0cf21b44fabedbac3d840674a4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;言溪题库官方教程 &lt;/a&gt;&lt;/p&gt;
@@ -1427,98 +1341,42 @@ VMware Workstation Pro 16 许可证密钥，批量永久激活&lt;/li&gt;
         </item>
         <item>
         <title>归档</title>
-        <link>https://LuoC33.github.io/%E5%BD%92%E6%A1%A3/</link>
+        <link>http://localhost:1313/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/%E5%BD%92%E6%A1%A3/</guid>
+        <guid>http://localhost:1313/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Links</title>
-        <link>https://LuoC33.github.io/links/</link>
+        <link>http://localhost:1313/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/links/</guid>
+        <guid>http://localhost:1313/links/</guid>
         <description>&lt;h2 id=&#34;hi&#34;&gt;🤪Hi
 &lt;/h2&gt;&lt;p&gt;这是我的Blog（偷懒中&amp;hellip;）&lt;/p&gt;
 &lt;p&gt;（个人导航、小企鹅、都放在下面卡片了）&lt;/p&gt;
 </description>
         </item>
         <item>
-        <title>Search</title>
-        <link>https://LuoC33.github.io/search/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-        
-        <guid>https://LuoC33.github.io/search/</guid>
-        <description>&lt;img src="https://tu1.lsyblog.live/img/py2.jpg" alt="Featured image of post Search" /&gt;</description>
-        </item>
-        <item>
         <title>关于</title>
-        <link>https://LuoC33.github.io/%E5%85%B3%E4%BA%8E/</link>
+        <link>http://localhost:1313/about/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>https://LuoC33.github.io/%E5%85%B3%E4%BA%8E/</guid>
-        <description>&lt;h2 id=&#34;hello&#34;&gt;Hello🥰
-&lt;/h2&gt;&lt;p&gt;Hi，欢迎来到我的 About，自我介绍一下，我叫&lt;em&gt;波罗吹鱼&lt;/em&gt;(又名&lt;em&gt;流水鱼&lt;/em&gt;)，一名励志做全栈高手的菜鸟鱼。&lt;/p&gt;
-&lt;!-- &lt;p class=&#34;about-images&#34; align=&#34;center&#34; dir=&#34;auto&#34;&gt;
-  &lt;img class=&#34;about-img&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/bde29bf7562555fd6b724e678eba18a211f6794681d18748b76edda000136655/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f6c6566742d77696e672e706e67&#34; style=&#34;width: 30%;&#34;&gt;
-
- &lt;img class=&#34;about-img&#34; align=&#34;center&#34; src=&#34;https://tu1.lsyblog.live/img/computerAboutDog.jpg&#34; style=&#34;width: 13%;&#34;&gt;  
-
-  &lt;img class=&#34;about-img&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/b6d03df0b0a54643f2171081e8ded484bfecbc191d146ea126f55902f64ca187/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f72696768742d77696e672e706e67 &#34; style=&#34;width: 30%;&#34;&gt;
-&lt;/p&gt; --&gt;
-&lt;p class=&#34;about-images&#34; align=&#34;center&#34; dir=&#34;auto&#34;&gt;
-  &lt;!-- 左翅膀 --&gt;
-  &lt;img class=&#34;about-img left-wing&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/bde29bf7562555fd6b724e678eba18a211f6794681d18748b76edda000136655/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f6c6566742d77696e672e706e67&#34; style=&#34;width: 30%;&#34;&gt;
-  &lt;!-- 头像 --&gt;
-  &lt;img class=&#34;about-img avatar&#34; align=&#34;center&#34; src=&#34;https://tu1.lsyblog.live/img/computerAboutDog.jpg&#34; style=&#34;width: 13%;&#34;&gt;  
-  &lt;!-- 右翅膀 --&gt;
-  &lt;img class=&#34;about-img right-wing&#34; width=&#34;150&#34; src=&#34;https://camo.githubusercontent.com/b6d03df0b0a54643f2171081e8ded484bfecbc191d146ea126f55902f64ca187/68747470733a2f2f6e706d2e656c656d6563646e2e636f6d2f616e7a686979752d6173736574732f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f72696768742d77696e672e706e67&#34; style=&#34;width: 30%;&#34;&gt;
-&lt;/p&gt;
-&lt;h2 id=&#34;爱好--特长&#34;&gt;爱好 &amp;amp; 特长🥰
-&lt;/h2&gt;&lt;h3 id=&#34;运动&#34;&gt;运动
-&lt;/h3&gt;&lt;p&gt;🏀篮球、🏓乒乓球、🚵‍♀️骑行、爬山，这些都是我喜欢的运动。秉持着生命在于运动的理念，格言：&lt;em&gt;&lt;strong&gt;让海浪见识见识山的高&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;h3 id=&#34;阅读&#34;&gt;阅读
-&lt;/h3&gt;&lt;p&gt;《活着》、《第七天》、《许三观卖血记》、《肖申克的救赎》、《白夜行》、《嫌疑人X的献身》、《恶意》、《十宗罪》、《诗经》、《窄门》&lt;/p&gt;
-&lt;h2 id=&#34;技术栈-&#34;&gt;技术栈 🎯
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;计划学习   🎉🎉🎉&lt;/p&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/5722d353fd4d76009d2d39b13beb7018324901e501c1efa954044d0de93a7090/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d6a6176612d79656c6c6f773f7374796c653d666c61742d737175617265266c6f676f3d6a617661&#34; alt=&#34;Java&#34; data-canonical-src=&#34;https://img.shields.io/badge/-java-yellow?style=flat-square&amp;amp;logo=java&#34; style=&#34;max-width: 100%;&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/b00f8fc1b82a6815d35d8379b482747291b658aa666b8e1cba7de52e85a17ee7/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6d7973716c2d2532333030662e7376673f7374796c653d666c61742d737175617265266c6f676f3d6d7973716c266c6f676f436f6c6f723d7768697465&#34; &gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/c0f60c84bd23525a0f1e5972ff5052f878eb4104e88b347b7f0004d0e6ad8898/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d48544d4c352d4533344632363f7374796c653d666c61742d737175617265266c6f676f3d68746d6c35266c6f676f436f6c6f723d7768697465&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/d2de8f341090cb9d72d132ef5f73c2a2c9be3081193bd9c7f3fee5b4973ece27/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d435353332d3135373242363f7374796c653d666c61742d737175617265266c6f676f3d63737333&#34; &gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/047bb7a31e978114872ee3519eaae1754e505fa97f4caf89628cdd759b929e5e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4a6176615363726970742d6f72696e67653f7374796c653d666c61742d737175617265266c6f676f3d6a617661736372697074&#34; alt=&#34;JavaScript&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/37566148057ec77bd6178f864df7cfa1772d2df4b80597eb6d58d689c754f4a8/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6a71756572792d2532333037363941442e7376673f7374796c653d7374796c653d666c61742d737175617265266c6f676f3d6a7175657279266c6f676f436f6c6f723d7768697465&#34; alt=&#34;jQuery&#34;  style=&#34;max-width: 100%;&#34;&gt;&lt;/a&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/4261a58fce29b46505eff574c23d600885997d19b2b5917a0c0a1d5354aed1e5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f747970657363726970742d2532333030374143432e7376673f7374796c653d666c61742d737175617265266c6f676f3d74797065736372697074266c6f676f436f6c6f723d7768697465&#34; alt=&#34;TypeScript&#34;  style=&#34;max-width: 100%;&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/336cf0087a263fc5275fa34950a810a60ad2120b8580e8b6dcb73cc2ea0201bd/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d5675652e6a732d3366373435633f7374796c653d666c61742d737175617265266c6f676f3d5675652e6a73&#34; alt=&#34;Vue&#34; style=&#34;max-width: 100%;&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/aae266e93c1aaf19d6e1cb9064161213d2cdc31fd7016c20f0b8686acdaa2f1c/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d52656163742d3037616664393f7374796c653d666c61742d737175617265266c6f676f3d5265616374&#34; alt=&#34;React&#34; style=&#34;max-width: 100%;&#34;&gt;
-&lt;img src=&#34;https://camo.githubusercontent.com/a292f85b9e9006d929df5fbe34fc5c6de5890e1adcb4a566f03b39f51a47f9df/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d4e6f64656a732d63306562643f7374796c653d666c61742d737175617265266c6f676f3d4e6f64652e6a73&#34; alt=&#34;Nodejs&#34; style=&#34;max-width: 100%;&#34;&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;正在学习 ✨️✨️✨️&lt;/p&gt;
-  &lt;img src=&#34;https://camo.githubusercontent.com/87ebcbcddc1c9b3546d45ade2bef001c7414da050990771aed92e6a35874ca36/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d432b2b2d3030353939433f7374796c653d666c61742d737175617265266c6f676f3d63&#34; alt=&#34;C++&#34; data-canonical-src=&#34;https://img.shields.io/badge/-C++-00599C?style=flat-square&amp;amp;logo=c&#34; style=&#34;max-width: 100%;&#34;&gt;
-  &lt;img src=&#34;https://camo.githubusercontent.com/3f0ceee57fc4a5f084e5e1b29a96e84979881967b3023aab6d39865a971ce5f6/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f632d2532333030353939432e7376673f7374796c653d666c61742d737175617265266c6f676f3d63266c6f676f436f6c6f723d7768697465&#34; alt=&#34;C&#34; &gt;
-  &lt;img src=&#34;https://camo.githubusercontent.com/f72c706c4895c38a77a6c44ac19070ba5ad67c9f1e75e5b103d22cf0ebe0d7f5/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d507974686f6e2d70696e6b3f7374796c653d666c61742d737175617265266c6f676f3d507974686f6e&#34; alt=&#34;Python&#34; &gt;
-  &lt;img src=&#34;https://camo.githubusercontent.com/5a38333b9b1c3501638ef4867883021c7809540e18a44da16275ca7eee5cde8e/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f2d446f636b65722d4643433632343f7374796c653d666c61742d737175617265266c6f676f3d646f636b6572&#34; alt=&#34;Docker&#34; &gt;
-  &lt;img src=&#34;https://camo.githubusercontent.com/ca3553fe6bca4d8136e78273b2bb3d7690c7282ac6339e347861835818d42d7e/68747470733a2f2f63646e2e6362642e696e742f616e7a686979752d61737365747340312e302e31312f696d6167652f636f6d6d6f6e2f6769746875622d696e666f2f706572736f6e616c2d686f6d65706167652d62616e6e65722e6a7067&#34; &gt;    
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;荣誉--经历-&#34;&gt;荣誉 &amp;amp; 经历 🏆️
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;本科第一学年
-&lt;ul&gt;
-&lt;li&gt;院级奖 三项&lt;/li&gt;
-&lt;li&gt;省级奖 四项&lt;/li&gt;
-&lt;li&gt;国级奖 一项&lt;/li&gt;
-&lt;li&gt;校级立项科研项目 二项&lt;/li&gt;
-&lt;li&gt;省级立项研究项目 一项&lt;/li&gt;
-&lt;li&gt;软著 二项&lt;/li&gt;
-&lt;li&gt;嵌入式工程师证书&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+        <guid>http://localhost:1313/about/</guid>
+        <description>&lt;h1 id=&#34;关于本站&#34;&gt;🔗关于本站
+&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;2024年本站建立&lt;/li&gt;
 &lt;/ul&gt;
 </description>
+        </item>
+        <item>
+        <title>搜索</title>
+        <link>http://localhost:1313/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/search/</guid>
+        <description></description>
         </item>
         
     </channel>
