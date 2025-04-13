@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>代码编程 on 流水鱼のBlog</title>
-        <link>http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/</link>
+        <link>http://blog.liushuiyu.cn/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/</link>
         <description>Recent content in 代码编程 on 流水鱼のBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>流水鱼</copyright>
-        <lastBuildDate>Mon, 06 Jan 2025 22:34:07 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 06 Jan 2025 22:34:07 +0800</lastBuildDate><atom:link href="http://blog.liushuiyu.cn/categories/%E4%BB%A3%E7%A0%81%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>那时我们第一次相遇：USART 1</title>
-        <link>http://localhost:1313/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</link>
+        <link>http://blog.liushuiyu.cn/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</link>
         <pubDate>Mon, 06 Jan 2025 22:34:07 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</guid>
+        <guid>http://blog.liushuiyu.cn/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/Usart_post_cover.webp" alt="Featured image of post 那时我们第一次相遇：USART 1" /&gt;&lt;h2 id=&#34;usart通信简易原理图&#34;&gt;Usart通信简易原理图
 &lt;/h2&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250105172816-ltdpdzx.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
 &lt;ul&gt;
@@ -322,10 +322,10 @@
         </item>
         <item>
         <title>STM32-IO输出与输入（一）</title>
-        <link>http://localhost:1313/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</link>
+        <link>http://blog.liushuiyu.cn/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</link>
         <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</guid>
+        <guid>http://blog.liushuiyu.cn/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/%E5%8D%95%E7%89%87%E6%9C%BA.jpg" alt="Featured image of post STM32-IO输出与输入（一）" /&gt;&lt;h2 id=&#34;gpio输出输入的简单原理&#34;&gt;GPIO输出输入的简单原理
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -466,10 +466,10 @@
         </item>
         <item>
         <title>C语言入门--工具链</title>
-        <link>http://localhost:1313/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
+        <link>http://blog.liushuiyu.cn/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
         <pubDate>Thu, 26 Sep 2024 22:45:35 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</guid>
+        <guid>http://blog.liushuiyu.cn/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png" alt="Featured image of post C语言入门--工具链" /&gt;&lt;h2 id=&#34;了解工具链&#34;&gt;了解工具链
 &lt;/h2&gt;&lt;h3 id=&#34;明白什么是工具链&#34;&gt;明白什么是工具链
 &lt;/h3&gt;&lt;p&gt;工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。&lt;/p&gt;
@@ -522,10 +522,10 @@
         </item>
         <item>
         <title>python学习笔记---变量与空操作</title>
-        <link>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</link>
+        <link>http://blog.liushuiyu.cn/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</link>
         <pubDate>Fri, 10 May 2024 23:50:02 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</guid>
+        <guid>http://blog.liushuiyu.cn/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/py1.jpg" alt="Featured image of post python学习笔记---变量与空操作" /&gt;&lt;p&gt;{% note info simple %}在Python中，变量的类型是动态的，这意味着你不需要在声明变量时指定类型，Python会根据变量的值自动确定其类型。{% endnote %}&lt;/p&gt;
 &lt;h3 id=&#34;数据类型&#34;&gt;数据类型
 &lt;/h3&gt;&lt;ol&gt;
@@ -660,10 +660,10 @@
         </item>
         <item>
         <title>python学习笔记---判断循环语法</title>
-        <link>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</link>
+        <link>http://blog.liushuiyu.cn/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</link>
         <pubDate>Fri, 10 May 2024 13:38:46 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</guid>
+        <guid>http://blog.liushuiyu.cn/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/py2.jpg" alt="Featured image of post python学习笔记---判断循环语法" /&gt;&lt;p&gt;{% note info simple %}Python 是一种非常注重代码格式和缩进的编程语言。在 Python 中，缩进不仅仅是美观的考量，它实际上是语法的一部分，用来定义代码块的结构。正确的缩进对于 Python 代码的运行至关重要。{% endnote %}&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;

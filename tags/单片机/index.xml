@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>单片机 on 流水鱼のBlog</title>
-        <link>http://localhost:1313/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</link>
+        <link>http://blog.liushuiyu.cn/tags/%E5%8D%95%E7%89%87%E6%9C%BA/</link>
         <description>Recent content in 单片机 on 流水鱼のBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>流水鱼</copyright>
-        <lastBuildDate>Mon, 06 Jan 2025 22:34:07 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E5%8D%95%E7%89%87%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 06 Jan 2025 22:34:07 +0800</lastBuildDate><atom:link href="http://blog.liushuiyu.cn/tags/%E5%8D%95%E7%89%87%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>那时我们第一次相遇：USART 1</title>
-        <link>http://localhost:1313/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</link>
+        <link>http://blog.liushuiyu.cn/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</link>
         <pubDate>Mon, 06 Jan 2025 22:34:07 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</guid>
+        <guid>http://blog.liushuiyu.cn/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/Usart_post_cover.webp" alt="Featured image of post 那时我们第一次相遇：USART 1" /&gt;&lt;h2 id=&#34;usart通信简易原理图&#34;&gt;Usart通信简易原理图
 &lt;/h2&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250105172816-ltdpdzx.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
 &lt;ul&gt;
@@ -322,10 +322,10 @@
         </item>
         <item>
         <title>STM32-IO输出与输入（一）</title>
-        <link>http://localhost:1313/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</link>
+        <link>http://blog.liushuiyu.cn/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</link>
         <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</guid>
+        <guid>http://blog.liushuiyu.cn/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/%E5%8D%95%E7%89%87%E6%9C%BA.jpg" alt="Featured image of post STM32-IO输出与输入（一）" /&gt;&lt;h2 id=&#34;gpio输出输入的简单原理&#34;&gt;GPIO输出输入的简单原理
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -466,10 +466,10 @@
         </item>
         <item>
         <title>51蓝牙PID循迹超声波急停避障小车</title>
-        <link>http://localhost:1313/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</link>
+        <link>http://blog.liushuiyu.cn/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</link>
         <pubDate>Wed, 29 May 2024 01:07:19 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</guid>
+        <guid>http://blog.liushuiyu.cn/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png" alt="Featured image of post 51蓝牙PID循迹超声波急停避障小车" /&gt;&lt;h2 id=&#34;实现功能&#34;&gt;&lt;em&gt;&lt;strong&gt;实现功能：&lt;/strong&gt;&lt;/em&gt;
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;能够实现自动识别黑线，完成5路循迹。&lt;/li&gt;

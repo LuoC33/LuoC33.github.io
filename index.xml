@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>流水鱼のBlog</title>
-        <link>http://localhost:1313/</link>
+        <link>http://blog.liushuiyu.cn/</link>
         <description>Recent content on 流水鱼のBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>流水鱼</copyright>
-        <lastBuildDate>Sun, 26 Jan 2025 22:33:13 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 26 Jan 2025 22:33:13 +0800</lastBuildDate><atom:link href="http://blog.liushuiyu.cn/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>小狗日记2</title>
-        <link>http://localhost:1313/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B02/</link>
+        <link>http://blog.liushuiyu.cn/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B02/</link>
         <pubDate>Sun, 26 Jan 2025 22:33:13 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B02/</guid>
+        <guid>http://blog.liushuiyu.cn/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B02/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/dog_diart_cover2.webp" alt="Featured image of post 小狗日记2" /&gt;&lt;div style=&#34;text-align: center;&#34;&gt;
 &lt;p&gt;我讨厌等 等雨停 等排队&lt;/p&gt;
 &lt;p&gt;等食堂吃饭 等你的消息 等电影开场&lt;/p&gt;
@@ -69,10 +69,10 @@
         </item>
         <item>
         <title>小狗日记1</title>
-        <link>http://localhost:1313/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B01/</link>
+        <link>http://blog.liushuiyu.cn/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B01/</link>
         <pubDate>Tue, 07 Jan 2025 23:35:43 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B01/</guid>
+        <guid>http://blog.liushuiyu.cn/p/%E5%B0%8F%E7%8B%97%E6%97%A5%E8%AE%B01/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/dog_diary_cover.webp" alt="Featured image of post 小狗日记1" /&gt;&lt;p&gt;我曾特别喜欢看一个人的背影，&lt;/p&gt;
 &lt;p&gt;以至于只要在视线范围内，无论是哪个刁钻位置，我总能，出于本能的，捕捉到那抹身影。&lt;/p&gt;
 &lt;p&gt;我试着一点点靠近她，&lt;/p&gt;
@@ -87,10 +87,10 @@
         </item>
         <item>
         <title>那时我们第一次相遇：USART 1</title>
-        <link>http://localhost:1313/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</link>
+        <link>http://blog.liushuiyu.cn/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</link>
         <pubDate>Mon, 06 Jan 2025 22:34:07 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</guid>
+        <guid>http://blog.liushuiyu.cn/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/Usart_post_cover.webp" alt="Featured image of post 那时我们第一次相遇：USART 1" /&gt;&lt;h2 id=&#34;usart通信简易原理图&#34;&gt;Usart通信简易原理图
 &lt;/h2&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250105172816-ltdpdzx.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
 &lt;ul&gt;
@@ -400,10 +400,10 @@
         </item>
         <item>
         <title>STM32-IO输出与输入（一）</title>
-        <link>http://localhost:1313/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</link>
+        <link>http://blog.liushuiyu.cn/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</link>
         <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</guid>
+        <guid>http://blog.liushuiyu.cn/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/%E5%8D%95%E7%89%87%E6%9C%BA.jpg" alt="Featured image of post STM32-IO输出与输入（一）" /&gt;&lt;h2 id=&#34;gpio输出输入的简单原理&#34;&gt;GPIO输出输入的简单原理
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -544,20 +544,20 @@
         </item>
         <item>
         <title>第一颗樱桃：单恋</title>
-        <link>http://localhost:1313/p/%E7%AC%AC%E4%B8%80%E9%A2%97%E6%A8%B1%E6%A1%83%E5%8D%95%E6%81%8B/</link>
+        <link>http://blog.liushuiyu.cn/p/%E7%AC%AC%E4%B8%80%E9%A2%97%E6%A8%B1%E6%A1%83%E5%8D%95%E6%81%8B/</link>
         <pubDate>Mon, 30 Sep 2024 10:22:55 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E7%AC%AC%E4%B8%80%E9%A2%97%E6%A8%B1%E6%A1%83%E5%8D%95%E6%81%8B/</guid>
+        <guid>http://blog.liushuiyu.cn/p/%E7%AC%AC%E4%B8%80%E9%A2%97%E6%A8%B1%E6%A1%83%E5%8D%95%E6%81%8B/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/%E5%8D%95%E6%81%8B.webp" alt="Featured image of post 第一颗樱桃：单恋" /&gt;&lt;p&gt;第一颗樱桃：单恋 作者：南雪&lt;br&gt;
 17岁，我上高中。爱上了一个男生。我没告诉他。高考，那个男生落了榜，卖掉了高中参考书，要远走西藏。那天，我到学校拿录取通知书，在校门口见他守在一大堆书前，身边一个穿蓝衣的老头儿，用秤称一沓沓书的重量。那一天，他卖掉的书中，有一本崭新的、从未翻阅过的《朱自清散文选》。在老头儿那里，我将书买了回来，花2元钱，原书的十分之一的价钱。回家，翻到了第20页，那儿写着小小的一行字：我喜欢你。清楚的四个字，他没有看到。他是不喜欢朱自清的人。那本书，是我送给他的，那行字是我写的。 很久很久以后，我知道，在一个不爱的人眼中，单恋的价格如同打哈欠时流出的眼泪，廉价，刚开始时是19块8，后来是2块。&lt;/p&gt;
 </description>
         </item>
         <item>
         <title>C语言入门--工具链</title>
-        <link>http://localhost:1313/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
+        <link>http://blog.liushuiyu.cn/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</link>
         <pubDate>Thu, 26 Sep 2024 22:45:35 +0800</pubDate>
         
-        <guid>http://localhost:1313/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</guid>
+        <guid>http://blog.liushuiyu.cn/p/c%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8--%E5%B7%A5%E5%85%B7%E9%93%BE/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/C%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E9%93%BE.png" alt="Featured image of post C语言入门--工具链" /&gt;&lt;h2 id=&#34;了解工具链&#34;&gt;了解工具链
 &lt;/h2&gt;&lt;h3 id=&#34;明白什么是工具链&#34;&gt;明白什么是工具链
 &lt;/h3&gt;&lt;p&gt;工具链，官方来说，是指用于将源代码转换为可执行程序的一系列工具的集合。通俗地理解，就是开发过程中使用的工具集合。一般情况下，工具链主要指狭义的部分，包括编译器（如GCC、G++）、构建工具以及开发环境（如IDE：VSCode、CLion等）。开发系统（如Windows、Linux、MacOS）也可以视为支撑工具链的一部分。&lt;/p&gt;
@@ -610,10 +610,10 @@
         </item>
         <item>
         <title>51蓝牙PID循迹超声波急停避障小车</title>
-        <link>http://localhost:1313/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</link>
+        <link>http://blog.liushuiyu.cn/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</link>
         <pubDate>Wed, 29 May 2024 01:07:19 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</guid>
+        <guid>http://blog.liushuiyu.cn/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png" alt="Featured image of post 51蓝牙PID循迹超声波急停避障小车" /&gt;&lt;h2 id=&#34;实现功能&#34;&gt;&lt;em&gt;&lt;strong&gt;实现功能：&lt;/strong&gt;&lt;/em&gt;
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;能够实现自动识别黑线，完成5路循迹。&lt;/li&gt;
@@ -982,10 +982,10 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
         </item>
         <item>
         <title>python学习笔记---变量与空操作</title>
-        <link>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</link>
+        <link>http://blog.liushuiyu.cn/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</link>
         <pubDate>Fri, 10 May 2024 23:50:02 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</guid>
+        <guid>http://blog.liushuiyu.cn/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%8F%98%E9%87%8F%E4%B8%8E%E7%A9%BA%E6%93%8D%E4%BD%9C/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/py1.jpg" alt="Featured image of post python学习笔记---变量与空操作" /&gt;&lt;p&gt;{% note info simple %}在Python中，变量的类型是动态的，这意味着你不需要在声明变量时指定类型，Python会根据变量的值自动确定其类型。{% endnote %}&lt;/p&gt;
 &lt;h3 id=&#34;数据类型&#34;&gt;数据类型
 &lt;/h3&gt;&lt;ol&gt;
@@ -1120,10 +1120,10 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
         </item>
         <item>
         <title>python学习笔记---判断循环语法</title>
-        <link>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</link>
+        <link>http://blog.liushuiyu.cn/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</link>
         <pubDate>Fri, 10 May 2024 13:38:46 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</guid>
+        <guid>http://blog.liushuiyu.cn/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/py2.jpg" alt="Featured image of post python学习笔记---判断循环语法" /&gt;&lt;p&gt;{% note info simple %}Python 是一种非常注重代码格式和缩进的编程语言。在 Python 中，缩进不仅仅是美观的考量，它实际上是语法的一部分，用来定义代码块的结构。正确的缩进对于 Python 代码的运行至关重要。{% endnote %}&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1189,10 +1189,10 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
         </item>
         <item>
         <title>虚拟机安装W7/W10优化精简版</title>
-        <link>http://localhost:1313/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</link>
+        <link>http://blog.liushuiyu.cn/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</link>
         <pubDate>Thu, 09 May 2024 15:33:49 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</guid>
+        <guid>http://blog.liushuiyu.cn/p/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85w7/w10%E4%BC%98%E5%8C%96%E7%B2%BE%E7%AE%80%E7%89%88/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/虚拟机安装.jpg" alt="Featured image of post 虚拟机安装W7/W10优化精简版" /&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;h3 id=&#34;-p-blue-安装虚拟机的目的-&#34;&gt;{% p blue, 安装虚拟机的目的 %}
@@ -1242,10 +1242,10 @@ VMware Workstation Pro 16 许可证密钥，批量永久激活&lt;/li&gt;
         </item>
         <item>
         <title>OCS网课助手实现网课自动刷课</title>
-        <link>http://localhost:1313/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</link>
+        <link>http://blog.liushuiyu.cn/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</link>
         <pubDate>Sun, 05 May 2024 20:18:12 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</guid>
+        <guid>http://blog.liushuiyu.cn/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</guid>
         <description>&lt;img src="https://tu1.lsyblog.live/img/网课.jpg" alt="Featured image of post OCS网课助手实现网课自动刷课" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
 &lt;/h2&gt;&lt;p&gt;之前写过一篇基础教程，但是不够直白和连续，现 &lt;em&gt;&lt;strong&gt;2024/12/31&lt;/strong&gt;&lt;/em&gt; 对该文章重构。&lt;/p&gt;
 &lt;ol&gt;
@@ -1341,18 +1341,18 @@ VMware Workstation Pro 16 许可证密钥，批量永久激活&lt;/li&gt;
         </item>
         <item>
         <title>归档</title>
-        <link>http://localhost:1313/archives/</link>
+        <link>http://blog.liushuiyu.cn/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/archives/</guid>
+        <guid>http://blog.liushuiyu.cn/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Links</title>
-        <link>http://localhost:1313/links/</link>
+        <link>http://blog.liushuiyu.cn/links/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/links/</guid>
+        <guid>http://blog.liushuiyu.cn/links/</guid>
         <description>&lt;h2 id=&#34;hi&#34;&gt;🤪Hi
 &lt;/h2&gt;&lt;p&gt;这是我的Blog（偷懒中&amp;hellip;）&lt;/p&gt;
 &lt;p&gt;（个人导航、小企鹅、都放在下面卡片了）&lt;/p&gt;
@@ -1360,10 +1360,10 @@ VMware Workstation Pro 16 许可证密钥，批量永久激活&lt;/li&gt;
         </item>
         <item>
         <title>关于</title>
-        <link>http://localhost:1313/about/</link>
+        <link>http://blog.liushuiyu.cn/about/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/about/</guid>
+        <guid>http://blog.liushuiyu.cn/about/</guid>
         <description>&lt;h1 id=&#34;关于本站&#34;&gt;🔗关于本站
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;2024年本站建立&lt;/li&gt;
@@ -1372,10 +1372,10 @@ VMware Workstation Pro 16 许可证密钥，批量永久激活&lt;/li&gt;
         </item>
         <item>
         <title>搜索</title>
-        <link>http://localhost:1313/search/</link>
+        <link>http://blog.liushuiyu.cn/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/search/</guid>
+        <guid>http://blog.liushuiyu.cn/search/</guid>
         <description></description>
         </item>
         
