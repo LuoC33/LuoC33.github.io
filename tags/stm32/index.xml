@@ -13,27 +13,27 @@
         <pubDate>Mon, 06 Jan 2025 22:34:07 +0800</pubDate>
         
         <guid>http://blog.liushuiyu.cn/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/</guid>
-        <description>&lt;img src="https://tu1.lsyblog.live/img/Usart_post_cover.webp" alt="Featured image of post 那时我们第一次相遇：USART 1" /&gt;&lt;h2 id=&#34;usart通信简易原理图&#34;&gt;Usart通信简易原理图
-&lt;/h2&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250105172816-ltdpdzx.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
+        <description>&lt;img src="https://tuchuang.liushuiyu.cn/img/Usart_post_cover.webp" alt="Featured image of post 那时我们第一次相遇：USART 1" /&gt;&lt;h2 id=&#34;usart通信简易原理图&#34;&gt;Usart通信简易原理图
+&lt;/h2&gt;&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/image-20250105172816-ltdpdzx.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
 &lt;ul&gt;
 &lt;li&gt;GND 供地是为了平衡电压基准，使得双方共用一套电压标准，用于评判高低电压。&lt;/li&gt;
 &lt;li&gt;Tx ：发送数据 Rx：接收数据&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;数据的串并转换&#34;&gt;数据的串并转换
 &lt;/h2&gt;&lt;h3 id=&#34;stm32-的串并转化寄存器&#34;&gt;STM32 的串并转化寄存器
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106202849-l2ex87r.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/image-20250106202849-l2ex87r.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;寄存器 TDR 实现将并行数据转换为串行数据。&lt;/li&gt;
 &lt;li&gt;寄存器 RDR 实现串行数据转换为并行数据。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;串并数据的详细解释&#34;&gt;串并数据的详细解释
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106201019-g40kzlz.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/image-20250106201019-g40kzlz.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;串行数据是指数据以一个接一个的方式在时间上连续传输，也就是说，数据位是按顺序逐个发送的。这种方式通常用于长距离传输，因为它可以减少所需的线缆数量。&lt;/li&gt;
 &lt;li&gt;并行数据则是指数据的多个位在同一时刻通过多条通道同时传输，这种方式在短距离传输中效率较高，但由于受限于线路数量和信号干扰，通常不适合长距离通信。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;stm32_usart-模块完整示意图&#34;&gt;STM32_Usart 模块完整示意图
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106170147-po6k7k8.webp&#34; alt=&#34;image&#34; style=&#34;zoom:150%;&#34; /&gt;​&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/image-20250106170147-po6k7k8.webp&#34; alt=&#34;image&#34; style=&#34;zoom:150%;&#34; /&gt;​&lt;/p&gt;
 &lt;h3 id=&#34;状态寄存器sr&#34;&gt;状态寄存器(SR)
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -144,7 +144,7 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106172304-oj6745a.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/image-20250106172304-oj6745a.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;CR 寄存器主要用于&lt;em&gt;&lt;strong&gt;数据帧&lt;/strong&gt;&lt;/em&gt;的配置，数据帧通常由&lt;em&gt;&lt;strong&gt;起始位&lt;/strong&gt;&lt;/em&gt;(1 bit)+ &lt;em&gt;&lt;strong&gt;数据位&lt;/strong&gt;&lt;/em&gt;(8~9 bit)+ &lt;em&gt;&lt;strong&gt;停止位&lt;/strong&gt;&lt;/em&gt;(0.5、1、1.5、2 bit)构成。&lt;/p&gt;
@@ -185,7 +185,7 @@
 &lt;/h3&gt;&lt;h4 id=&#34;波特率的定义&#34;&gt;波特率的定义
 &lt;/h4&gt;&lt;p&gt;&lt;em&gt;&lt;strong&gt;波特率：每秒传输码元的个数&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;h5 id=&#34;brr-寄存器位数解释&#34;&gt;BRR 寄存器位数解释
-&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/image-20250106173254-j99cwkq.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
+&lt;/h5&gt;&lt;p&gt;&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/image-20250106173254-j99cwkq.webp&#34; alt=&#34;image&#34; style=&#34;zoom: 150%;&#34; /&gt;​&lt;/p&gt;
 &lt;h2 id=&#34;双缓冲与连续发送&#34;&gt;双缓冲与连续发送
 &lt;/h2&gt;&lt;h3 id=&#34;双缓冲与连续发送概述&#34;&gt;双缓冲与连续发送概述
 &lt;/h3&gt;&lt;ol&gt;
@@ -326,7 +326,7 @@
         <pubDate>Wed, 02 Oct 2024 00:00:00 +0000</pubDate>
         
         <guid>http://blog.liushuiyu.cn/p/stm32-io%E8%BE%93%E5%87%BA%E4%B8%8E%E8%BE%93%E5%85%A5%E4%B8%80/</guid>
-        <description>&lt;img src="https://tu1.lsyblog.live/img/%E5%8D%95%E7%89%87%E6%9C%BA.jpg" alt="Featured image of post STM32-IO输出与输入（一）" /&gt;&lt;h2 id=&#34;gpio输出输入的简单原理&#34;&gt;GPIO输出输入的简单原理
+        <description>&lt;img src="https://tuchuang.liushuiyu.cn/img/%E5%8D%95%E7%89%87%E6%9C%BA.jpg" alt="Featured image of post STM32-IO输出与输入（一）" /&gt;&lt;h2 id=&#34;gpio输出输入的简单原理&#34;&gt;GPIO输出输入的简单原理
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;输出：通过&lt;code&gt;寄存器&lt;/code&gt;写&lt;code&gt;0&lt;/code&gt;或者是&lt;code&gt;1&lt;/code&gt;，控制引脚输出&lt;code&gt;低电压&lt;/code&gt;或者是&lt;code&gt;高电压&lt;/code&gt;。&lt;/p&gt;
@@ -335,7 +335,7 @@
 &lt;p&gt;输入：通过读取引脚的&lt;code&gt;寄存器&lt;/code&gt;是&lt;code&gt;0&lt;/code&gt;还是&lt;code&gt;1&lt;/code&gt;，判断是&lt;code&gt;高电压&lt;/code&gt;还是&lt;code&gt;低电压&lt;/code&gt;。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/IO%E7%AB%AF%E5%8F%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/IO%E7%AB%AF%E5%8F%A3%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84.jpg&#34;
 	
 	
 	
@@ -394,7 +394,7 @@
 	
 &gt;&lt;br&gt;
 故此，引入了复用模式，如图所见，直接将控制权交给片上外设，由他们直接来输出信号。&lt;br&gt;
-&lt;img src=&#34;https://tu1.lsyblog.live/img/%E4%BE%8B%E5%AD%90%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%BC%8F.webp&#34;
+&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/%E4%BE%8B%E5%AD%90%E5%A4%8D%E7%94%A8%E6%A8%A1%E5%BC%8F.webp&#34;
 	
 	
 	
@@ -448,7 +448,7 @@
 &lt;h2 id=&#34;gpio的四种输入模式&#34;&gt;GPIO的四种输入模式
 &lt;/h2&gt;&lt;h3 id=&#34;输入上拉和输入下拉&#34;&gt;输入上拉和输入下拉
 &lt;/h3&gt;&lt;p&gt;如图所示，输入上拉即Vdd接通通过上拉电阻，因为施密特触发器输入阻抗无穷大，可等效为一个无穷大电阻,输入上拉和输入下拉是指当引脚处于浮空状态时，通过上拉电阻和下拉电阻来 确定电压，避免外界噪声干扰。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tu1.lsyblog.live/img/%E8%BE%93%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB%E4%B8%8E%E4%B8%8B%E6%8B%89%E7%94%B5%E9%98%BB.jpg&#34;
+&lt;p&gt;&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/%E8%BE%93%E4%B8%8A%E6%8B%89%E7%94%B5%E9%98%BB%E4%B8%8E%E4%B8%8B%E6%8B%89%E7%94%B5%E9%98%BB.jpg&#34;
 	
 	
 	

@@ -7,14 +7,14 @@
 
 <link rel='canonical' href='http://blog.liushuiyu.cn/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/'>
 
-<link rel="stylesheet" href="/scss/style.min.54882c509e0afe9fc58c774a990195b23f8db9c9782f2e4c05e094055040a039.css"><meta property='og:title' content="51蓝牙PID循迹超声波急停避障小车">
+<link rel="stylesheet" href="/scss/style.min.0dedcb2490642498fad2821b85da6de5bc09c4a35f25f373958fe350a84e18a8.css"><meta property='og:title' content="51蓝牙PID循迹超声波急停避障小车">
 <meta property='og:description' content="实现功能：\r能够实现自动识别黑线，完成5路循迹。 能够通过蓝牙于89C52系列芯片串口通信控制小车 能够自动感应障碍物实现自动刹停。 准备材料：\r89C52芯片及最小系统板 ， L298n模块， 模拟量5路循迹模块, 稳压模块， HC-06模块， 超声波模块， 亚巧克力板， 4个电机， 12vDC电源， DC转接母头 普通小车使能实现原理：\r利用51单片机IO口控制L298n模块引脚供电实现对电机触发。再通过EN使能端进行PWM调速，实现转弯，漂移，转圈等特殊转速。\nIN为L298N模块控制引脚\nEN为L298N模块使能引脚\nL298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反转\n1#include &lt;REGX52.H&gt; 2unsigned char Duty_left,Duty_right,j=0,i=0; 3//l298n 4sbit IN11=P0^2;//左前轮 5sbit IN12=P0^1; 6 7sbit IN13=P0^3;//右前轮 8sbit IN14=P0^4; 9 10sbit IN21=P1^1;//左后轮 11sbit IN22=P1^2; 12 13sbit IN23=P1^4;//右后轮 14sbit IN24=P1^3; 15 16//使能端 17sbit EN1A=P0^0;//左前 18sbit EN1B=P0^5;//右前1 19sbit EN2A=P1^6;//左后 20sbit EN2B=P1^7;//右后1 21 22 //定时器+中断 23void Timer0_Init()\t//100微秒@11.0592MHz 24{ 25 TMOD|=0x01;//定时器T0，，工作方式都为方式1 26 TH0=0xff;//定时ff9c0.1ms fe0c0.5ms 27 TL0=0x9c; 28 29 EA=1; //开启总中断 30 ET0=1;//开启中断允许 31 TR0=1;//开启定时器中断 32} 33//利用中断，PWM调速 34void Timer0_Routine() interrupt 1 35{ 36 TH0=0xff;//定时ff9c0.1ms fe0c0.5ms 37 TL0=0x9c; 38\t39 i++; 40 j++; 41 42if(i&lt;=Duty_left) 43\t{ 44\tEN1A=1; 45\tEN2A=1; 46\t} 47else 48\t{ 49\tEN1A=0; 50\tEN2A=0; 51\t} 52if(j&lt;=Duty_right) 53\t{ 54\tEN1B=1; 55\tEN2B=1; 56\t} 57else 58\t{ 59\tEN1B=0; 60\tEN2B=0; 61\t} 62\t63\tif(i==100) //设置pwm周期=0.1ms*100=10ms,这样开头定义的变量正好表示占空比数值 64 { 65 i=0;//加到100后变为0，重新计数 66 } 67 if(j==100) //设置pwm周期=0.1ms*100=10ms,这样开头定义的变量正好表示占空比数值 68 { 69 j=0; 70 } 71 72} 蓝牙小车原理：\r通过将蓝牙模块的{% label TX %}与{% label RX %}与单片机交叉相接进行串口通信，实现收发数据。\n">
 <meta property='og:url' content='http://blog.liushuiyu.cn/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/'>
 <meta property='og:site_name' content='流水鱼のBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='单片机' /><meta property='article:tag' content='51' /><meta property='article:published_time' content='2024-05-29T01:07:19&#43;00:00'/><meta property='article:modified_time' content='2024-05-29T01:07:19&#43;00:00'/><meta property='og:image' content='https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='单片机' /><meta property='article:tag' content='51' /><meta property='article:published_time' content='2024-05-29T01:07:19&#43;00:00'/><meta property='article:modified_time' content='2024-05-29T01:07:19&#43;00:00'/><meta property='og:image' content='https://tuchuang.liushuiyu.cn/img/pid51%E5%B0%8F%E8%BD%A6.png' />
 <meta name="twitter:title" content="51蓝牙PID循迹超声波急停避障小车">
 <meta name="twitter:description" content="实现功能：\r能够实现自动识别黑线，完成5路循迹。 能够通过蓝牙于89C52系列芯片串口通信控制小车 能够自动感应障碍物实现自动刹停。 准备材料：\r89C52芯片及最小系统板 ， L298n模块， 模拟量5路循迹模块, 稳压模块， HC-06模块， 超声波模块， 亚巧克力板， 4个电机， 12vDC电源， DC转接母头 普通小车使能实现原理：\r利用51单片机IO口控制L298n模块引脚供电实现对电机触发。再通过EN使能端进行PWM调速，实现转弯，漂移，转圈等特殊转速。\nIN为L298N模块控制引脚\nEN为L298N模块使能引脚\nL298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反转\n1#include &lt;REGX52.H&gt; 2unsigned char Duty_left,Duty_right,j=0,i=0; 3//l298n 4sbit IN11=P0^2;//左前轮 5sbit IN12=P0^1; 6 7sbit IN13=P0^3;//右前轮 8sbit IN14=P0^4; 9 10sbit IN21=P1^1;//左后轮 11sbit IN22=P1^2; 12 13sbit IN23=P1^4;//右后轮 14sbit IN24=P1^3; 15 16//使能端 17sbit EN1A=P0^0;//左前 18sbit EN1B=P0^5;//右前1 19sbit EN2A=P1^6;//左后 20sbit EN2B=P1^7;//右后1 21 22 //定时器+中断 23void Timer0_Init()\t//100微秒@11.0592MHz 24{ 25 TMOD|=0x01;//定时器T0，，工作方式都为方式1 26 TH0=0xff;//定时ff9c0.1ms fe0c0.5ms 27 TL0=0x9c; 28 29 EA=1; //开启总中断 30 ET0=1;//开启中断允许 31 TR0=1;//开启定时器中断 32} 33//利用中断，PWM调速 34void Timer0_Routine() interrupt 1 35{ 36 TH0=0xff;//定时ff9c0.1ms fe0c0.5ms 37 TL0=0x9c; 38\t39 i++; 40 j++; 41 42if(i&lt;=Duty_left) 43\t{ 44\tEN1A=1; 45\tEN2A=1; 46\t} 47else 48\t{ 49\tEN1A=0; 50\tEN2A=0; 51\t} 52if(j&lt;=Duty_right) 53\t{ 54\tEN1B=1; 55\tEN2B=1; 56\t} 57else 58\t{ 59\tEN1B=0; 60\tEN2B=0; 61\t} 62\t63\tif(i==100) //设置pwm周期=0.1ms*100=10ms,这样开头定义的变量正好表示占空比数值 64 { 65 i=0;//加到100后变为0，重新计数 66 } 67 if(j==100) //设置pwm周期=0.1ms*100=10ms,这样开头定义的变量正好表示占空比数值 68 { 69 j=0; 70 } 71 72} 蓝牙小车原理：\r通过将蓝牙模块的{% label TX %}与{% label RX %}与单片机交叉相接进行串口通信，实现收发数据。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png' />
+    <meta name="twitter:image" content='https://tuchuang.liushuiyu.cn/img/pid51%E5%B0%8F%E8%BD%A6.png' />
 
 
 </head>
@@ -200,11 +200,11 @@
                 <ol class="menu-social">
                     <li>
                         
-                        <img src="https://tu1.lsyblog.live/img/Wechatlogo.png" alt="GitHub" style="width: 24px; height: 24px;">
+                        <img src="https://tuchuang.liushuiyu.cn/img/Wechatlogo.png" alt="GitHub" style="width: 24px; height: 24px;">
                     </li>
                     <li>
                         
-                        <img src="https://tu1.lsyblog.live/img/QQlogo.png" alt="GitHub" style="width: 24px; height: 24px;">
+                        <img src="https://tuchuang.liushuiyu.cn/img/QQlogo.png" alt="GitHub" style="width: 24px; height: 24px;">
                     </li>
                 </ol>
             </div>
@@ -360,7 +360,7 @@
         <div class="article-image">
             <a href="/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/">
                 
-                    <img src="https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png" loading="lazy" alt="Featured image of post 51蓝牙PID循迹超声波急停避障小车" />
+                    <img src="https://tuchuang.liushuiyu.cn/img/pid51%E5%B0%8F%E8%BD%A6.png" loading="lazy" alt="Featured image of post 51蓝牙PID循迹超声波急停避障小车" />
                 
             </a>
         </div>
@@ -805,13 +805,13 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
     <div class="qr-code">
       
       <label class="qr-code-image" for="reward">
-        <img class="image" src="https://tu1.lsyblog.live/img/wxzf.webp">
+        <img class="image" src="https://tuchuang.liushuiyu.cn/img/wxzf.webp">
         <span>微信打赏</span>
       </label>
       
       
       <label class="qr-code-image" for="reward">
-        <img class="image" src="https://tu1.lsyblog.live/img/zfbzf.webp">
+        <img class="image" src="https://tuchuang.liushuiyu.cn/img/zfbzf.webp">
         <span>支付宝打赏</span>
       </label>
       
@@ -865,7 +865,7 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
         
             <div class="article-image">
                 
-                    <img src="https://tu1.lsyblog.live/img/%e8%99%9a%e6%8b%9f%e6%9c%ba%e5%ae%89%e8%a3%85.jpg" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/虚拟机安装.jpg"/>
+                    <img src="https://tuchuang.liushuiyu.cn/img/%e8%99%9a%e6%8b%9f%e6%9c%ba%e5%ae%89%e8%a3%85.jpg" loading="lazy" data-key="" data-hash="https://tuchuang.liushuiyu.cn/img/虚拟机安装.jpg"/>
                 
             </div>
         
@@ -883,7 +883,7 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
         
             <div class="article-image">
                 
-                    <img src="https://tu1.lsyblog.live/img/%e7%bd%91%e8%af%be.jpg" loading="lazy" data-key="" data-hash="https://tu1.lsyblog.live/img/网课.jpg"/>
+                    <img src="https://tuchuang.liushuiyu.cn/img/%e7%bd%91%e8%af%be.jpg" loading="lazy" data-key="" data-hash="https://tuchuang.liushuiyu.cn/img/网课.jpg"/>
                 
             </div>
         
@@ -904,100 +904,7 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
     
 
 
-    <style>
-    footer.site-footer {
-        width: 100%;
-        position: relative;
-        bottom: 0;
-        padding: 20px 10px;
-        font-size: 1.3rem;
-        font-weight: 600;
-        line-height: 1.75;
-        color: var(--card-text-color-secondary);
-        background-color: var(--footer-bg);
-        box-shadow: 0 -3px 1px -3px var(--card-text-color-main);
-        padding: 10px;
-        user-select: none;
-    }
-
-    .footer-info {
-        display: grid;
-        grid-template-columns: 1fr auto;
-    }
-
-    .right-footer {
-        text-align: left;
-        display: flex;
-        align-items: right;
-    }
-
-    footer.site-footer a {
-        font-size: 15px;
-        color: var(--card-text-color-main);
-        transition: color .2s ease-in-out;
-        margin-inline: 15px;
-    }
-
-    .copyright{
-        font-size: 15px;
-        color: var(--card-text-color-main) !important;
-        transition: color .2s ease-in-out;
-        margin-inline: 15px;
-    }
-
-</style><div style="display: flex;
-    justify-content: center; 
-    align-items: center; flex-direction: column;margin-top: 60px; color:var(--card-text-color-main); margin:30px;">
-</div>
-<footer class="site-footer">
-    <div class="footer-info">
-        <div class="left-footer">
-            <section class="copyright">
-                &copy;
-                
-                2024 -
-                
-                2025 流水鱼
-            </section>
-        </div>
-        <section class="totalcount">
-            
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-            发表了11篇文章 · 
-            总计2.15k字
-        </section>
-    </div>
-</footer>
+    
 
     
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
@@ -1143,6 +1050,101 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
     }
     initTocHide()
 </script>
+
+<style>
+    footer.site-footer {
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        padding: 20px 10px;
+        font-size: 1.3rem;
+        font-weight: 600;
+        line-height: 1.75;
+        color: var(--card-text-color-secondary);
+        background-color: var(--footer-bg);
+        box-shadow: 0 -3px 1px -3px var(--card-text-color-main);
+        padding: 10px;
+        user-select: none;
+    }
+
+    .footer-info {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    .right-footer {
+        text-align: left;
+        display: flex;
+        align-items: right;
+    }
+
+    footer.site-footer a {
+        font-size: 15px;
+        color: var(--card-text-color-main);
+        transition: color .2s ease-in-out;
+        margin-inline: 15px;
+    }
+
+    .copyright{
+        font-size: 15px;
+        color: var(--card-text-color-main) !important;
+        transition: color .2s ease-in-out;
+        margin-inline: 15px;
+    }
+
+</style><div style="display: flex;
+    justify-content: center; 
+    align-items: center; flex-direction: column;margin-top: 60px; color:var(--card-text-color-main); margin:30px;">
+</div>
+<footer class="site-footer">
+    <div class="footer-info">
+        <div class="left-footer">
+            <section class="copyright">
+                &copy;
+                
+                2024 -
+                
+                2025 流水鱼
+            </section>
+        </div>
+        <section class="totalcount">
+            
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+            发表了11篇文章 · 
+            总计2.15k字
+        </section>
+    </div>
+</footer>
 </body>
 
 </html>

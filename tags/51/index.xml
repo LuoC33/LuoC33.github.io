@@ -13,7 +13,7 @@
         <pubDate>Wed, 29 May 2024 01:07:19 +0000</pubDate>
         
         <guid>http://blog.liushuiyu.cn/p/51%E8%93%9D%E7%89%99pid%E5%BE%AA%E8%BF%B9%E8%B6%85%E5%A3%B0%E6%B3%A2%E6%80%A5%E5%81%9C%E9%81%BF%E9%9A%9C%E5%B0%8F%E8%BD%A6/</guid>
-        <description>&lt;img src="https://tu1.lsyblog.live/img/pid51%E5%B0%8F%E8%BD%A6.png" alt="Featured image of post 51蓝牙PID循迹超声波急停避障小车" /&gt;&lt;h2 id=&#34;实现功能&#34;&gt;&lt;em&gt;&lt;strong&gt;实现功能：&lt;/strong&gt;&lt;/em&gt;
+        <description>&lt;img src="https://tuchuang.liushuiyu.cn/img/pid51%E5%B0%8F%E8%BD%A6.png" alt="Featured image of post 51蓝牙PID循迹超声波急停避障小车" /&gt;&lt;h2 id=&#34;实现功能&#34;&gt;&lt;em&gt;&lt;strong&gt;实现功能：&lt;/strong&gt;&lt;/em&gt;
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;能够实现自动识别黑线，完成5路循迹。&lt;/li&gt;
 &lt;li&gt;能够通过蓝牙于89C52系列芯片串口通信控制小车&lt;/li&gt;
