@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/scss/style.min.0dedcb2490642498fad2821b85da6de5bc09c4a35f25f373958fe350a84e18a8.css"><meta property='og:title' content="那时我们第一次相遇：USART 1">
 <meta property='og:description' content="Usart通信简易原理图\rGND 供地是为了平衡电压基准，使得双方共用一套电压标准，用于评判高低电压。 Tx ：发送数据 Rx：接收数据 数据的串并转换\rSTM32 的串并转化寄存器\r\u200b\n寄存器 TDR 实现将并行数据转换为串行数据。 寄存器 RDR 实现串行数据转换为并行数据。 串并数据的详细解释\r\u200b\n串行数据是指数据以一个接一个的方式在时间上连续传输，也就是说，数据位是按顺序逐个发送的。这种方式通常用于长距离传输，因为它可以减少所需的线缆数量。 并行数据则是指数据的多个位在同一时刻通过多条通道同时传输，这种方式在短距离传输中效率较高，但由于受限于线路数量和信号干扰，通常不适合长距离通信。 STM32_Usart 模块完整示意图\r\u200b\n状态寄存器(SR)\rSR 寄存器用于指示 USART 的当前状态，包括是否有数据可接收、发送缓冲区是否为空等。\n重要位：\nRXNE（Receive Data Register Not Empty）：接收数据寄存器(RDR)非空，表示有数据接收。 TXE（Transmit Data Register Empty）：发送数据寄存器(TDR)为空，表示可以发送数据。 TC（Transmit Complete）：发送完成 TDR空&amp;&amp;移位寄存器空。 ORE（Overrun Error）：接收溢出错误，表示接收的数据被覆盖。 FE（Framing Error）：帧错误，表示接收到的帧不正确。 PE（Parity Error）：奇偶校验错误标志位 NE（Noise Error）：噪声错误标志位 配置寄存器(CR)\r序号 名称 描述 0 UE (USART Enable) 启用 USART 外设，必须设置此位才能开始通信。 1 TE (Transmitter Enable) 启用发送器，允许数据发送。 2 RE (Receiver Enable) 启用接收器，允许数据接收。 3 R/W (Receiver/Transmit) 设置为 1 时，选择到接收模式，设置为 0 时，选择到发送模式。 4 M (Word Length) 数据位长度（0=8 位，1=9 位）。 5 WAKE (Wake-up method) 唤醒选择（0=普通模式，1=地址模式）。 6 PCE (Parity Control) 奇偶校验使能（0=禁用，1=启用）。 7 PS (Parity Selection) 奇偶校验选择（0=偶校验，1=奇校验）。 8 PEIE (PE Interrupt Enable) 奇偶校验错误中断使能。 9 TXEIE (TX Interrupt Enable) 发送数据寄存器空中断使能。 10 RXNEIE (RX Interrupt Enable) 接收数据寄存器非空中断使能。 11 TEIE (Transmission Error Interrupt Enable) 发送错误中断使能。 12 LBDIE (LIN Break Detection Interrupt Enable) LIN 中断使能。 13 CTSIE (CTS Interrupt Enable) 清除发送中断使能。 14 CBM (Character Match) 字符匹配模式（用在 LIN 模式下）。 15 OVER8 (Oversampling) 过采样模式选择（0=16 倍过采样，1=8 倍过采样）。 \u200b\n">
 <meta property='og:url' content='http://blog.liushuiyu.cn/p/%E9%82%A3%E6%97%B6%E6%88%91%E4%BB%AC%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9B%B8%E9%81%87usart-1/'>
-<meta property='og:site_name' content='流水鱼のBlog'>
+<meta property='og:site_name' content='EndlessLeapのBlog'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='单片机' /><meta property='article:tag' content='STM32' /><meta property='article:published_time' content='2025-01-06T22:34:07&#43;08:00'/><meta property='article:modified_time' content='2025-01-06T22:34:07&#43;08:00'/><meta property='og:image' content='https://tuchuang.liushuiyu.cn/img/Usart_post_cover.webp' />
 <meta name="twitter:title" content="那时我们第一次相遇：USART 1">
 <meta name="twitter:description" content="Usart通信简易原理图\rGND 供地是为了平衡电压基准，使得双方共用一套电压标准，用于评判高低电压。 Tx ：发送数据 Rx：接收数据 数据的串并转换\rSTM32 的串并转化寄存器\r\u200b\n寄存器 TDR 实现将并行数据转换为串行数据。 寄存器 RDR 实现串行数据转换为并行数据。 串并数据的详细解释\r\u200b\n串行数据是指数据以一个接一个的方式在时间上连续传输，也就是说，数据位是按顺序逐个发送的。这种方式通常用于长距离传输，因为它可以减少所需的线缆数量。 并行数据则是指数据的多个位在同一时刻通过多条通道同时传输，这种方式在短距离传输中效率较高，但由于受限于线路数量和信号干扰，通常不适合长距离通信。 STM32_Usart 模块完整示意图\r\u200b\n状态寄存器(SR)\rSR 寄存器用于指示 USART 的当前状态，包括是否有数据可接收、发送缓冲区是否为空等。\n重要位：\nRXNE（Receive Data Register Not Empty）：接收数据寄存器(RDR)非空，表示有数据接收。 TXE（Transmit Data Register Empty）：发送数据寄存器(TDR)为空，表示可以发送数据。 TC（Transmit Complete）：发送完成 TDR空&amp;&amp;移位寄存器空。 ORE（Overrun Error）：接收溢出错误，表示接收的数据被覆盖。 FE（Framing Error）：帧错误，表示接收到的帧不正确。 PE（Parity Error）：奇偶校验错误标志位 NE（Noise Error）：噪声错误标志位 配置寄存器(CR)\r序号 名称 描述 0 UE (USART Enable) 启用 USART 外设，必须设置此位才能开始通信。 1 TE (Transmitter Enable) 启用发送器，允许数据发送。 2 RE (Receiver Enable) 启用接收器，允许数据接收。 3 R/W (Receiver/Transmit) 设置为 1 时，选择到接收模式，设置为 0 时，选择到发送模式。 4 M (Word Length) 数据位长度（0=8 位，1=9 位）。 5 WAKE (Wake-up method) 唤醒选择（0=普通模式，1=地址模式）。 6 PCE (Parity Control) 奇偶校验使能（0=禁用，1=启用）。 7 PS (Parity Selection) 奇偶校验选择（0=偶校验，1=奇校验）。 8 PEIE (PE Interrupt Enable) 奇偶校验错误中断使能。 9 TXEIE (TX Interrupt Enable) 发送数据寄存器空中断使能。 10 RXNEIE (RX Interrupt Enable) 接收数据寄存器非空中断使能。 11 TEIE (Transmission Error Interrupt Enable) 发送错误中断使能。 12 LBDIE (LIN Break Detection Interrupt Enable) LIN 中断使能。 13 CTSIE (CTS Interrupt Enable) 清除发送中断使能。 14 CBM (Character Match) 字符匹配模式（用在 LIN 模式下）。 15 OVER8 (Oversampling) 过采样模式选择（0=16 倍过采样，1=8 倍过采样）。 \u200b\n"><meta name="twitter:card" content="summary_large_image">
@@ -52,7 +52,7 @@
     </button>
 
     <header>        
-            <l1 class="site-name"><a href="/">流水鱼のBlog</a></l1>
+            <l1 class="site-name"><a href="/">EndlessLeapのBlog</a></l1>
     </header>
 
     <ol class="menu" id="main-menu">
@@ -195,7 +195,7 @@
             </figure>
             <div class="site-meta">
                 
-                <h1 class="about-site-name"><a href="/about/">流水鱼</a></h1>
+                <h1 class="about-site-name"><a href="/about/">EndlessLeap</a></h1>
                 <h2 class="about-site-description">那年分开的太仓促<br>我欠你一句话</h2>
                 <ol class="menu-social">
                     <li>
@@ -1109,7 +1109,7 @@
                 
                 2024 -
                 
-                2025 流水鱼
+                2025 EndlessLeap
             </section>
         </div>
         <section class="totalcount">
