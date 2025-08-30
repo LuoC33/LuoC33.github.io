@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Pages on EndlessLeapのBlog</title>
+        <title>Pages on liushuiyuのBlog</title>
         <link>http://blog.liushuiyu.cn/page/</link>
-        <description>Recent content in Pages on EndlessLeapのBlog</description>
+        <description>Recent content in Pages on liushuiyuのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>EndlessLeap</copyright>
+        <copyright>liushuiyu</copyright>
         <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="http://blog.liushuiyu.cn/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>归档</title>
         <link>http://blog.liushuiyu.cn/archives/</link>

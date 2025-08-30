@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Tags on EndlessLeapのBlog</title>
+        <title>Tags on liushuiyuのBlog</title>
         <link>http://blog.liushuiyu.cn/tags/</link>
-        <description>Recent content in Tags on EndlessLeapのBlog</description>
+        <description>Recent content in Tags on liushuiyuのBlog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <copyright>EndlessLeap</copyright>
-        <lastBuildDate>Sun, 26 Jan 2025 22:33:13 +0800</lastBuildDate><atom:link href="http://blog.liushuiyu.cn/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <copyright>liushuiyu</copyright>
+        <lastBuildDate>Mon, 23 Jun 2025 15:41:25 +0800</lastBuildDate><atom:link href="http://blog.liushuiyu.cn/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Git</title>
+        <link>http://blog.liushuiyu.cn/tags/git/</link>
+        <pubDate>Mon, 23 Jun 2025 15:41:25 +0800</pubDate>
+        
+        <guid>http://blog.liushuiyu.cn/tags/git/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>笔记</title>
+        <link>http://blog.liushuiyu.cn/tags/%E7%AC%94%E8%AE%B0/</link>
+        <pubDate>Mon, 23 Jun 2025 15:41:25 +0800</pubDate>
+        
+        <guid>http://blog.liushuiyu.cn/tags/%E7%AC%94%E8%AE%B0/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>短文</title>
         <link>http://blog.liushuiyu.cn/tags/%E7%9F%AD%E6%96%87/</link>
         <pubDate>Sun, 26 Jan 2025 22:33:13 +0800</pubDate>
@@ -77,14 +93,6 @@
         <pubDate>Fri, 10 May 2024 23:50:02 +0000</pubDate>
         
         <guid>http://blog.liushuiyu.cn/tags/python/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>笔记</title>
-        <link>http://blog.liushuiyu.cn/tags/%E7%AC%94%E8%AE%B0/</link>
-        <pubDate>Fri, 10 May 2024 23:50:02 +0000</pubDate>
-        
-        <guid>http://blog.liushuiyu.cn/tags/%E7%AC%94%E8%AE%B0/</guid>
         <description></description>
         </item>
         <item>

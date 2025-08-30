@@ -2,19 +2,18 @@
 <html lang="zh-cn" dir="ltr">
 
 <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="{% note info simple %}Python 是一种非常注重代码格式和缩进的编程语言。在 Python 中，缩进不仅仅是美观的考量，它实际上是语法的一部分，用来定义代码块的结构。正确的缩进对于 Python 代码的运行至关重要。{% endnote %}\n判断语句（条件语句）\rPython 中的判断语句使用 ***if、elif（可选）和 else（可选）***关键字。下面是一个基本的判断语句的例子：\n1# 单个 if 语句 2if condition: 3 # 如果 condition 为真，执行这里的代码块 4 pass 5 6# if-else 语句 7if condition: 8 # 如果 condition 为真，执行这里的代码块 9 pass 10else: 11 # 如果 condition 为假，执行这里的代码块 12 pass 13 14# if-elif-else 语句 15if condition1: 16 # 如果 condition1 为真，执行这里的代码块 17 pass 18elif condition2: 19 # 如果 condition1 为假且 condition2 为真，执行这里的代码块 20 pass 21else: 22 # 如果所有条件都为假，执行这里的代码块 23 pass 循环语句\rPython 中有两种循环语句：for循环和while循环。\n">
-<title>python学习笔记---判断循环语法</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="gitignore 的作用\r用于告诉 Git 哪些文件或文件夹不需要纳入版本控制，比如：\n临时文件（如 *.tmp） 编译产物（如 *.exe） IDE 配置文件（如 .idea/） 敏感信息（如 passwords.txt） 文件放置位置\r项目根目录：/项目路径/.gitignore（对当前仓库生效） 全局配置：~/.gitignore_global（对所有仓库生效，需运行 git config &ndash;global core.excludesfile ~/.gitignore_global） 基础语法规则\r忽略单个文件\r1debug.log 忽略特定文件夹\r1# 忽略所有目录下的 .idea 文件夹 2**/.idea/ 通配符匹配\r通配符 示例 作用 * *.tmp 忽略所有.tmp文件 ? ?.log 忽略单字符命名的日志（如a.log） ** **/build/ 递归忽略所有层级的build文件夹 排除例外（不忽略）\r1# 忽略所有 .txt 文件，但不忽略 important.txt 2*.txt 3!important.txt 高级技巧\r强制添加被忽略的文件\r1git add -f secret_file.txt # 即使被忽略也会强制添加 检查忽略规则是否生效\r1git check-ignore -v path/to/file # 查看具体哪条规则忽略了该文件 清理已提交的忽略文件\r如果之前误提交了需要忽略的文件：\n1git rm --cached .idea/ # 从 Git 中删除但保留本地文件 2git commit -m &#34;Remove .idea from Git&#34; 常见问题解答\rQ1：为什么 .gitignore 不生效？\r文件已提交过：需先运行 git rm &ndash;cached 路径错误：确保 .gitignore 在项目根目录 语法错误：避免使用中文符号或多余空格 Q2：如何忽略所有文件夹下的特定文件？\r1# 忽略所有目录下的 .DS_Store 文件 2**/.DS_Store Q3：如何忽略除指定文件外的所有同类文件？\r1# 忽略所有 .log 文件，但保留 error.log 2*.log 3!error.log .gitignore 规则速查表\r需求 写法 示例 忽略特定文件夹 folder/ build/（忽略build文件夹） 忽略所有目录下的同名文件夹 **/folder/ **/tmp/（忽略所有tmp文件夹） 忽略特定文件 file.ext config.ini（忽略该文件） 忽略某类扩展名的文件 *.ext *.log（忽略所有.log文件） 忽略任意层级的某类文件 **/*.ext **/*.tmp（忽略所有.tmp文件） 忽略系统文件（如.DS_Store） .DS_Store （Mac 的临时文件） 不忽略某个文件（例外） !file.ext !important.txt（不忽略该文件） 忽略空文件夹（占位） folder/+ 放.gitkeep （Git 默认不跟踪空文件夹） 注释（说明） # 注释内容 # 忽略所有临时文件 常用场景示例\r忽略 build/ 和 node_modules/** 1 build/ 2 node_modules/ 忽略所有 .log 和 .tmp，但保留 important.log 1 *.log 2 *.tmp 3 !important.log 忽略所有 IDE 配置文件（如 JetBrains） 1 **/.idea/ 2 **/*.iml 注意事项\r✅ 路径问题\n">
+<title>gitignore笔记</title>
 
-<link rel='canonical' href='http://blog.liushuiyu.cn/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/'>
+<link rel='canonical' href='http://blog.liushuiyu.cn/p/gitignore%E7%AC%94%E8%AE%B0/'>
 
-<link rel="stylesheet" href="/scss/style.min.0dedcb2490642498fad2821b85da6de5bc09c4a35f25f373958fe350a84e18a8.css"><meta property='og:title' content="python学习笔记---判断循环语法">
-<meta property='og:description' content="{% note info simple %}Python 是一种非常注重代码格式和缩进的编程语言。在 Python 中，缩进不仅仅是美观的考量，它实际上是语法的一部分，用来定义代码块的结构。正确的缩进对于 Python 代码的运行至关重要。{% endnote %}\n判断语句（条件语句）\rPython 中的判断语句使用 ***if、elif（可选）和 else（可选）***关键字。下面是一个基本的判断语句的例子：\n1# 单个 if 语句 2if condition: 3 # 如果 condition 为真，执行这里的代码块 4 pass 5 6# if-else 语句 7if condition: 8 # 如果 condition 为真，执行这里的代码块 9 pass 10else: 11 # 如果 condition 为假，执行这里的代码块 12 pass 13 14# if-elif-else 语句 15if condition1: 16 # 如果 condition1 为真，执行这里的代码块 17 pass 18elif condition2: 19 # 如果 condition1 为假且 condition2 为真，执行这里的代码块 20 pass 21else: 22 # 如果所有条件都为假，执行这里的代码块 23 pass 循环语句\rPython 中有两种循环语句：for循环和while循环。\n">
-<meta property='og:url' content='http://blog.liushuiyu.cn/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/'>
+<link rel="stylesheet" href="/scss/style.min.0dedcb2490642498fad2821b85da6de5bc09c4a35f25f373958fe350a84e18a8.css"><meta property='og:title' content="gitignore笔记">
+<meta property='og:description' content="gitignore 的作用\r用于告诉 Git 哪些文件或文件夹不需要纳入版本控制，比如：\n临时文件（如 *.tmp） 编译产物（如 *.exe） IDE 配置文件（如 .idea/） 敏感信息（如 passwords.txt） 文件放置位置\r项目根目录：/项目路径/.gitignore（对当前仓库生效） 全局配置：~/.gitignore_global（对所有仓库生效，需运行 git config &ndash;global core.excludesfile ~/.gitignore_global） 基础语法规则\r忽略单个文件\r1debug.log 忽略特定文件夹\r1# 忽略所有目录下的 .idea 文件夹 2**/.idea/ 通配符匹配\r通配符 示例 作用 * *.tmp 忽略所有.tmp文件 ? ?.log 忽略单字符命名的日志（如a.log） ** **/build/ 递归忽略所有层级的build文件夹 排除例外（不忽略）\r1# 忽略所有 .txt 文件，但不忽略 important.txt 2*.txt 3!important.txt 高级技巧\r强制添加被忽略的文件\r1git add -f secret_file.txt # 即使被忽略也会强制添加 检查忽略规则是否生效\r1git check-ignore -v path/to/file # 查看具体哪条规则忽略了该文件 清理已提交的忽略文件\r如果之前误提交了需要忽略的文件：\n1git rm --cached .idea/ # 从 Git 中删除但保留本地文件 2git commit -m &#34;Remove .idea from Git&#34; 常见问题解答\rQ1：为什么 .gitignore 不生效？\r文件已提交过：需先运行 git rm &ndash;cached 路径错误：确保 .gitignore 在项目根目录 语法错误：避免使用中文符号或多余空格 Q2：如何忽略所有文件夹下的特定文件？\r1# 忽略所有目录下的 .DS_Store 文件 2**/.DS_Store Q3：如何忽略除指定文件外的所有同类文件？\r1# 忽略所有 .log 文件，但保留 error.log 2*.log 3!error.log .gitignore 规则速查表\r需求 写法 示例 忽略特定文件夹 folder/ build/（忽略build文件夹） 忽略所有目录下的同名文件夹 **/folder/ **/tmp/（忽略所有tmp文件夹） 忽略特定文件 file.ext config.ini（忽略该文件） 忽略某类扩展名的文件 *.ext *.log（忽略所有.log文件） 忽略任意层级的某类文件 **/*.ext **/*.tmp（忽略所有.tmp文件） 忽略系统文件（如.DS_Store） .DS_Store （Mac 的临时文件） 不忽略某个文件（例外） !file.ext !important.txt（不忽略该文件） 忽略空文件夹（占位） folder/+ 放.gitkeep （Git 默认不跟踪空文件夹） 注释（说明） # 注释内容 # 忽略所有临时文件 常用场景示例\r忽略 build/ 和 node_modules/** 1 build/ 2 node_modules/ 忽略所有 .log 和 .tmp，但保留 important.log 1 *.log 2 *.tmp 3 !important.log 忽略所有 IDE 配置文件（如 JetBrains） 1 **/.idea/ 2 **/*.iml 注意事项\r✅ 路径问题\n">
+<meta property='og:url' content='http://blog.liushuiyu.cn/p/gitignore%E7%AC%94%E8%AE%B0/'>
 <meta property='og:site_name' content='liushuiyuのBlog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='笔记' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2024-05-10T13:38:46&#43;00:00'/><meta property='article:modified_time' content='2024-05-10T13:38:46&#43;00:00'/><meta property='og:image' content='https://tuchuang.liushuiyu.cn/img/py2.jpg' />
-<meta name="twitter:title" content="python学习笔记---判断循环语法">
-<meta name="twitter:description" content="{% note info simple %}Python 是一种非常注重代码格式和缩进的编程语言。在 Python 中，缩进不仅仅是美观的考量，它实际上是语法的一部分，用来定义代码块的结构。正确的缩进对于 Python 代码的运行至关重要。{% endnote %}\n判断语句（条件语句）\rPython 中的判断语句使用 ***if、elif（可选）和 else（可选）***关键字。下面是一个基本的判断语句的例子：\n1# 单个 if 语句 2if condition: 3 # 如果 condition 为真，执行这里的代码块 4 pass 5 6# if-else 语句 7if condition: 8 # 如果 condition 为真，执行这里的代码块 9 pass 10else: 11 # 如果 condition 为假，执行这里的代码块 12 pass 13 14# if-elif-else 语句 15if condition1: 16 # 如果 condition1 为真，执行这里的代码块 17 pass 18elif condition2: 19 # 如果 condition1 为假且 condition2 为真，执行这里的代码块 20 pass 21else: 22 # 如果所有条件都为假，执行这里的代码块 23 pass 循环语句\rPython 中有两种循环语句：for循环和while循环。\n"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='https://tuchuang.liushuiyu.cn/img/py2.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='git' /><meta property='article:tag' content='笔记' /><meta property='article:published_time' content='2025-06-23T15:41:25&#43;08:00'/><meta property='article:modified_time' content='2025-06-23T15:41:25&#43;08:00'/>
+<meta name="twitter:title" content="gitignore笔记">
+<meta name="twitter:description" content="gitignore 的作用\r用于告诉 Git 哪些文件或文件夹不需要纳入版本控制，比如：\n临时文件（如 *.tmp） 编译产物（如 *.exe） IDE 配置文件（如 .idea/） 敏感信息（如 passwords.txt） 文件放置位置\r项目根目录：/项目路径/.gitignore（对当前仓库生效） 全局配置：~/.gitignore_global（对所有仓库生效，需运行 git config &ndash;global core.excludesfile ~/.gitignore_global） 基础语法规则\r忽略单个文件\r1debug.log 忽略特定文件夹\r1# 忽略所有目录下的 .idea 文件夹 2**/.idea/ 通配符匹配\r通配符 示例 作用 * *.tmp 忽略所有.tmp文件 ? ?.log 忽略单字符命名的日志（如a.log） ** **/build/ 递归忽略所有层级的build文件夹 排除例外（不忽略）\r1# 忽略所有 .txt 文件，但不忽略 important.txt 2*.txt 3!important.txt 高级技巧\r强制添加被忽略的文件\r1git add -f secret_file.txt # 即使被忽略也会强制添加 检查忽略规则是否生效\r1git check-ignore -v path/to/file # 查看具体哪条规则忽略了该文件 清理已提交的忽略文件\r如果之前误提交了需要忽略的文件：\n1git rm --cached .idea/ # 从 Git 中删除但保留本地文件 2git commit -m &#34;Remove .idea from Git&#34; 常见问题解答\rQ1：为什么 .gitignore 不生效？\r文件已提交过：需先运行 git rm &ndash;cached 路径错误：确保 .gitignore 在项目根目录 语法错误：避免使用中文符号或多余空格 Q2：如何忽略所有文件夹下的特定文件？\r1# 忽略所有目录下的 .DS_Store 文件 2**/.DS_Store Q3：如何忽略除指定文件外的所有同类文件？\r1# 忽略所有 .log 文件，但保留 error.log 2*.log 3!error.log .gitignore 规则速查表\r需求 写法 示例 忽略特定文件夹 folder/ build/（忽略build文件夹） 忽略所有目录下的同名文件夹 **/folder/ **/tmp/（忽略所有tmp文件夹） 忽略特定文件 file.ext config.ini（忽略该文件） 忽略某类扩展名的文件 *.ext *.log（忽略所有.log文件） 忽略任意层级的某类文件 **/*.ext **/*.tmp（忽略所有.tmp文件） 忽略系统文件（如.DS_Store） .DS_Store （Mac 的临时文件） 不忽略某个文件（例外） !file.ext !important.txt（不忽略该文件） 忽略空文件夹（占位） folder/+ 放.gitkeep （Git 默认不跟踪空文件夹） 注释（说明） # 注释内容 # 忽略所有临时文件 常用场景示例\r忽略 build/ 和 node_modules/** 1 build/ 2 node_modules/ 忽略所有 .log 和 .tmp，但保留 important.log 1 *.log 2 *.tmp 3 !important.log 忽略所有 IDE 配置文件（如 JetBrains） 1 **/.idea/ 2 **/*.iml 注意事项\r✅ 路径问题\n">
 
 
 </head>
@@ -338,18 +337,33 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#gitignore-的作用">gitignore 的作用</a></li>
+    <li><a href="#文件放置位置">文件放置位置</a></li>
+    <li><a href="#基础语法规则">基础语法规则</a>
       <ol>
-        <li><a href="#判断语句条件语句">判断语句（条件语句）</a></li>
-        <li><a href="#循环语句">循环语句</a>
-          <ol>
-            <li><a href="#for-循环"><code>for</code> 循环</a></li>
-            <li><a href="#while-循环"><code>while</code> 循环</a></li>
-          </ol>
-        </li>
-        <li><a href="#示例">示例</a></li>
+        <li><a href="#忽略单个文件">忽略单个文件</a></li>
+        <li><a href="#忽略特定文件夹">忽略特定文件夹</a></li>
+        <li><a href="#通配符匹配">通配符匹配</a></li>
+        <li><a href="#排除例外不忽略">排除例外（不忽略）</a></li>
       </ol>
     </li>
+    <li><a href="#高级技巧">高级技巧</a>
+      <ol>
+        <li><a href="#强制添加被忽略的文件">强制添加被忽略的文件</a></li>
+        <li><a href="#检查忽略规则是否生效">检查忽略规则是否生效</a></li>
+        <li><a href="#清理已提交的忽略文件">清理已提交的忽略文件</a></li>
+      </ol>
+    </li>
+    <li><a href="#常见问题解答">常见问题解答</a>
+      <ol>
+        <li><a href="#q1为什么-gitignore-不生效">Q1：为什么 .gitignore 不生效？</a></li>
+        <li><a href="#q2如何忽略所有文件夹下的特定文件">Q2：如何忽略所有文件夹下的特定文件？</a></li>
+        <li><a href="#q3如何忽略除指定文件外的所有同类文件">Q3：如何忽略除指定文件外的所有同类文件？</a></li>
+      </ol>
+    </li>
+    <li><a href="#gitignore-规则速查表">.gitignore 规则速查表</a></li>
+    <li><a href="#常用场景示例">常用场景示例</a></li>
+    <li><a href="#注意事项">注意事项</a></li>
   </ol>
 </nav>
         </div>
@@ -361,22 +375,14 @@
     </aside>
 
         <main class="main full-width">
-    <article class="has-image main-article">
+    <article class="main-article">
     <header class="article-header">
-        <div class="article-image">
-            <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/">
-                
-                    <img src="https://tuchuang.liushuiyu.cn/img/py2.jpg" loading="lazy" alt="Featured image of post python学习笔记---判断循环语法" />
-                
-            </a>
-        </div>
-    
 
     <div class="article-details">
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/">python学习笔记---判断循环语法</a>
+            <a href="/p/gitignore%E7%AC%94%E8%AE%B0/">gitignore笔记</a>
         </h2>
 
         
@@ -408,7 +414,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-            <time class="article-time--published">2024-5-10</time>
+            <time class="article-time--published">2025-6-23</time>
         </div>
         
 
@@ -437,67 +443,174 @@
     <section class="article-content">
     
     
-    <p>{% note info simple %}Python 是一种非常注重代码格式和缩进的编程语言。在 Python 中，缩进不仅仅是美观的考量，它实际上是语法的一部分，用来定义代码块的结构。正确的缩进对于 Python 代码的运行至关重要。{% endnote %}</p>
+    <h2 id="gitignore-的作用">gitignore 的作用
+</h2><p>用于告诉 Git 哪些文件或文件夹不需要纳入版本控制，比如：</p>
+<ul>
+<li>临时文件（如 *.tmp）</li>
+<li>编译产物（如 *.exe）</li>
+<li>IDE 配置文件（如 .idea/）</li>
+<li>敏感信息（如 passwords.txt）</li>
+</ul>
+<h2 id="文件放置位置">文件放置位置
+</h2><ul>
+<li>项目根目录：/项目路径/.gitignore（对当前仓库生效）</li>
+<li>全局配置：~/.gitignore_global（对所有仓库生效，需运行 git config &ndash;global core.excludesfile ~/.gitignore_global）</li>
+</ul>
+<h2 id="基础语法规则">基础语法规则
+</h2><h3 id="忽略单个文件">忽略单个文件
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">debug</span><span class="p">.</span><span class="n">log</span>
+</span></span></code></pre></div><h3 id="忽略特定文件夹">忽略特定文件夹
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl"><span class="cp"># 忽略所有目录下的 .idea 文件夹
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="cp"></span><span class="o">*</span><span class="err">*/</span><span class="p">.</span><span class="n">idea</span><span class="o">/</span>
+</span></span></code></pre></div><h3 id="通配符匹配">通配符匹配
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>通配符</th>
+          <th>示例</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>*</td>
+          <td>*.tmp</td>
+          <td>忽略所有.tmp文件</td>
+      </tr>
+      <tr>
+          <td>?</td>
+          <td>?.log</td>
+          <td>忽略单字符命名的日志（如a.log）</td>
+      </tr>
+      <tr>
+          <td>**</td>
+          <td>**/build/</td>
+          <td>递归忽略所有层级的build文件夹</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="排除例外不忽略">排除例外（不忽略）
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl"><span class="cp"># 忽略所有 .txt 文件，但不忽略 important.txt
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="cp"></span><span class="o">*</span><span class="p">.</span><span class="n">txt</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="o">!</span><span class="n">important</span><span class="p">.</span><span class="n">txt</span>
+</span></span></code></pre></div><h2 id="高级技巧">高级技巧
+</h2><h3 id="强制添加被忽略的文件">强制添加被忽略的文件
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">f</span> <span class="n">secret_file</span><span class="p">.</span><span class="n">txt</span>  <span class="err">#</span> <span class="err">即使被忽略也会强制添加</span>
+</span></span></code></pre></div><h3 id="检查忽略规则是否生效">检查忽略规则是否生效
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">git</span> <span class="n">check</span><span class="o">-</span><span class="n">ignore</span> <span class="o">-</span><span class="n">v</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span>  <span class="err">#</span> <span class="err">查看具体哪条规则忽略了该文件</span>
+</span></span></code></pre></div><h3 id="清理已提交的忽略文件">清理已提交的忽略文件
+</h3><p>如果之前误提交了需要忽略的文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">git</span> <span class="n">rm</span> <span class="o">--</span><span class="n">cached</span> <span class="p">.</span><span class="n">idea</span><span class="o">/</span>  <span class="err">#</span> <span class="err">从</span> <span class="n">Git</span> <span class="err">中删除但保留本地文件</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">&#34;Remove .idea from Git&#34;</span>
+</span></span></code></pre></div><h2 id="常见问题解答">常见问题解答
+</h2><h3 id="q1为什么-gitignore-不生效">Q1：为什么 .gitignore 不生效？
+</h3><ul>
+<li>文件已提交过：需先运行 git rm &ndash;cached <file></li>
+<li>路径错误：确保 .gitignore 在项目根目录</li>
+<li>语法错误：避免使用中文符号或多余空格</li>
+</ul>
+<h3 id="q2如何忽略所有文件夹下的特定文件">Q2：如何忽略所有文件夹下的特定文件？
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl"><span class="cp"># 忽略所有目录下的 .DS_Store 文件
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="cp"></span><span class="o">*</span><span class="err">*/</span><span class="p">.</span><span class="n">DS_Store</span>
+</span></span></code></pre></div><h3 id="q3如何忽略除指定文件外的所有同类文件">Q3：如何忽略除指定文件外的所有同类文件？
+</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl"><span class="cp"># 忽略所有 .log 文件，但保留 error.log
+</span></span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="cp"></span><span class="o">*</span><span class="p">.</span><span class="n">log</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="o">!</span><span class="n">error</span><span class="p">.</span><span class="n">log</span>
+</span></span></code></pre></div><h2 id="gitignore-规则速查表">.gitignore 规则速查表
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>需求</th>
+          <th>写法</th>
+          <th>示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>忽略特定文件夹</td>
+          <td>folder/</td>
+          <td>build/（忽略build文件夹）</td>
+      </tr>
+      <tr>
+          <td>忽略所有目录下的同名文件夹</td>
+          <td>**/folder/</td>
+          <td>**/tmp/（忽略所有tmp文件夹）</td>
+      </tr>
+      <tr>
+          <td>忽略特定文件</td>
+          <td>file.ext</td>
+          <td>config.ini（忽略该文件）</td>
+      </tr>
+      <tr>
+          <td>忽略某类扩展名的文件</td>
+          <td>*.ext</td>
+          <td>*.log（忽略所有.log文件）</td>
+      </tr>
+      <tr>
+          <td>忽略任意层级的某类文件</td>
+          <td>**/*.ext</td>
+          <td>**/*.tmp（忽略所有.tmp文件）</td>
+      </tr>
+      <tr>
+          <td>忽略系统文件（如.DS_Store）</td>
+          <td>.DS_Store</td>
+          <td>（Mac 的临时文件）</td>
+      </tr>
+      <tr>
+          <td>不忽略某个文件（例外）</td>
+          <td>!file.ext</td>
+          <td>!important.txt（不忽略该文件）</td>
+      </tr>
+      <tr>
+          <td>忽略空文件夹（占位）</td>
+          <td>folder/+ 放.gitkeep</td>
+          <td>（Git 默认不跟踪空文件夹）</td>
+      </tr>
+      <tr>
+          <td>注释（说明）</td>
+          <td># 注释内容</td>
+          <td># 忽略所有临时文件</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="常用场景示例">常用场景示例
+</h2><ol>
+<li>忽略 build/ 和 node_modules/**</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl">   <span class="n">build</span><span class="o">/</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">   <span class="n">node_modules</span><span class="o">/</span>
+</span></span></code></pre></div><ol start="2">
+<li>忽略所有 .log 和 .tmp，但保留 important.log</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl">   <span class="o">*</span><span class="p">.</span><span class="n">log</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">   <span class="o">*</span><span class="p">.</span><span class="n">tmp</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">   <span class="o">!</span><span class="n">important</span><span class="p">.</span><span class="n">log</span>
+</span></span></code></pre></div><ol start="3">
+<li>忽略所有 IDE 配置文件（如 JetBrains）</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl">   <span class="o">*</span><span class="err">*/</span><span class="p">.</span><span class="n">idea</span><span class="o">/</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">   <span class="o">*</span><span class="err">*/</span><span class="o">*</span><span class="p">.</span><span class="n">iml</span>
+</span></span></code></pre></div><h2 id="注意事项">注意事项
+</h2><p>✅ 路径问题</p>
+<ul>
+<li>/folder/ 仅忽略根目录下的 folder</li>
+<li>folder/ 忽略所有 folder 目录</li>
+<li>**/folder/ 匹配任意层级的 folder</li>
+</ul>
+<p>❌ 常见错误</p>
 <ul>
 <li>
-<h3 id="判断语句条件语句">判断语句（条件语句）
-</h3><p>Python 中的判断语句使用 ***if、elif（可选）和 else（可选）***关键字。下面是一个基本的判断语句的例子：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="c1"># 单个 if 语句</span>
-</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln"> 3</span><span class="cl">    <span class="c1"># 如果 condition 为真，执行这里的代码块</span>
-</span></span><span class="line"><span class="ln"> 4</span><span class="cl">    <span class="k">pass</span>
-</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
-</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1"># if-else 语句</span>
-</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="c1"># 如果 condition 为真，执行这里的代码块</span>
-</span></span><span class="line"><span class="ln"> 9</span><span class="cl">    <span class="k">pass</span>
-</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="c1"># 如果 condition 为假，执行这里的代码块</span>
-</span></span><span class="line"><span class="ln">12</span><span class="cl">    <span class="k">pass</span>
-</span></span><span class="line"><span class="ln">13</span><span class="cl">
-</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="c1"># if-elif-else 语句</span>
-</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="k">if</span> <span class="n">condition1</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln">16</span><span class="cl">    <span class="c1"># 如果 condition1 为真，执行这里的代码块</span>
-</span></span><span class="line"><span class="ln">17</span><span class="cl">    <span class="k">pass</span>
-</span></span><span class="line"><span class="ln">18</span><span class="cl"><span class="k">elif</span> <span class="n">condition2</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln">19</span><span class="cl">    <span class="c1"># 如果 condition1 为假且 condition2 为真，执行这里的代码块</span>
-</span></span><span class="line"><span class="ln">20</span><span class="cl">    <span class="k">pass</span>
-</span></span><span class="line"><span class="ln">21</span><span class="cl"><span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln">22</span><span class="cl">    <span class="c1"># 如果所有条件都为假，执行这里的代码块</span>
-</span></span><span class="line"><span class="ln">23</span><span class="cl">    <span class="k">pass</span>
-</span></span></code></pre></div></li>
+<p>误用 folder（不带 /，可能匹配文件）</p>
+</li>
 <li>
-<h3 id="循环语句">循环语句
-</h3><p>Python 中有两种循环语句：<em><strong>for循环</strong></em>和<em><strong>while循环</strong></em>。</p>
-<h4 id="for-循环"><code>for</code> 循环
-</h4><p><em><strong>for</strong></em>循环用于遍历序列（如列表、元组、字符串等）或其他可迭代对象。<br>
-在Python的<em><strong>for</strong></em>循环中，确实没有像C语言中那样的显式条件判断和自增/自减操作。Python的<em><strong>for</strong></em>循环是专门设计用来遍历可迭代对象（如列表、元组、字符串等）的，它会自动处理迭代过程，不需要手动设置初始条件、循环条件和更新表达式。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">for</span> <span class="n">变量</span> <span class="ow">in</span> <span class="n">可迭代对象</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="c1"># 循环体</span>
-</span></span></code></pre></div><p>在Python的<em><strong>for</strong></em>循环中，你不需要指定任何条件来控制循环的次数，因为循环次数是由可迭代对象的长度决定的。Python会自动遍历可迭代对象中的每个元素，并将当前元素赋值给循环变量，然后执行循环体。</p>
-<p>例如，如果你想遍历一个列表并打印每个元素，你可以这样做：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
-</span></span></code></pre></div><p>在这个例子中，<em><strong>for number in numbers:</strong></em> 会自动遍历列表 <em><strong>numbers</strong></em>中的每个元素，并将当前元素赋值给变量 <em><strong>number</strong></em>。循环体中的代码（即 <em><strong>print(number)</strong></em> ）会针对列表中的每个元素执行一次。</p>
-<h4 id="while-循环"><code>while</code> 循环
-</h4><p><em><strong>while</strong></em>循环在条件为真时重复执行代码块。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">while</span> <span class="n">condition</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl">    <span class="c1"># 只要 condition 为真，就执行这里的代码块</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl">    <span class="k">pass</span>
-</span></span></code></pre></div></li>
+<p>规则顺序错误（如 !important.txt 必须放在 *.txt 之后）</p>
+</li>
 <li>
-<h3 id="示例">示例
-</h3><p>下面是一个使用 <strong>if</strong> 和 <strong>for</strong> 循环的简单示例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1"># 遍历列表并打印每个元素</span>
-</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
-</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">numbers</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln">4</span><span class="cl">    <span class="k">if</span> <span class="n">number</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln">5</span><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2"> 是偶数&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="ln">6</span><span class="cl">    <span class="k">else</span><span class="p">:</span>
-</span></span><span class="line"><span class="ln">7</span><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2"> 是奇数&#34;</span><span class="p">)</span>
-</span></span></code></pre></div></li>
+<p>已提交的文件需先删除缓存：</p>
+</li>
 </ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="ln">1</span><span class="cl">  <span class="n">git</span> <span class="n">rm</span> <span class="o">--</span><span class="n">cached</span> <span class="o">&lt;</span><span class="n">file</span><span class="o">&gt;</span>
+</span></span></code></pre></div><p>这样写 .gitignore 就清晰多了！ 🚀</p>
 
 </section>
     
@@ -528,9 +641,9 @@
     
     <section class="article-tags">
         
-            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+            <a href="/tags/git/">Git</a>
         
-            <a href="/tags/python/">Python</a>
+            <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
         
     </section>
 
@@ -580,13 +693,19 @@
 </article>
             
                 
-<article class="article-card ">
-    <a href="/p/gitignore%E7%AC%94%E8%AE%B0/">
+<article class="article-card has-image">
+    <a href="/p/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0---%E5%88%A4%E6%96%AD%E5%BE%AA%E7%8E%AF%E8%AF%AD%E6%B3%95/">
         
+        
+            <div class="article-image">
+                
+                    <img src="https://tuchuang.liushuiyu.cn/img/py2.jpg" loading="lazy" data-key="" data-hash="https://tuchuang.liushuiyu.cn/img/py2.jpg"/>
+                
+            </div>
         
 
         <div class="article-details">
-            <h2 class="article-title">gitignore笔记</h2>
+            <h2 class="article-title">python学习笔记---判断循环语法</h2>
         </div>
     </a>
 </article>
