@@ -1,19 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-        <title>网课 on liushuiyuのBlog</title>
-        <link>http://blog.liushuiyu.cn/tags/%E7%BD%91%E8%AF%BE/</link>
-        <description>Recent content in 网课 on liushuiyuのBlog</description>
-        <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language>
-        <copyright>liushuiyu</copyright>
-        <lastBuildDate>Sun, 05 May 2024 20:18:12 +0000</lastBuildDate><atom:link href="http://blog.liushuiyu.cn/tags/%E7%BD%91%E8%AF%BE/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>OCS网课助手实现网课自动刷课</title>
-        <link>http://blog.liushuiyu.cn/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</link>
-        <pubDate>Sun, 05 May 2024 20:18:12 +0000</pubDate>
-        
-        <guid>http://blog.liushuiyu.cn/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</guid>
-        <description>&lt;img src="https://tuchuang.liushuiyu.cn/img/网课.jpg" alt="Featured image of post OCS网课助手实现网课自动刷课" /&gt;&lt;h2 id=&#34;前言&#34;&gt;前言
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>网课 on liushuiyuのBlog</title><link>http://blog.liushuiyu.cn/tags/%E7%BD%91%E8%AF%BE/</link><description>Recent content in 网课 on liushuiyuのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>liushuiyu</copyright><lastBuildDate>Sun, 05 May 2024 20:18:12 +0000</lastBuildDate><atom:link href="http://blog.liushuiyu.cn/tags/%E7%BD%91%E8%AF%BE/index.xml" rel="self" type="application/rss+xml"/><item><title>OCS网课助手实现网课自动刷课</title><link>http://blog.liushuiyu.cn/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</link><pubDate>Sun, 05 May 2024 20:18:12 +0000</pubDate><guid>http://blog.liushuiyu.cn/p/ocs%E7%BD%91%E8%AF%BE%E5%8A%A9%E6%89%8B%E5%AE%9E%E7%8E%B0%E7%BD%91%E8%AF%BE%E8%87%AA%E5%8A%A8%E5%88%B7%E8%AF%BE/</guid><description>&lt;img src="https://tuchuang.liushuiyu.cn/img/网课.jpg" alt="Featured image of post OCS网课助手实现网课自动刷课" /&gt;&lt;h2 id="前言"&gt;前言
 &lt;/h2&gt;&lt;p&gt;之前写过一篇基础教程，但是不够直白和连续，现 &lt;em&gt;&lt;strong&gt;2024/12/31&lt;/strong&gt;&lt;/em&gt; 对该文章重构。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -37,7 +22,7 @@
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;原理：&lt;/strong&gt;&lt;/em&gt; 通过浏览器加载扩展程序，用以启动js脚本。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;浏览器：Edg浏览器、火狐、谷歌    (三选一)&lt;/p&gt;
+&lt;p&gt;浏览器：Edg浏览器、火狐、谷歌 (三选一)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;扩展程序：油猴、脚本猫（二选一）&lt;/p&gt;
@@ -45,50 +30,50 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2 id=&#34;开始&#34;&gt;开始
-&lt;/h2&gt;&lt;h3 id=&#34;下载扩展&#34;&gt;下载扩展
-&lt;/h3&gt;&lt;p&gt;进入&lt;a class=&#34;link&#34; href=&#34;https://www.tampermonkey.net/index.php?ext=gcal&amp;amp;version=4.19.6180&amp;amp;locale=zh&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;油猴官网&lt;/a&gt;，如图所示，先选择你的浏览器,这里我以Chrome（谷歌为例）&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20241231200258711.webp&#34; style=&#34;zoom:200%;&#34; /&gt;
+&lt;h2 id="开始"&gt;开始
+&lt;/h2&gt;&lt;h3 id="下载扩展"&gt;下载扩展
+&lt;/h3&gt;&lt;p&gt;进入&lt;a class="link" href="https://www.tampermonkey.net/index.php?ext=gcal&amp;amp;version=4.19.6180&amp;amp;locale=zh" target="_blank" rel="noopener"
+&gt;油猴官网&lt;/a&gt;，如图所示，先选择你的浏览器,这里我以Chrome（谷歌为例）&lt;/p&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20241231200258711.webp" style="zoom:200%;" /&gt;
 &lt;p&gt;然后下拉，找到下载这里， 这里有两种安装方案，具体如图所示，第一种方法简单快捷，就正常下载然后安装就行，但是对于网络有特殊要求，一般无法直连，需要梯子。 故此我们分类讲述。&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/osc_youhou.webp&#34; style=&#34;zoom: 200%;&#34; /&gt;
-&lt;h4 id=&#34;第一种方案&#34;&gt;第一种方案
+&lt;img src="https://tuchuang.liushuiyu.cn/img/osc_youhou.webp" style="zoom: 200%;" /&gt;
+&lt;h4 id="第一种方案"&gt;第一种方案
 &lt;/h4&gt;&lt;p&gt;点击去商店会跳转到chrome商店（因为我是谷歌浏览器，如果你是edg浏览器，就选择edg的，此时点击去商店就会跳转到对应的浏览器商店）&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/yh_wk_1.3.1.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103143551010.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/yh_wk_1.3.1.webp" style="zoom:150%;" /&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103143551010.webp" style="zoom:150%;" /&gt;
 &lt;p&gt;这时候就可以看到我们已经安装成功了油猴&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103143632666.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
-&lt;h4 id=&#34;第二种方案&#34;&gt;第二种方案
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103143632666.webp" style="zoom:150%;" /&gt;
+&lt;h4 id="第二种方案"&gt;第二种方案
 &lt;/h4&gt;&lt;p&gt;我们先下载好扩展程序，然后人为导入到浏览器的扩展里面。所以第一步，我们先直接下载这个扩展程序，下载好后要记住你下载的位置在哪。&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103144213899.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103144213899.webp" style="zoom:150%;" /&gt;
 &lt;p&gt;接着打开浏览器的设置，在设置里面找到扩展这一选项&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103144454966.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103144454966.webp" style="zoom:150%;" /&gt;
 &lt;p&gt;然后&lt;strong&gt;记得打开 开发者模式&lt;/strong&gt;，开发者模式不打开的话是无法导入扩展的。&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103144454966.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103144454966.webp" style="zoom:150%;" /&gt;
 &lt;p&gt;接着就将我们刚刚下载好的扩展 直接拖到这里。&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103144713486.webp&#34; style=&#34;zoom:150%;&#34; /&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103144713486.webp" style="zoom:150%;" /&gt;
 &lt;p&gt;然后会出现提示框询问你是否添加该扩展，选择添加扩展程序&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103144732786.webp&#34; style=&#34;zoom: 133%;&#34; /&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103144732786.webp" style="zoom: 133%;" /&gt;
 &lt;p&gt;最后 我们就成功安装好了扩展了。&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103144741420.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
-&lt;h3 id=&#34;安装网课脚本&#34;&gt;安装网课脚本
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103144741420.webp" style="zoom: 150%;" /&gt;
+&lt;h3 id="安装网课脚本"&gt;安装网课脚本
 &lt;/h3&gt;&lt;p&gt;现在我们已经安装好了扩展，只需要再安装对应的脚本就行了。我这里推荐使用OSC网课助手。&lt;/p&gt;
-&lt;p&gt;首先我们先进入&lt;a class=&#34;link&#34; href=&#34;https://greasyfork.org/zh-CN&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;脚本网站&lt;/a&gt;搜索我们要的OCS网课助手。&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103145554772.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
-然后安装该脚本  
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103145626247.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
+&lt;p&gt;首先我们先进入&lt;a class="link" href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener"
+&gt;脚本网站&lt;/a&gt;搜索我们要的OCS网课助手。&lt;/p&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103145554772.webp" style="zoom: 150%;" /&gt;
+然后安装该脚本
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103145626247.webp" style="zoom: 150%;" /&gt;
 这时候会跳转到油猴这里，我们只需要再次点击安装就行。
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103145638167.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103145638167.webp" style="zoom: 150%;" /&gt;
 当你点击安装，安装完成后会自动关闭该界面，并且速度很快，这是正常现象，我们可以去到油猴管理界面看看我们的脚本是否安装成功。点击油猴，找到管理面板，进入其中。
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103145659327.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103145659327.webp" style="zoom: 150%;" /&gt;
 可以看到，我们是已经成功安装好了该网课脚本。
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103145707032.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103145707032.webp" style="zoom: 150%;" /&gt;
 &lt;p&gt;当然，当你安装好了该网课脚本，你也可以直接进入学习通，这时候会有对应脚本的出现。&lt;/p&gt;
-&lt;img src=&#34;https://tuchuang.liushuiyu.cn/img/20250103150432443.webp&#34; style=&#34;zoom: 150%;&#34; /&gt;
-&lt;h3 id=&#34;配置题库&#34;&gt;配置题库
-&lt;/h3&gt;&lt;p&gt;配置题库教程参考&lt;a class=&#34;link&#34; href=&#34;https://tk.enncy.cn/tk/article?uid=d5a1de0cf21b44fabedbac3d840674a4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;言溪题库官方教程 &lt;/a&gt;&lt;/p&gt;
+&lt;img src="https://tuchuang.liushuiyu.cn/img/20250103150432443.webp" style="zoom: 150%;" /&gt;
+&lt;h3 id="配置题库"&gt;配置题库
+&lt;/h3&gt;&lt;p&gt;配置题库教程参考&lt;a class="link" href="https://tk.enncy.cn/tk/article?uid=d5a1de0cf21b44fabedbac3d840674a4" target="_blank" rel="noopener"
+&gt;言溪题库官方教程 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;我在此阐述一下油猴扩展、OCS网课助手、言溪题库之间的关系及其各作用。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -101,11 +86,6 @@
 &lt;p&gt;言溪题库：就是题库，里面有很多的题目。具体可以去官方详情里看。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;结语&#34;&gt;结语
+&lt;h2 id="结语"&gt;结语
 &lt;/h2&gt;&lt;p&gt;如果你只是想刷完课程时间，而不想答题，那么题库是可以不用配置的。&lt;/p&gt;
-&lt;p&gt;这篇教程算是完结了，算是比上次写的更通俗一点。&lt;/p&gt;
-</description>
-        </item>
-        
-    </channel>
-</rss>
+&lt;p&gt;这篇教程算是完结了，算是比上次写的更通俗一点。&lt;/p&gt;</description></item></channel></rss>
