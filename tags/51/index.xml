@@ -94,8 +94,8 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;69&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;70&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;71&lt;/span&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;72&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="蓝牙小车原理"&gt;&lt;em&gt;&lt;strong&gt;蓝牙小车原理：&lt;/strong&gt;&lt;/em&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;72&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="蓝牙小车原理"&gt;&lt;em&gt;&lt;strong&gt;蓝牙小车原理：&lt;/strong&gt;&lt;/em&gt;
 &lt;/h2&gt;&lt;p&gt;通过将蓝牙模块的{% label TX %}与{% label RX %}与单片机交叉相接进行串口通信，实现收发数据。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;REGX52.H&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;&lt;span class="c1"&gt;//l298n
@@ -251,8 +251,8 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;152&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;153&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;Uart_Init&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;154&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;155&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="超声波急停避障小车原理"&gt;&lt;em&gt;&lt;strong&gt;超声波急停避障小车原理：&lt;/strong&gt;&lt;/em&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;155&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="超声波急停避障小车原理"&gt;&lt;em&gt;&lt;strong&gt;超声波急停避障小车原理：&lt;/strong&gt;&lt;/em&gt;
 &lt;/h2&gt;&lt;p&gt;1.采用 IO 口 {% label TRIG %} 触发测距，给一个 10us 的高电平信号；&lt;br&gt;
 2.模块自动发送 8 个 40khz 的方波，自动检测是否有信号返回；&lt;br&gt;
 3.有信号返回，通过 IO 口 {% label ECHO %} 输出一个高电平，高电平持续的时间就是超声波从发射到返回的时间。&lt;br&gt;
@@ -296,7 +296,8 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;35&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;distance&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;36&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;37&lt;/span&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="5路pid循迹小车原理"&gt;&lt;em&gt;&lt;strong&gt;5路PID循迹小车原理：&lt;/strong&gt;&lt;/em&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="5路pid循迹小车原理"&gt;&lt;em&gt;&lt;strong&gt;5路PID循迹小车原理：&lt;/strong&gt;&lt;/em&gt;
 &lt;/h2&gt;&lt;p&gt;{% image &lt;a class="link" href="https://img2.imgtp.com/2024/05/29/jT3cO80Q.png" target="_blank" rel="noopener"
 &gt;https://img2.imgtp.com/2024/05/29/jT3cO80Q.png&lt;/a&gt;, alt= %}&lt;/p&gt;
 &lt;p&gt;简单的循迹就是通过循迹模块反馈给单片机的高低电平信号进行不断判断和迭代，列出全部情况，这里就不做赘述。在此分享和学习关于PID算法循迹。&lt;/p&gt;
@@ -361,5 +362,4 @@ L298N模块单边IN为0,0时，电机停止转动，为1,0 、0,1时正转、反
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;59&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;CalculatePID&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// 计算PID
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;60&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="c1"&gt;// 控制电机...
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;61&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;62&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item></channel></rss>
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;62&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item></channel></rss>
