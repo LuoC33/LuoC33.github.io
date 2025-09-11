@@ -1,4 +1,283 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>心得 on liushuiyuのBlog</title><link>https://blog.liushuiyu.cn/tags/%E5%BF%83%E5%BE%97/</link><description>Recent content in 心得 on liushuiyuのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>liushuiyu</copyright><lastBuildDate>Tue, 02 Sep 2025 17:17:44 +0800</lastBuildDate><atom:link href="https://blog.liushuiyu.cn/tags/%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml"/><item><title>C语言进阶：内存与union的完美结合</title><link>https://blog.liushuiyu.cn/p/c%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6%E5%86%85%E5%AD%98%E4%B8%8Eunion%E7%9A%84%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%90%88/</link><pubDate>Tue, 02 Sep 2025 17:17:44 +0800</pubDate><guid>https://blog.liushuiyu.cn/p/c%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6%E5%86%85%E5%AD%98%E4%B8%8Eunion%E7%9A%84%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%90%88/</guid><description>&lt;img src="https://tuchuang.liushuiyu.cn/img/c-jingjie-logo220250902.webp" alt="Featured image of post C语言进阶：内存与union的完美结合" /&gt;&lt;h2 id="一内存对齐性能与空间的权衡"&gt;一、内存对齐：性能与空间的权衡
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>心得 on liushuiyuのBlog</title><link>https://blog.liushuiyu.cn/tags/%E5%BF%83%E5%BE%97/</link><description>Recent content in 心得 on liushuiyuのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>liushuiyu</copyright><lastBuildDate>Thu, 11 Sep 2025 19:55:07 +0800</lastBuildDate><atom:link href="https://blog.liushuiyu.cn/tags/%E5%BF%83%E5%BE%97/index.xml" rel="self" type="application/rss+xml"/><item><title>用 GCC 实现模块自动注册初始化机制</title><link>https://blog.liushuiyu.cn/p/%E7%94%A8-gcc-%E5%AE%9E%E7%8E%B0%E6%A8%A1%E5%9D%97%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%86%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%BA%E5%88%B6/</link><pubDate>Thu, 11 Sep 2025 19:55:07 +0800</pubDate><guid>https://blog.liushuiyu.cn/p/%E7%94%A8-gcc-%E5%AE%9E%E7%8E%B0%E6%A8%A1%E5%9D%97%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%86%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E6%9C%BA%E5%88%B6/</guid><description>&lt;img src="https://tuchuang.liushuiyu.cn/img/c-jingjie-logo320250911.webp" alt="Featured image of post 用 GCC 实现模块自动注册初始化机制" /&gt;&lt;p&gt;今天我们要聊一个看起来简单，但背后藏了很多 &lt;strong&gt;C 语言高级技巧 &amp;amp; GCC 黑魔法&lt;/strong&gt; 的小例子 👇：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="nf"&gt;void&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="kt"&gt;init_t&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define module_init(fn) \
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; const init_t __embedi_##fn __attribute__((section(&amp;#34;.embedi_init&amp;#34;))) \
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; __attribute__((used)) = fn
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;module_one_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;%s call&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;__FUNCTION__&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;14&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;module_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;module_one_init&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;15&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;16&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;17&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;18&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;19&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;别看它代码不多，但它其实实现了一个非常实用的机制：&lt;strong&gt;模块化自动注册 &amp;amp; 初始化函数管理！&lt;/strong&gt; 🎯&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-一代码逐行拆解小白友好版"&gt;🧩 一、代码逐行拆解（小白友好版）
+&lt;/h2&gt;&lt;h3 id="1-引入头文件"&gt;1. 引入头文件
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;标准输入输出库，为了使用 &lt;code&gt;printf&lt;/code&gt; 打印日志。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="2-定义初始化函数类型"&gt;2. 定义初始化函数类型
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="nf"&gt;void&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="kt"&gt;init_t&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;定义了一个函数指针类型 &lt;code&gt;init_t&lt;/code&gt;，用于指向那些&lt;strong&gt;无参数、无返回值&lt;/strong&gt;的初始化函数。
+你可以把它理解为一个“万能插座”，所有模块的初始化函数都可以“插”进来。⚡&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="3-定义模块注册宏"&gt;3. 定义模块注册宏
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define module_init(fn) \
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; const init_t __embedi_##fn __attribute__((section(&amp;#34;.embedi_init&amp;#34;))) \
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; __attribute__((used)) = fn&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;🔥 &lt;strong&gt;这是整个机制的核心！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;它利用 GCC 的宏和编译器扩展属性，实现了一种叫做 &lt;strong&gt;“模块自动注册”&lt;/strong&gt; 的机制，让模块在编译期就把自己注册进一个特定的段（section）中，便于后续统一管理。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="31-宏展开示例"&gt;3.1 宏展开示例
+&lt;/h4&gt;&lt;p&gt;比如你写了：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;module_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;module_one_init&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;它会被 GCC 预处理并展开为类似如下的代码：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;init_t&lt;/span&gt; &lt;span class="n"&gt;__embedi_module_one_init&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;__attribute__&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nf"&gt;section&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;.embedi_init&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;__attribute__&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;used&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;module_one_init&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我们来拆解它的关键部分：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h5 id="-a-变量名__embedi_module_one_init"&gt;✅ a. 变量名：&lt;code&gt;__embedi_module_one_init&lt;/code&gt;
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;类型为 &lt;code&gt;init_t&lt;/code&gt;（即函数指针）；&lt;/li&gt;
+&lt;li&gt;名称通过宏拼接生成：&lt;code&gt;__embedi_&lt;/code&gt; + 传入的函数名；&lt;/li&gt;
+&lt;li&gt;前缀 &lt;code&gt;__embedi_&lt;/code&gt; 是为了避免命名冲突，规范且安全 👍。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h5 id="-b-属性sectionembedi_init"&gt;✅ b. 属性：&lt;code&gt;section(&amp;quot;.embedi_init&amp;quot;)&lt;/code&gt;
+&lt;/h5&gt;&lt;p&gt;这是 GCC 提供的扩展属性，用于将变量放入一个&lt;strong&gt;自定义的段（Section）&lt;/strong&gt; ，名字叫 &lt;code&gt;.embedi_init&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;在 ELF 格式的可执行文件中，代码和数据被分成多个段，比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.text&lt;/code&gt;：存放代码&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.data&lt;/code&gt;：已初始化全局变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.bss&lt;/code&gt;：未初始化全局变量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过 &lt;code&gt;section(&amp;quot;.embedi_init&amp;quot;)&lt;/code&gt;，我们可以&lt;strong&gt;把所有模块的初始化函数指针集中放到一个专属段里&lt;/strong&gt;，方便后续统一查找和调用。🎯&lt;/p&gt;
+&lt;hr&gt;
+&lt;h5 id="-c-属性used"&gt;✅ c. 属性：&lt;code&gt;used&lt;/code&gt;
+&lt;/h5&gt;&lt;p&gt;告诉编译器： &lt;strong&gt;“这个变量虽然看起来没人直接用，但我需要它！请不要优化掉！”&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果没有这个属性，编译器可能会认为这个全局变量没有实际用途，就把它删了！🗑️&lt;/li&gt;
+&lt;li&gt;但我们希望它留下来，因为它里面存着模块初始化函数的地址！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h5 id="-d-变量赋值-fn"&gt;✅ d. 变量赋值：&lt;code&gt;= fn&lt;/code&gt;
+&lt;/h5&gt;&lt;p&gt;将你传入的模块初始化函数（比如 &lt;code&gt;module_one_init&lt;/code&gt;），赋值给这个函数指针变量，存入 &lt;code&gt;.embedi_init&lt;/code&gt; 段中。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="4-定义一个模块初始化函数"&gt;4. 定义一个模块初始化函数
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;module_one_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;%s call&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;__FUNCTION__&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这是一个普通的模块初始化函数，功能是打印自己的函数名。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它被声明为 &lt;code&gt;static&lt;/code&gt;，表示仅在当前文件内可见，避免命名冲突；&lt;/li&gt;
+&lt;li&gt;在实际项目中，这里可以是初始化硬件、注册服务、加载配置等逻辑 🛠️。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="5-使用宏注册模块"&gt;5. 使用宏注册模块
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;module_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;module_one_init&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这一行是关键！&lt;/p&gt;
+&lt;p&gt;它调用了 &lt;code&gt;module_init&lt;/code&gt; 宏，把 &lt;code&gt;module_one_init&lt;/code&gt; 函数注册进 &lt;code&gt;.embedi_init&lt;/code&gt; 段中，等待“被调用”。&lt;/p&gt;
+&lt;p&gt;展开后相当于：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;init_t&lt;/span&gt; &lt;span class="n"&gt;__embedi_module_one_init&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;module_one_init&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;并且该变量被放入 &lt;code&gt;.embedi_init&lt;/code&gt; 段，且不会被编译器优化掉 ✅。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="6-main-函数"&gt;6. main 函数
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;程序入口，但目前它什么也没做！😅&lt;/p&gt;
+&lt;p&gt;我们虽然注册了初始化函数，但并没有真正去调用它！&lt;/p&gt;
+&lt;p&gt;所以现在的结果是：&lt;strong&gt;函数注册成功，但无人调用，它只能默默等待&amp;hellip; 💤&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-问题注册了函数但没调用有啥用"&gt;❓ 问题：注册了函数，但没调用，有啥用？
+&lt;/h2&gt;&lt;p&gt;好问题！👏&lt;/p&gt;
+&lt;p&gt;其实，这段代码展示的是一种非常有用、且被广泛使用的编程思想，叫做：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;模块化自动注册机制（Module Auto-Registration）&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;它的核心价值在于：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="-你只需写"&gt;✅ 你只需写：
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;module_init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;your_init_function&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h3 id="-编译器--宏--链接器会自动帮你"&gt;✅ 编译器 + 宏 + 链接器会自动帮你：
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;把你的初始化函数指针，放到一个特定的段（比如 &lt;code&gt;.embedi_init&lt;/code&gt;）；&lt;/li&gt;
+&lt;li&gt;后续你可以通过&lt;strong&gt;遍历该段&lt;/strong&gt;，一次性调用所有模块的初始化函数；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这就相当于你搭建了一个 &lt;strong&gt;“自动化插件系统”或“驱动注册框架”&lt;/strong&gt; 的基础设施！🔧&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-实际应用场景"&gt;🌟 实际应用场景
+&lt;/h2&gt;&lt;p&gt;这种技巧在许多大型系统或框架中都有应用，比如：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;场景&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Linux 内核模块&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;驱动通过&lt;code&gt;module_init()&lt;/code&gt;注册，系统启动时自动加载调用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;插件系统&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;每个插件在加载时注册自己，主程序统一管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;游戏引擎模块&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;渲染、音频、物理等子系统各自初始化，通过统一机制调用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;嵌入式系统 / 驱动框架&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;模块自行注册初始化逻辑，由框架统一调度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;是不是突然发现，这个“小技巧”其实是个“大杀器”？🔥&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="-如何真正调用这些初始化函数"&gt;🛠️ 如何真正调用这些初始化函数？
+&lt;/h2&gt;&lt;p&gt;目前代码只实现了&lt;strong&gt;注册&lt;/strong&gt;，还没实现&lt;strong&gt;调用&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;那怎么才能让这些函数真正被执行呢？下面介绍几种方式，从简单到高级：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="方法-1手动函数指针数组适合少量模块扩展性差-"&gt;方法 1：手动函数指针数组（适合少量模块，扩展性差 😅）
+&lt;/h3&gt;&lt;p&gt;你可以手动维护一个函数指针数组：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;init_funcs&lt;/span&gt;&lt;span class="p"&gt;[])()&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;module_one_init&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt; &lt;span class="c1"&gt;// 结束标记
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;init_funcs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;init_funcs&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：简单直接；&lt;/li&gt;
+&lt;li&gt;缺点：每新增一个模块，都得手动加一行，不适合大型项目。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="方法-2利用自定义段--链接器符号推荐-扩展性强"&gt;方法 2：利用自定义段 + 链接器符号（推荐 ✅，扩展性强）
+&lt;/h3&gt;&lt;p&gt;更优雅的方式，是利用 GCC + 链接器，&lt;strong&gt;自动获取&lt;/strong&gt; &lt;strong&gt;&lt;code&gt;.embedi_init&lt;/code&gt;&lt;/strong&gt; &lt;strong&gt;段的起始地址和结束地址&lt;/strong&gt;，然后遍历该段中的所有函数指针并调用。&lt;/p&gt;
+&lt;h4 id="步骤如下"&gt;步骤如下：
+&lt;/h4&gt;&lt;hr&gt;
+&lt;h4 id="-定义段的起始和结束符号在链接脚本或代码中"&gt;① 定义段的起始和结束符号（在链接脚本或代码中）
+&lt;/h4&gt;&lt;p&gt;你需要在链接时导出 &lt;code&gt;.embedi_init&lt;/code&gt; 段的起始和结束地址。一种常见方法是：&lt;/p&gt;
+&lt;p&gt;在代码中定义两个符号，分别标记该段的起始和结尾：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 在某个.c文件中定义（或通过链接脚本导出）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;init_t&lt;/span&gt; &lt;span class="n"&gt;__start_embedi_init&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;init_t&lt;/span&gt; &lt;span class="n"&gt;__stop_embedi_init&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：符号名中的 &lt;code&gt;__start_&lt;/code&gt; 和 &lt;code&gt;__stop_&lt;/code&gt; 是 GCC / 链接器的约定（常见于 &lt;code&gt;.rodata&lt;/code&gt;、&lt;code&gt;.init_array&lt;/code&gt; 等段），但如果你使用的是自定义段 &lt;code&gt;.embedi_init&lt;/code&gt;，需要确保链接器脚本中正确定义了这些符号！&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h4 id="-修改或编写链接脚本可选高级用户"&gt;② 修改或编写链接脚本（可选，高级用户）
+&lt;/h4&gt;&lt;p&gt;如果你想完全控制段的布局与符号导出，可以&lt;strong&gt;自定义链接脚本（Linker Script）&lt;/strong&gt; ，并确保其中包含类似如下内容：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;SECTIONS&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nl"&gt;embedi_init&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;__start_embedi_init&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;.;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;(.&lt;/span&gt;&lt;span class="n"&gt;embedi_init&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;6&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;__stop_embedi_init&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;.;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后确保该脚本被正确使用（通过 &lt;code&gt;-T your_script.ld&lt;/code&gt; 参数传递给链接器）。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id="-在代码中遍历并调用"&gt;③ 在代码中遍历并调用
+&lt;/h4&gt;&lt;p&gt;一旦链接器导出了 &lt;code&gt;__start_embedi_init&lt;/code&gt; 和 &lt;code&gt;__stop_embedi_init&lt;/code&gt;，你就可以这样写：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-C" data-lang="C"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;init_t&lt;/span&gt; &lt;span class="n"&gt;__start_embedi_init&lt;/span&gt;&lt;span class="p"&gt;[];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;extern&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;init_t&lt;/span&gt; &lt;span class="n"&gt;__stop_embedi_init&lt;/span&gt;&lt;span class="p"&gt;[];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;init_t&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;fn_ptr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;__start_embedi_init&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;init_t&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;end_ptr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;__stop_embedi_init&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fn_ptr&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;end_ptr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;fn_ptr&lt;/span&gt;&lt;span class="p"&gt;)();&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;fn_ptr&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;14&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;15&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;🎉 这样就能自动调用所有注册在 &lt;code&gt;.embedi_init&lt;/code&gt; 段中的模块初始化函数了！&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：&lt;strong&gt;完全自动化、无需手动维护列表、扩展性极强&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;适用场景：中大型项目、模块化系统、插件架构等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id="-总结--学习收获"&gt;✅ 总结 &amp;amp; 学习收获
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;知识点&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;module_init(fn)&lt;/code&gt;宏&lt;/td&gt;
+&lt;td&gt;用于将模块初始化函数自动注册到自定义段&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;typedef void (*init_t)(void)&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;定义统一的初始化函数指针类型&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;GCC 属性&lt;code&gt;section&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;将变量放入自定义段，集中管理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;GCC 属性&lt;code&gt;used&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;防止编译器优化掉未显式引用的全局变量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;自定义段&lt;code&gt;.embedi_init&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;所有模块初始化函数指针的存储区域&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;调用方式&lt;/td&gt;
+&lt;td&gt;手动数组（简单） or 链接器符号遍历（推荐，自动且扩展性强）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;应用场景&lt;/td&gt;
+&lt;td&gt;模块化系统、驱动框架、插件系统、嵌入式初始化等&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id="-延伸阅读推荐"&gt;🧠 延伸阅读推荐
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;《程序员的自我修养 —— 链接、装载与库》📚&lt;/li&gt;
+&lt;li&gt;Linux 内核中的 &lt;code&gt;module_init()&lt;/code&gt; 实现机制&lt;/li&gt;
+&lt;li&gt;ELF 文件格式与自定义段管理&lt;/li&gt;
+&lt;li&gt;GCC 扩展属性官方文档&lt;/li&gt;
+&lt;li&gt;链接器脚本（Linker Script）入门指南&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>C语言进阶：内存与union的完美结合</title><link>https://blog.liushuiyu.cn/p/c%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6%E5%86%85%E5%AD%98%E4%B8%8Eunion%E7%9A%84%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%90%88/</link><pubDate>Tue, 02 Sep 2025 17:17:44 +0800</pubDate><guid>https://blog.liushuiyu.cn/p/c%E8%AF%AD%E8%A8%80%E8%BF%9B%E9%98%B6%E5%86%85%E5%AD%98%E4%B8%8Eunion%E7%9A%84%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%90%88/</guid><description>&lt;img src="https://tuchuang.liushuiyu.cn/img/c-jingjie-logo220250902.webp" alt="Featured image of post C语言进阶：内存与union的完美结合" /&gt;&lt;h2 id="一内存对齐性能与空间的权衡"&gt;一、内存对齐：性能与空间的权衡
 &lt;/h2&gt;&lt;h3 id="什么是内存对齐"&gt;什么是内存对齐？
 &lt;/h3&gt;&lt;p&gt;内存对齐是编译器为了优化内存访问速度而采取的策略。CPU访问对齐的内存地址比访问未对齐的地址要快得多。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;example&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
