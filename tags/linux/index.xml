@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on liushuiyuのBlog</title><link>https://blog.liushuiyu.cn/tags/linux/</link><description>Recent content in Linux on liushuiyuのBlog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>liushuiyu</copyright><lastBuildDate>Sat, 13 Sep 2025 16:36:27 +0800</lastBuildDate><atom:link href="https://blog.liushuiyu.cn/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>深入解析 container_of​ 宏：原理、实现与应用</title><link>https://blog.liushuiyu.cn/p/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-container_of-%E5%AE%8F%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0%E4%B8%8E%E5%BA%94%E7%94%A8/</link><pubDate>Sat, 13 Sep 2025 16:36:27 +0800</pubDate><guid>https://blog.liushuiyu.cn/p/%E6%B7%B1%E5%85%A5%E8%A7%A3%E6%9E%90-container_of-%E5%AE%8F%E5%8E%9F%E7%90%86%E5%AE%9E%E7%8E%B0%E4%B8%8E%E5%BA%94%E7%94%A8/</guid><description>&lt;img src="https://tuchuang.liushuiyu.cn/img/linux-0120250913.webp" alt="Featured image of post 深入解析 container_of​ 宏：原理、实现与应用" /&gt;&lt;h2 id="一引言"&gt;一、引言
+&lt;/h2&gt;&lt;p&gt;在 C 语言中，由于其本身缺乏如 C++ 的反射、类继承、成员指针反向查找等高级特性，开发者经常需要借助一些技巧来实现类似“对象关联”或“结构体成员反向定位”的功能。在 Linux 内核以及众多系统级 C 程序中，有一个极为重要且经典的宏，用于解决如下问题：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;已知一个结构体中的某个成员的指针，如何获取包含该成员的整个结构体的指针？&lt;/strong&gt;&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;这个问题的解决方案就是：&lt;strong&gt;&lt;code&gt;container_of&lt;/code&gt;&lt;/strong&gt; &lt;strong&gt;宏&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;它不仅是 Linux 内核中数据结构（如链表、设备模型等）实现的基础工具，也是理解 C 语言指针运算、宏编程、类型系统和内存模型的极佳案例。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="二container_of-的作用"&gt;二、&lt;code&gt;container_of&lt;/code&gt; 的作用
+&lt;/h2&gt;&lt;h3 id="1-问题背景"&gt;1. 问题背景
+&lt;/h3&gt;&lt;p&gt;在 C 语言中，我们常常定义如下的结构体：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;private_data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;};&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当我们仅持有一个指向结构体&lt;strong&gt;某个成员&lt;/strong&gt;的指针（例如 &lt;code&gt;&amp;amp;p.private_data&lt;/code&gt;）时，标准 C 并没有提供直接的方法来获取该成员所属的&lt;strong&gt;整个结构体对象&lt;/strong&gt;的指针（例如 &lt;code&gt;&amp;amp;p&lt;/code&gt;）。&lt;/p&gt;
+&lt;h3 id="2-container_of-的功能"&gt;2. &lt;code&gt;container_of&lt;/code&gt; 的功能
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;container_of&lt;/code&gt; 宏 &lt;strong&gt;通过一个结构体成员的指针，计算并返回包含该成员的整个结构体的指针&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;换句话说，它是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一种通过“部分”信息（成员指针）反推出“整体”对象（宿主结构体）的机制。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id="三container_of-宏的标准实现"&gt;三、&lt;code&gt;container_of&lt;/code&gt; 宏的标准实现
+&lt;/h2&gt;&lt;p&gt;在 Linux 内核中，&lt;code&gt;container_of&lt;/code&gt; 宏通常定义为如下形式（使用 GCC 扩展语法）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define container_of(ptr, type, member) ({ \
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; const typeof(((type *)0)-&amp;gt;member) *__mptr = (ptr); \
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; (type *)((char *)__mptr - offsetof(type, member)); \
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;})&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ 注意：此实现使用了 &lt;strong&gt;GCC 的语句表达式（&lt;/strong&gt; &lt;strong&gt;&lt;code&gt;({ ... })&lt;/code&gt;&lt;/strong&gt; &lt;strong&gt;）&lt;/strong&gt; 与 &lt;strong&gt;&lt;code&gt;typeof&lt;/code&gt;&lt;/strong&gt; &lt;strong&gt;关键字&lt;/strong&gt;，属于 &lt;strong&gt;GCC 扩展语法&lt;/strong&gt;，并非标准 C，但在 Linux 内核中被广泛采用。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;若需编写更具可移植性、符合标准 C 的版本，可简化为：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#define container_of(ptr, type, member) \
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; ((type *)((char *)(ptr) - offsetof(type, member)))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下面我们将围绕这个宏，深入讲解它的&lt;strong&gt;组成、原理、关键点与实现细节&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="四container_of-的组成与工作原理"&gt;四、&lt;code&gt;container_of&lt;/code&gt; 的组成与工作原理
+&lt;/h2&gt;&lt;h3 id="1-宏接口说明"&gt;1. 宏接口说明
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-plaintext" data-lang="plaintext"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;container_of(ptr, type, member)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;ptr&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;指向结构体中某个成员的指针（例如&lt;code&gt;&amp;amp;p.private_data&lt;/code&gt;）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;type&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;该成员所属的结构体类型（例如&lt;code&gt;struct Person&lt;/code&gt;）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;member&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;该成员在结构体中的名称（例如&lt;code&gt;private_data&lt;/code&gt;）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="2-宏的工作目标"&gt;2. 宏的工作目标
+&lt;/h3&gt;&lt;p&gt;通过传入的成员指针 &lt;code&gt;ptr&lt;/code&gt;，计算并返回包含该成员的&lt;strong&gt;整个结构体对象的指针&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="3-核心实现原理"&gt;3. 核心实现原理
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;container_of&lt;/code&gt; 的实现依赖于以下两个关键技术：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;offsetof(type, member)&lt;/code&gt;&lt;/strong&gt; &lt;strong&gt;：计算成员在结构体中的偏移字节数&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;指针运算：通过成员指针减去其偏移量，反推出结构体起始地址&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="五offsetof-宏偏移量计算的核心"&gt;五、&lt;code&gt;offsetof&lt;/code&gt; 宏：偏移量计算的核心
+&lt;/h2&gt;&lt;h3 id="1-什么是-offsetof"&gt;1. 什么是 &lt;code&gt;offsetof&lt;/code&gt;？
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;offsetof(type, member)&lt;/code&gt; 是一个&lt;strong&gt;宏&lt;/strong&gt;，用于计算结构体 &lt;code&gt;type&lt;/code&gt; 中的成员 &lt;code&gt;member&lt;/code&gt; 相对于结构体起始地址的&lt;strong&gt;偏移字节数&lt;/strong&gt;。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;例如，如果结构体起始地址为 &lt;code&gt;0x1000&lt;/code&gt;，而成员 &lt;code&gt;private_data&lt;/code&gt; 的地址为 &lt;code&gt;0x1036&lt;/code&gt;，那么：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="nf"&gt;offsetof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;private_data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mh"&gt;0x36&lt;/span&gt; &lt;span class="c1"&gt;// 即 54 字节
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h3 id="2-offsetof-的标准实现"&gt;2. &lt;code&gt;offsetof&lt;/code&gt; 的标准实现
+&lt;/h3&gt;&lt;p&gt;在大多数标准 C 库（如 glibc）和编译器中，&lt;code&gt;offsetof&lt;/code&gt; 的实现通常如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-plaintext" data-lang="plaintext"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;#define offsetof(type, member) ((size_t) &amp;amp;((type *)0)-&amp;gt;member)&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4 id="详细解析"&gt;详细解析：
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;(type *)0&lt;/code&gt;：将整数值 &lt;code&gt;0&lt;/code&gt; 强制转换为一个指向 &lt;code&gt;type&lt;/code&gt; 类型的指针。它表示 &lt;strong&gt;“假设存在一个 type 类型的对象，其地址为 0”&lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt;⚠️ &lt;strong&gt;注意：这里并没有真的访问地址 0 的内存，只是构造了一个指针用于类型推导和偏移计算。&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;((type *)0)-&amp;gt;member&lt;/code&gt;：访问该（假设）对象的成员 &lt;code&gt;member&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;&amp;amp;((type *)0)-&amp;gt;member&lt;/code&gt;：&lt;strong&gt;取该成员的地址&lt;/strong&gt;。由于结构体假设位于地址 0，因此该地址的值就是成员相对于结构体起始地址的&lt;strong&gt;偏移字节数&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;(size_t)&lt;/code&gt;：将得到的地址值（指针）强制转换为 &lt;code&gt;size_t&lt;/code&gt; 类型（一种无符号整型，通常用于表示大小或偏移），最终得到一个整数，表示成员在结构体中的偏移量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="3-为什么-offsetof-是安全的"&gt;3. 为什么 &lt;code&gt;offsetof&lt;/code&gt; 是安全的？
+&lt;/h3&gt;&lt;p&gt;尽管代码中出现了 &lt;code&gt;(type *)0&lt;/code&gt;，但由于我们&lt;strong&gt;仅用它来计算成员的地址，而并未真正解引用该指针去访问内存&lt;/strong&gt;，因此：&lt;/p&gt;
+&lt;p&gt;✅ 它是&lt;strong&gt;编译期完成的计算&lt;/strong&gt;
+✅ 它&lt;strong&gt;不会在运行时访问地址 0 的内存&lt;/strong&gt;
+✅ 它是&lt;strong&gt;安全且被标准广泛接受的做法&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="六container_of-宏的逐步解析"&gt;六、&lt;code&gt;container_of&lt;/code&gt; 宏的逐步解析
+&lt;/h2&gt;&lt;p&gt;以如下调用为例：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p_ptr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;container_of&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;private_data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;private_data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;假设该宏展开后为：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)((&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="n"&gt;__mptr&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nf"&gt;offsetof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="步骤解析"&gt;步骤解析：
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;输入：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ptr&lt;/code&gt; 是指向成员的指针，例如 &lt;code&gt;&amp;amp;p.private_data&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;type&lt;/code&gt; 是结构体类型，例如 &lt;code&gt;struct Person&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;member&lt;/code&gt; 是成员名称，例如 &lt;code&gt;private_data&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;计算成员偏移量：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;调用 &lt;code&gt;offsetof(type, member)&lt;/code&gt;，得到成员 &lt;code&gt;private_data&lt;/code&gt; 在结构体中的偏移字节数（例如 54）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;将成员指针转换为字节指针：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将 &lt;code&gt;ptr&lt;/code&gt;（可能为 &lt;code&gt;void *&lt;/code&gt; 类型）强制转换为 &lt;code&gt;char *&lt;/code&gt;，因为 &lt;code&gt;char&lt;/code&gt; 的大小为 1 字节，便于进行&lt;strong&gt;按字节精确计算&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;计算结构体起始地址：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用成员指针的地址，减去该成员的偏移量，得到结构体的起始地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;类型转换：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将计算出的地址强制转换回结构体类型指针，如 &lt;code&gt;(struct Person *)&lt;/code&gt;，从而得到指向整个结构体的指针&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id="七完整示例代码"&gt;七、完整示例代码
+&lt;/h2&gt;&lt;p&gt;下面是一个完整、可运行的示例程序，演示 &lt;code&gt;container_of&lt;/code&gt; 的使用与原理：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-c" data-lang="c"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 1&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 2&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stddef.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 3&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 4&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 定义 container_of 宏（标准 C 兼容版本）
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 5&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="cp"&gt;#define container_of(ptr, type, member) \
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 6&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt; ((type *)((char *)(ptr) - offsetof(type, member)))
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 7&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 8&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;// 定义测试结构体
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt; 9&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt;&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;10&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;age&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;11&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;12&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;private_data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;13&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;14&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;15&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;16&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;17&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;25&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;18&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;snprintf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;sizeof&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="s"&gt;&amp;#34;Alice&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;19&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;private_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="mh"&gt;0xDEADBEEF&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;20&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;21&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 获取成员 private_data 的指针
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;22&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;ptr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;private_data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;23&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;24&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 通过 container_of 获取包含该成员的结构体指针
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;25&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;p_found&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nf"&gt;container_of&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ptr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;Person&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;private_data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;26&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;27&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 输出验证
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;28&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;&lt;/span&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Original person : %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;29&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Found person : %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p_found&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;30&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;Member private_data: %p&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p_found&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;private_data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;31&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;32&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p_found&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;33&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;✅ container_of 成功找到了原始结构体！&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;34&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;35&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="nf"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;❌ 错误：未正确找到结构体&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;36&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;37&lt;/span&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;38&lt;/span&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;39&lt;/span&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="输出示例"&gt;输出示例：
+&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-plaintext" data-lang="plaintext"&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;1&lt;/span&gt;&lt;span class="cl"&gt;Original person : 0x7ffd12345678
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;2&lt;/span&gt;&lt;span class="cl"&gt;Found person : 0x7ffd12345678
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;3&lt;/span&gt;&lt;span class="cl"&gt;Member private_data: 0xdeadbeef
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="ln"&gt;4&lt;/span&gt;&lt;span class="cl"&gt;✅ container_of 成功找到了原始结构体！&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2 id="八关键技术与疑难点解析"&gt;八、关键技术与疑难点解析
+&lt;/h2&gt;&lt;h3 id="1-为什么需要-container_of"&gt;1. 为什么需要 &lt;code&gt;container_of&lt;/code&gt;？
+&lt;/h3&gt;&lt;p&gt;C 语言没有内置的机制可以从成员指针反推宿主结构体指针。而实际开发中（尤其是在实现通用容器、链表、面向对象风格的代码时），这一功能极其重要。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="3-offsetof-的实现安全吗"&gt;3. &lt;code&gt;offsetof&lt;/code&gt; 的实现安全吗？
+&lt;/h3&gt;&lt;p&gt;✅ 是的。虽然它使用了 &lt;code&gt;(type *)0&lt;/code&gt;，但&lt;strong&gt;仅用于计算成员地址，而并未真正访问该地址的内存&lt;/strong&gt;，因此是安全的。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="4-container_of-返回的是什么"&gt;4. &lt;code&gt;container_of&lt;/code&gt; 返回的是什么？
+&lt;/h3&gt;&lt;p&gt;它返回一个 &lt;strong&gt;指向结构体的指针&lt;/strong&gt;，类型为 &lt;code&gt;type *&lt;/code&gt;，即你传入的结构体类型。&lt;/p&gt;
+&lt;p&gt;它&lt;strong&gt;不是常数，也不是宏直接替换为值&lt;/strong&gt;，而是在预处理阶段展开为一段代码，最终在运行时计算并返回一个指针。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="5-为什么使用-typeof在-gcc-版本中"&gt;5. 为什么使用 &lt;code&gt;typeof&lt;/code&gt;（在 GCC 版本中）？
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;typeof&lt;/code&gt; 用于&lt;strong&gt;自动推导成员的类型&lt;/strong&gt;，使得 &lt;code&gt;container_of&lt;/code&gt; 宏可以适用于&lt;strong&gt;任意结构体和任意成员&lt;/strong&gt;，具有高度的通用性。标准 C 中可用显式类型替代，但通用性会降低。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="九总结"&gt;九、总结
+&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项目&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;作用&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;通过结构体成员的指针，获取包含该成员的整个结构体的指针&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;核心原理&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;成员指针 - 成员偏移量 = 结构体起始地址&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;关键宏&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;offsetof(type, member)&lt;/code&gt;：计算成员偏移量&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;实现方式&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;指针运算：&lt;code&gt;(char *)member_ptr - offsetof(...)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;典型应用&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;Linux 内核链表、设备模型、通用容器、面向对象风格代码&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;扩展知识&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;涉及指针类型转换、宏编程、编译期计算、内存模型等 C 语言高级主题&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</description></item></channel></rss>
